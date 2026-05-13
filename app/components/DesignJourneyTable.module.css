@@ -1,0 +1,266 @@
+.root {
+  width: 100%;
+  max-width: 550px;
+  align-self: stretch;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  padding: 18px 0;
+  border-top: 1px solid #e3e3e3;
+}
+
+.colLeft {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #171717;
+}
+
+.colMid,
+.colRight {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(23, 23, 23, 0.8);
+}
+
+.colMid {
+  text-align: center;
+}
+
+.colRight {
+  text-align: right;
+}
+
+.statsWrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+}
+
+.statsGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.statsCard {
+  box-sizing: border-box;
+  width: 550px;
+  max-width: 100%;
+  height: 183px;
+  background: #fff;
+  border: 1px solid #e9e9e9;
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  position: relative;
+  margin-top: 100px;
+}
+
+.statsLeft {
+  display: flex;
+  align-items: flex-start;
+}
+
+.statsNumber {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 65px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -10px;
+  color: #171717;
+  font-variant-numeric: tabular-nums;
+}
+
+.statsPlus {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 0;
+  vertical-align: super;
+  margin-left: 0.06em;
+  color: #2a29ff;
+}
+
+.statsRight {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 230px;
+  bottom: 60px;
+}
+
+.statsText1 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #23232399;
+}
+
+.statsText2 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #232323;
+}
+
+@media (max-width: 700px) {
+
+  .colMid,
+  .colRight {
+    text-align: left;
+  }
+
+  .statsNumber {
+    font-size: 44px;
+  }
+}
+
+
+.twinRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 32px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.twinLeft {
+  position: relative;
+  width: 273px;
+  height: 273px;
+  border-radius: 36px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e9e9e9;
+}
+
+.twinLeftImg {
+  object-fit: cover;
+}
+
+.twinCheck {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.twinRight {
+  box-sizing: border-box;
+  display: flex;
+  width: 273px;
+  height: 273px;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 40px;
+  border-radius: 36px;
+  background: #2a29ff;
+}
+
+.twinRightTop {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 40px;
+  min-height: 0;
+}
+
+.twinDots {
+  display: block;
+  width: 95%;
+  max-width: 100%;
+  height: auto;
+}
+
+.pctBlock {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  line-height: 1;
+}
+
+.pctValue {
+  font-size: 65px;
+  font-weight: 600;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.pctSymbol {
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.twinRightBottom {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.twinP1 {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #ffffff99;
+}
+
+.twinP2 {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .twinRow {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .statsCard {
+    display: none;
+  }
+
+  .twinLeft {
+    width: 48%;
+    height: 200px;
+  }
+
+  .twinRight {
+    width: 48%;
+    height: 200px;
+    padding: 20px;
+  }
+
+  .twinDots {
+    display: none;
+  }
+}

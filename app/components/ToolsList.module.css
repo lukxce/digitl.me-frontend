@@ -1,0 +1,111 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 550px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: 640px) {
+    .root {
+      width: 100%;
+    }
+  }
+  
+  .step {
+    position: relative; /* مهم */
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 80px;
+    background-color: #E9E9E9; /* base color */
+    border-radius: 18px;
+    padding: 16px;
+    overflow: hidden; /* clips fill */
+  }
+  
+  /* 🔵 animated fill */
+  .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #2A29FF;
+    z-index: 0;
+  
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  /* content above fill */
+  .stepIcon,
+  .stepContent,
+  .stepPercentage {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stepIcon{
+    width: 44px;
+    height: 44px;
+    background-color: #fff;
+    border-radius: 9px;
+  }
+
+  .stepPercentage {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-left: auto;
+    min-width: 50px;
+    text-align: center;
+    font-weight: 600;
+  
+    background-color: rgba(0, 0, 0, 0.4); /* better than opacity */
+    color: #fff;
+  
+    border-radius: 50px;
+    padding: 6px 9px;
+  }
+  
+  /* LEFT */
+  .stepIcon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* MIDDLE */
+  .stepContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+  
+  .stepTitle {
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff; /* optional for contrast */
+  }
+  
+  .stepDescription {
+    font-size: 14px;
+    opacity: 0.8;
+    line-height: 1.4;
+    color: #fff; /* optional */
+  }
+  
+  /* RIGHT */
+  .stepPercentage {
+    flex-shrink: 0;
+    margin-left: auto;
+    min-width: 50px;
+    text-align: right;
+    font-weight: 600;
+    color: #fff; /* optional */
+  }

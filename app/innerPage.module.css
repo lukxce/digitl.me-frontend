@@ -1,0 +1,68 @@
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  padding: 0rem 1.5rem 4rem;
+  max-width: 1010px;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 100px;
+}
+
+.pageProject {
+    flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  padding: 0rem 1rem 4rem;
+  max-width: 1010px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.pageDetail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  padding: 0 1.5rem 4rem;
+  width: 100%;
+  max-width: none;
+}
+
+.pageDetailTop {
+  padding-top: 100px;
+}
+
+.pageDetailSection {
+  width: 100%;
+  max-width: 1010px;
+  margin: 0 auto;
+}
+
+.titleContainer {
+  margin: auto;
+  text-align: center;
+  align-items: center;
+}
+
+.cardColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: 48px;
+  align-self: center;
+  margin-bottom: 100px;
+}
+
+.showcaseInsights {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto 32px;
+}

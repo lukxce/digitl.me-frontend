@@ -1,0 +1,164 @@
+.reveal {
+  flex-shrink: 0;
+  width: 550px;
+  height: 400px;
+}
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 42px;
+  overflow: hidden;
+  color: inherit;
+  isolation: isolate;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 4px;
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.imageScale {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+}
+
+.imageHoverZoom {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .imageHoverZoom,
+.card:focus-visible .imageHoverZoom {
+  transform: scale(1.06);
+}
+
+.bgImage {
+  object-fit: cover;
+}
+
+.footer {
+  position: absolute;
+  z-index: 1;
+  bottom: 6px;
+  left: 6px;
+  width: 538px;
+  height: 70px;
+  border-radius: 41px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px 0 12px;
+  background: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.thumb {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgba(23, 23, 23, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.arrowWrap {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F6F6F6;
+  color: #000;
+}
+
+.arrowIcon {
+  display: block;
+  transition: transform 0.28s ease;
+}
+
+.card:hover .arrowIcon,
+.card:focus-visible .arrowIcon {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageHoverZoom {
+    transition: none;
+  }
+
+  .card:hover .imageHoverZoom,
+  .card:focus-visible .imageHoverZoom {
+    transform: none;
+  }
+
+  .card:hover .arrowIcon,
+  .card:focus-visible .arrowIcon {
+    transform: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .reveal {
+    width: 100%;
+    height: 280px;
+  }
+
+  .footer {
+    width: 97%;
+  }
+
+  .thumb {
+    width: 40px;
+    height: 40px;
+  }
+}

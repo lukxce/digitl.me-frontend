@@ -1,0 +1,91 @@
+.header {
+  border-bottom: 1px solid var(--nav-border, #ebebeb);
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  color: #fff;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+
+
+  border-bottom-width: 1px;
+  border-color: rgba(255, 255, 255, 0.06);
+  border-left-width: 1px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 1px;
+  backdrop-filter: blur(7px);
+  background-color: rgba(10, 10, 10, 0.6);
+  border-radius: 50px;
+}
+
+@media (max-width: 640px) {
+  .header {
+    top: 10px;
+    bottom: auto;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 6px;
+  padding-left: 20px;
+}
+
+.brand {
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+
+}
+
+.links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  font-size: 0.9375rem;
+  align-items: center;
+}
+
+.links a {
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.homeLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeIcon {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.contactLink {
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #000;
+
+  &:hover {
+    background-color: #2a29ff;
+    color: #fff;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    opacity: 1;
+  }
+}

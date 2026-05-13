@@ -1,0 +1,83 @@
+.root {
+  border-top: 1px solid #e3e3e3;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 450px;
+  padding: 24px 0;
+  justify-content: space-between;
+}
+
+.toggleBtn {
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #171717;
+  border-radius: 6px;
+}
+
+.toggleBtn:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
+}
+
+.iconSlot {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: #171717;
+}
+
+.iconSlot svg {
+  display: block;
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  flex: 1;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #171717;
+}
+
+.toggle {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.panel {
+  padding: 20px 0;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: rgba(23, 23, 23, 0.75);
+}

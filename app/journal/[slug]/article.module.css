@@ -1,0 +1,141 @@
+.articleLayout {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 100px;
+}
+
+.articleMain {
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.contentColumn {
+  max-width: 550px;
+  width: 100%;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #171717;
+  text-decoration: none;
+}
+
+.backIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #fdfdfd;
+  color: #171717;
+  border: 1px solid #e3e3e3;
+}
+
+.backArrow {
+  display: block;
+}
+
+.header {
+  margin-bottom: 1.25rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.author {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.authorAvatar {
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorName {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #171717;
+}
+
+.separator {
+  margin: 1rem 0 1.25rem;
+  border: none;
+  border-top: 1px solid #e3e3e3;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+  max-width: 1010px;
+  margin: 70px 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #ececec;
+}
+
+.coverImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bodyWrap {
+  margin-top: 0.25rem;
+}
+
+.h1 {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.5rem;
+  color: #000000;
+}
+
+.date {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #171717;
+}
+
+.empty {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #262626;
+}

@@ -1,0 +1,18 @@
+.track {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.segment {
+  flex: 1;
+  height: 3px;
+  border-radius: 999px;
+  background: #d4d4d8;
+  transition: background 0.25s ease;
+}
+
+.segmentActive {
+  background-color:#9EF34A;
+}

@@ -1,0 +1,177 @@
+.container {
+  box-sizing: border-box;
+  align-self: center;
+  width: 100%;
+  max-width: 550px;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  padding: 8px;
+  border-radius: 46px;
+  background-color: #f6f6f6;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.item {
+  width: 100%;
+  max-width: 532px;
+}
+
+.rowLink {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  min-height: 72px;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+  padding-right: 30px;
+  border-radius: 41px;
+  background-color: #fff;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.rowLink:focus-visible {
+  outline: 2px solid #2a29ff;
+  outline-offset: 2px;
+}
+
+.thumb {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 100px;
+  background: #ececec;
+}
+
+.thumbInner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center center;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: #171717;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: left center;
+}
+
+.titleText {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: rgba(23, 23, 23, 0.5);
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rowLink:hover .thumbInner {
+    transform: scale(1.06);
+  }
+
+  .rowLink:hover .title {
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thumbInner,
+  .title {
+    transition: none;
+  }
+
+  .rowLink:hover .thumbInner,
+  .rowLink:hover .title {
+    transform: none;
+  }
+
+  .viewAllArrow {
+    transition: none;
+  }
+
+  .viewAllLink:hover .viewAllArrow,
+  .viewAllLink:focus-visible .viewAllArrow {
+    transform: none;
+  }
+}
+
+.viewAllFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding: 0 12px 6px;
+}
+
+.viewAllLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #171717;
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 15px auto;
+}
+
+.viewAllLink:focus-visible {
+  outline: 2px solid #2a29ff;
+  outline-offset: 3px;
+}
+
+.viewAllLabel {
+  display: inline-block;
+}
+
+.viewAllArrow {
+  display: block;
+  flex-shrink: 0;
+  color: #2a29ff;
+  transition: transform 0.28s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .viewAllLink:hover .viewAllArrow {
+    transform: rotate(45deg);
+  }
+}
+
+.viewAllLink:focus-visible .viewAllArrow {
+  transform: rotate(45deg);
+}

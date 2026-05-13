@@ -1,0 +1,64 @@
+.root {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 194px;
+  height: 58px;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 3px;
+  padding-left: 12px;
+  border: none;
+  border-radius: 100px;
+  background-color: #2a29ff;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.root:focus-visible {
+  outline: 2px solid #2a29ff;
+  outline-offset: 3px;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  padding-right: 10px;
+  text-align: left;
+  padding-left: 12px;
+}
+
+.iconCircle {
+  display: flex;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.arrow {
+  display: block;
+  color: #2a29ff;
+  transition: transform 0.28s ease;
+}
+
+.root:hover .arrow {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none;
+  }
+
+  .root:hover .arrow {
+    transform: none;
+  }
+}

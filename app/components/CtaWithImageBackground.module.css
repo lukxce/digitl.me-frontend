@@ -1,0 +1,68 @@
+.root {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 550px;
+  height: 450px;
+  flex-shrink: 0;
+  margin: 56px auto 0;
+  border-radius: 36px;
+  overflow: hidden;
+  isolation: isolate;
+  margin-bottom: 100px;
+}
+
+.bg {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    165deg,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.58) 100%
+  );
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  text-align: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 0 0 16px;
+  max-width: 400px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.description {
+  margin: 0 0 28px;
+  max-width: 400px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #fff;
+  opacity: 0.95;
+}
+
+.ctaWrap {
+  display: flex;
+  justify-content: center;
+}

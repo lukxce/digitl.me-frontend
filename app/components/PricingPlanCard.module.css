@@ -15,10 +15,12 @@
 /* —— Section spacing —— */
 .top {
   margin-bottom: 26px;
+  flex: 1;
 }
 
 .titleBlock {
   margin-bottom: 8px;
+  flex: 2;
 }
 
 .subtitle {
@@ -169,6 +171,14 @@
 @media (max-width: 640px) {
   .features {
     width: 100%;
+  }
+
+  .planName{
+  font-size: 30px;
+  }
+
+  .price{
+  font-size: 25px;
   }
 
   .ctaRow{

@@ -8,7 +8,7 @@
   line-height: 1;
   font-weight: 600;
   max-width: 370px;
-  margin: 0 0 15px;
+  margin: 0 0 24px;
   color: #000;
   font-family: var(--font-manrope), system-ui, sans-serif;
 }
@@ -16,7 +16,8 @@
 .subtitle {
   max-width: 250px;
   margin: 0 auto;
-  color: #171717;
+  color: #a4a4a4;
   font-size: 17px;
+  font-weight: 600;
   font-family: var(--font-manrope), system-ui, sans-serif;
 }

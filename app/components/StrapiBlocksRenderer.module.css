@@ -59,9 +59,10 @@
 
 .p {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.65;
-  color: #171717;
+  color: #a4a4a4;
+  font-weight: 600;
 }
 
 .p a {

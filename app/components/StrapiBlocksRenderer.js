@@ -486,19 +486,7 @@ function renderBlock(block, key, headingQueue) {
           typeof block.image.alternativeText === "string" &&
           block.image.alternativeText) ||
         "";
-      return (
-        <figure key={key} className={styles.figure}>
-          <Image
-            src={url}
-            alt={alt}
-            width={1200}
-            height={800}
-            className={styles.blockImage}
-            sizes="(max-width: 720px) 100vw, 720px"
-            unoptimized
-          />
-        </figure>
-      );
+      return renderImageRow([{ url, alt }], key);
     }
     case "horizontal-rule":
     case "horizontal_rule":

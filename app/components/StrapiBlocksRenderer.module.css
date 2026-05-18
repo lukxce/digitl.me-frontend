@@ -64,6 +64,7 @@
   color: #171717;
   opacity: 0.5;
   font-weight: 600;
+  margin-top: 19px;
 }
 
 .p a {
@@ -132,32 +133,28 @@ letter-spacing: -4%;
 .imageRowBreakout {
   width: min(1010px, 100vw);
   max-width: 1010px;
+  margin-top: 90px;
+  margin-bottom: 90px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
 .imageRow {
   display: grid;
-  gap: 12px;
+  gap: 0;
   width: 100%;
 }
 
 .imageRowOne {
   grid-template-columns: minmax(0, 1fr);
-  margin-bottom: 90px;
-  margin-top: 90px;
 }
 
 .imageRowTwo {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-bottom: 90px;
-  margin-top: 90px;
 }
 
 .imageRowThree {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-bottom: 90px;
-  margin-top: 90px;
 }
 
 .imageRowThree .imageRowFigure:nth-child(3) {

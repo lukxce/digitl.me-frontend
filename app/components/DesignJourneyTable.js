@@ -37,11 +37,15 @@ const PCT_STEP_MS = 12;
 
 function ScrollCountCard() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.35 });
+  const isInView = useInView(ref, { amount: 0.35 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setCount(10);
       return;
@@ -82,11 +86,15 @@ function ScrollCountCard() {
 
 function TwinSatisfactionRow() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.3 });
+  const inView = useInView(ref, { amount: 0.3 });
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView) {
+      setPercent(0);
+      return;
+    }
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPercent(95);
       return;

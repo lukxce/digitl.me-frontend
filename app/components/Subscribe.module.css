@@ -79,6 +79,23 @@
 
 .arrow {
   display: block;
+  transition: transform 0.28s ease;
+}
+
+.submit:hover .arrow,
+.submit:focus-visible .arrow {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrow {
+    transition: none;
+  }
+
+  .submit:hover .arrow,
+  .submit:focus-visible .arrow {
+    transform: none;
+  }
 }
 
 

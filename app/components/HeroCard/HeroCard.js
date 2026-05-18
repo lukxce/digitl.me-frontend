@@ -73,6 +73,7 @@ export default function HeroCard({
         />
       </div>
       <div className={styles.inner}>
+      <div className={styles.hole}></div>
 
       <div className={styles.card}>
         <ProgressBar activeCount={progressActiveCount} />

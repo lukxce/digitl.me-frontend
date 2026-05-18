@@ -22,6 +22,7 @@ import {
 } from "./components/serviceIcons";
 import Title from "./components/Title";
 import ToolsList from "./components/ToolsList";
+import Years from "./components/Years";
 import styles from "./page.module.css";
 import HeroCard from "./components/HeroCard";
 import AvatarInfo from "./components/AvatarInfo";
@@ -141,12 +142,12 @@ export default function HomePage({ articles = [], showcases = [] }) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className={styles.titleContainer}
         >
-          <Title
-            title="My journey through design"
-            subtitle="Explore the milestones and experiences that have shaped my career, year by year."
-          />
+          <Years />
+          <div className={styles.journeyContainer}>
+            <h3 className={styles.journeyTitleTitle}>My journey through design</h3>
+            <p className={styles.journeyTitleSubtitle}>Explore the milestones and experiences that have shaped my career, year by year.</p>
+          </div>
         </motion.div>
         <DesignJourneyTable />
 
@@ -159,7 +160,8 @@ export default function HomePage({ articles = [], showcases = [] }) {
         >
           <Title
             title="Words from my clients"
-            subtitle="Short stories from people who value thoughtful design."
+            subtitle="<b>Loved by those</b> <br> who value thoughtful design."
+            hasImage={true}
           />
         </motion.div>
 
@@ -214,7 +216,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
             width={600}
           />
         </motion.div>
-        <ClientsLogosCarousel />
+        <ClientsLogosCarousel marginTop={60} marginBottom={60} />
 
         <Subscribe />
         <AvatarInfo />

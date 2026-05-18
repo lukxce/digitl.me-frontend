@@ -54,7 +54,7 @@
   font-size: 22px;
   font-weight: 600;
   line-height: 1.25;
-  letter-spacing: -0.02em;
+  letter-spacing: -4%;
   text-align: center;
   color: #171717;
 }
@@ -70,6 +70,10 @@
 }
 
 .panel {
+  overflow: hidden;
+}
+
+.panelInner {
   padding: 20px 0;
 }
 
@@ -77,7 +81,8 @@
   margin: 0;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.55;
-  color: rgba(23, 23, 23, 0.75);
+  font-weight: 600;
+  line-height: 130%;
+  color: #747474;
+  letter-spacing: -4%;
 }

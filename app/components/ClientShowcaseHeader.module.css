@@ -15,6 +15,7 @@
 .inner {
   height: auto;
   margin-bottom: 2rem;
+  border: 1px solid #E9E9E9
 }
 
 .card {

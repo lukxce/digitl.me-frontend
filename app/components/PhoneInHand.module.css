@@ -55,7 +55,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(42, 41, 255, 0.7);
+  background: rgba(41, 41, 255, 0.92);
   pointer-events: none;
 }
 
@@ -231,6 +231,12 @@
   }
 
   .phoneWrap {
-    right: 66px;
+    right: 74px;
+  }
+}
+
+@media (max-width: 380px) {
+  .phoneWrap {
+    right: 107px;
   }
 }

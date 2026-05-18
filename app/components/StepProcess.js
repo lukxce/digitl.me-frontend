@@ -14,13 +14,17 @@ import OvalIcon from "../assets/Oval.svg";
 
 export default function StepProcess() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { amount: 0.5 });
 
   const count = useMotionValue(1);
   const [display, setDisplay] = useState(1);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView) {
+      count.set(1);
+      setDisplay(1);
+      return;
+    }
 
     const controls = animate(count, 4, {
       duration: 1.5,
@@ -31,7 +35,7 @@ export default function StepProcess() {
     });
 
     return () => controls.stop();
-  }, [isInView]);
+  }, [isInView, count]);
 
   const steps = [
     {
@@ -64,16 +68,19 @@ export default function StepProcess() {
         <div className={styles.mainStepText}>
           <h3 className={styles.mainStepTitle}>Step process</h3>
           <p className={styles.mainStepDescription}>
-            A proven workflow that ensures seamless collaboration and outstanding results.
+            <b>A proven workflow</b> that ensures seamless collaboration and <b>outstanding results</b>.
           </p>
         </div>
 
-        <Image src={ladder} alt="Ladder" width={124} height={164} unoptimized />
+        <Image src={ladder} alt="Ladder" width={124} height={164} unoptimized className={styles.ladder} />
       </div>
 
       {/* STEPS */}
       {steps.map((step, index) => {
         const isEven = index % 2 !== 0;
+        const isReversed = index % 2 === 0;
+        const titleAlign = isReversed ? styles.alignLeft : styles.alignRight;
+        const descriptionAlign = isReversed ? styles.alignRight : styles.alignLeft;
 
         const animation = {
           hidden: {
@@ -91,7 +98,7 @@ export default function StepProcess() {
           <div className={styles.step} key={step.title}>
             
             <motion.h3
-              className={styles.title}
+              className={`${styles.title} ${titleAlign}`}
               variants={animation}
               initial="hidden"
               whileInView="visible"
@@ -106,7 +113,7 @@ export default function StepProcess() {
             </div>
 
             <motion.p
-              className={styles.description}
+              className={`${styles.description} ${descriptionAlign}`}
               variants={animation}
               initial="hidden"
               whileInView="visible"

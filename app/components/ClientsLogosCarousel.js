@@ -13,10 +13,14 @@ function LogoRow({ keyPrefix }) {
   ));
 }
 
-export default function ClientsLogosCarousel(props) {
-  const { title } = props;
+export default function ClientsLogosCarousel({ title, marginTop, marginBottom }) {
+  const style = {
+    ...(marginTop != null && { marginTop }),
+    ...(marginBottom != null && { marginBottom }),
+  };
+
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={Object.keys(style).length ? style : undefined}>
       {title && <p className={styles.label}>{title}</p>}
       <div className={styles.viewport}>
         <div className={styles.track}>

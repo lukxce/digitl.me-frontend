@@ -58,7 +58,11 @@ function PlusMinusIcon({ open, reduceMotion }) {
         strokeWidth="2"
         strokeLinecap="round"
         initial={false}
-        animate={{ opacity: open ? 0 : 1 }}
+        animate={{
+          opacity: open ? 0 : 1,
+          scaleY: open ? 0 : 1,
+        }}
+        style={{ transformOrigin: "center" }}
         transition={
           reduceMotion ? { duration: 0 } : { duration: 0.35, ease: easeOut }
         }
@@ -102,15 +106,20 @@ function FaqItem({ question, answer }) {
             className={styles.panel}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            exit={{ height: 0, opacity: 1 }}
             transition={
               reduceMotion
                 ? { duration: 0.2, ease: easeOut }
-                : { duration: 0.4, ease: easeOut, opacity: { duration: 0.28 } }
+                : {
+                    height: { duration: 0.35, ease: easeOut },
+                    opacity: { duration: 0.25, ease: easeOut },
+                  }
             }
             style={{ overflow: "hidden" }}
           >
-            <p className={styles.answer}>{answer}</p>
+            <div className={styles.panelInner}>
+              <p className={styles.answer}>{answer}</p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

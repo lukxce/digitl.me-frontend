@@ -9,9 +9,8 @@
 }
 
 .row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  gap: 20px;
+  display: flex;
+  justify-content: space-between;
   align-items: start;
   padding: 18px 0;
   border-top: 1px solid #e3e3e3;
@@ -19,10 +18,12 @@
 
 .colLeft {
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 140%;
+  letter-spacing: -4%;
   color: #171717;
+  flex: 1;
 }
 
 .colMid,
@@ -32,14 +33,24 @@
   font-weight: 500;
   line-height: 1.4;
   color: rgba(23, 23, 23, 0.8);
-}
-
-.colMid {
-  text-align: center;
-}
-
-.colRight {
   text-align: right;
+}
+
+.colMid{
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: -4%;
+  font-weight: 600;
+  flex: 1;
+}
+
+.colRight{
+  font-size: 14px;
+  line-height: 120%;
+  letter-spacing: -4%;
+  font-weight: 600;
+  color: #747474;
+  flex: 0.7;
 }
 
 .statsWrap {
@@ -110,6 +121,7 @@
   font-weight: 500;
   line-height: 1.4;
   color: #23232399;
+  letter-spacing: -4%;
 }
 
 .statsText2 {
@@ -118,6 +130,7 @@
   font-weight: 600;
   line-height: 1.4;
   color: #232323;
+  letter-spacing: -4%;
 }
 
 @media (max-width: 700px) {
@@ -139,7 +152,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  margin-top: 32px;
+  margin-top: 4px;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -164,6 +177,8 @@
   align-items: center;
   justify-content: center;
   position: absolute;
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
 }
 
 .twinRight {
@@ -206,6 +221,7 @@
   font-weight: 600;
   color: #fff;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -6px;
 }
 
 .pctSymbol {
@@ -218,7 +234,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  letter-spacing: -4%;
 }
 
 .twinP1 {
@@ -242,25 +258,48 @@
 @media (max-width: 640px) {
   .twinRow {
     flex-direction: row;
-    gap: 16px;
+    gap: 4px;
   }
 
-  .statsCard {
-    display: none;
+  .statsCard{
+    padding: 30px;
+    margin-top: 50px;
+  }
+
+  .statsRight {
+    position: unset;
+    margin-left: 15px;
   }
 
   .twinLeft {
-    width: 48%;
+    width: 49%;
     height: 200px;
   }
 
   .twinRight {
-    width: 48%;
+    width: 49%;
     height: 200px;
     padding: 20px;
   }
 
   .twinDots {
     display: none;
+  }
+
+  .colLeft {
+    font-size: 14px;
+    flex: 0.8;
+  }
+
+  .colMid {
+    font-size: 14px;
+    flex: 0.5;
+    text-align: right;
+  }
+
+  .colRight {
+    font-size: 14px;
+    flex: 1;
+    text-align: right;
   }
 }

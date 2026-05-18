@@ -74,7 +74,7 @@ export default function ContactForm({ onSubmit }) {
             name="email"
             autoComplete="email"
             inputMode="email"
-            placeholder="Email"
+            placeholder="@ Email"
             className={styles.field}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -113,6 +113,7 @@ export default function ContactForm({ onSubmit }) {
               hello@praxis.com
             </a>
           </p>
+          <p className={styles.copyright}>© Copyright 2026. All rights Reserved.</p>
         </footer>
       </div>
     </section>

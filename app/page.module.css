@@ -188,6 +188,57 @@ a.secondary {
   }
 }
 
+
+.clientQuoteBold {
+  font-size: 14px;
+  font-weight: 600;
+  color: #171717;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  margin-top: 20px;
+}
+
+.clientQuote {
+  font-size: 14px;
+  font-weight: 400;
+  color: #171717;
+}
+
+.journeyContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  text-align: center;
+    align-items: center;
+    margin: auto 65px;
+    max-width: 370px;
+}
+
+.journeyTitleTitle {
+  font-family: var(--font-manrope);
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 22px;
+  line-height: 140%;
+  letter-spacing: -4%;
+  text-align: left;
+    width: 100%;
+  
+}
+
+.journeyTitleSubtitle {
+  font-family: var(--font-manrope);
+  font-weight: 600;
+  font-style: SemiBold;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: -4%;
+  color: #747474;
+  text-align: left;
+}
+
+
 @media (max-width: 600px) {
   .main {
     padding: 0px 10px;
@@ -205,19 +256,11 @@ a.secondary {
 
   .servicesList {
     width: 100%;
+    padding: 0 20px;
   }
-}
 
-.clientQuoteBold {
-  font-size: 14px;
-  font-weight: 600;
-  color: #171717;
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  margin-top: 20px;
-}
-
-.clientQuote {
-  font-size: 14px;
-  font-weight: 400;
-  color: #171717;
+  .journeyContainer {
+    margin: 0;
+    max-width: 300px;
+  }
 }

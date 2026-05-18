@@ -185,29 +185,41 @@ function renderImageRow(images, key) {
         ? "(max-width: 1010px) 50vw, 505px"
         : "(max-width: 1010px) 50vw, 505px";
 
+  const renderFigure = (image, index, figureSizes) => (
+    <figure
+      key={`${key}-img-${index}`}
+      className={`${styles.figure} ${styles.imageRowFigure}`.trim()}
+    >
+      <Image
+        src={image.url}
+        alt={image.alt}
+        width={1200}
+        height={800}
+        className={styles.blockImage}
+        sizes={figureSizes}
+        unoptimized
+      />
+    </figure>
+  );
+
+  if (layout === "three") {
+    return (
+      <div key={key} className={styles.imageRowBreakout}>
+        <div className={styles.imageRowThreeLayout}>
+          <div className={styles.imageRowThreeTop}>
+            {renderFigure(images[0], 0, sizes)}
+            {renderFigure(images[1], 1, sizes)}
+          </div>
+          {renderFigure(images[2], 2, "(max-width: 1010px) 100vw, 1010px")}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div key={key} className={styles.imageRowBreakout}>
       <div className={`${styles.imageRow} ${rowClass}`.trim()}>
-        {images.map((image, index) => (
-          <figure
-            key={`${key}-img-${index}`}
-            className={`${styles.figure} ${styles.imageRowFigure}`.trim()}
-          >
-            <Image
-              src={image.url}
-              alt={image.alt}
-              width={1200}
-              height={800}
-              className={styles.blockImage}
-              sizes={
-                layout === "three" && index === 2
-                  ? "(max-width: 1010px) 100vw, 1010px"
-                  : sizes
-              }
-              unoptimized
-            />
-          </figure>
-        ))}
+        {images.map((image, index) => renderFigure(image, index, sizes))}
       </div>
     </div>
   );

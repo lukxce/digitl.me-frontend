@@ -11,7 +11,7 @@
   border-radius: 46px;
   background-color: #f6f6f6;
   overflow-y: auto;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   border: 1px solid #EAEAEA
 }
 
@@ -41,7 +41,7 @@
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -5%;
-  color: #111827;
+  color: #171717;
 }
 
 .subtitle {
@@ -51,7 +51,7 @@
   font-size: 17px;
   font-weight: 500;
   line-height: 1.5;
-  color: #6b7280;
+  color: #17171780;
   max-width: 300px;
   margin-bottom: 20px;
   letter-spacing: -4%;
@@ -190,7 +190,6 @@
 .email {
   margin: 0 0 20px;
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 45px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -4%;
@@ -199,6 +198,7 @@
 .emailLink {
   color: #111827;
   text-decoration: none;
+  font-size: 45px;
 }
 
 .emailLink:hover {
@@ -216,17 +216,61 @@
   opacity: 0.5;
 }
 
+.disclaimer {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #17171780;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
 
 @media (max-width: 640px) {
   .emailLink{
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .form{
     gap: 8px;
   }
 
+  .title{
+    font-size: 34px;
+  }
+
   .subtitle{
     margin: 0;
+    font-size: 15px;
+  }
+
+  .outer{
+    padding-bottom: 20px;
+    height: 770px;
+    margin-bottom: 100px;
+  }
+
+  .disclaimer{
+    margin-top: 20px;
+  }
+
+  .inner{
+    padding: 44px 20px 40px;
+  }
+
+  .copyright{
+    font-size: 11px;
+  }
+
+  .footer{
+    padding-top: 0px;
+    margin-top: 0px;
   }
 }

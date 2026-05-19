@@ -89,3 +89,9 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 640px) {
+  .links a {
+    font-size: 14px;
+  }
+}

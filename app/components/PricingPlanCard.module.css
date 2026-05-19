@@ -173,8 +173,17 @@
     width: 100%;
   }
 
+  .featureText{
+    font-size: 14px;
+  }
+
   .planName{
   font-size: 30px;
+  }
+
+  .subtitleText{
+    margin: 15px 0 0;
+    font-size: 14px;
   }
 
   .price{
@@ -186,6 +195,10 @@
     width: 100%;
     display: flex;
     margin-top: 15px;
+  }
+
+  .titleRow{
+    flex-direction: column;
   }
 }
 .featuresLead {

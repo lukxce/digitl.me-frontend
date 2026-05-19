@@ -116,6 +116,7 @@ export default function ContactForm({ onSubmit }) {
           <p className={styles.copyright}>© Copyright 2026. All rights Reserved.</p>
         </footer>
       </div>
+      <p className={styles.disclaimer}>Contact me directly at hello@praxis.com.</p>
     </section>
   );
 }

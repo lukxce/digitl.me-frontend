@@ -81,7 +81,7 @@
 .description {
     font-size: 16px;
     font-weight: 600;
-    color: #171717;
+    color: #17171780;
     opacity: 0.5;
     line-height: 130%;
     letter-spacing: -4%;
@@ -128,7 +128,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 24px 0 16px;
+  margin: 16px 0 16px;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 14px;
   font-weight: 600;
@@ -171,6 +171,7 @@
         display: flex;
         justify-content: start;
         height: 137px;
+        overflow: hidden;
     }
 
     .mainStepNumber {

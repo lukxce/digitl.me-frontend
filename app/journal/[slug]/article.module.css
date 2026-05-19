@@ -144,4 +144,12 @@
   .h1 {
     font-size: 34px;
   }
+
+  .articleLayout{
+    margin: 0;
+  }
+
+  .bodyWrap{
+    margin-bottom: 60px;
+  }
 }

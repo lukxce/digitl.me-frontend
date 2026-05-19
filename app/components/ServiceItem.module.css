@@ -74,7 +74,7 @@
 }
 
 .panelInner {
-  padding: 20px 0;
+  padding: 0px 0px 20px;
 }
 
 .description {
@@ -85,4 +85,14 @@
   line-height: 130%;
   color: #747474;
   letter-spacing: -4%;
+}
+
+
+@media (max-width: 640px) {
+  .title{
+    font-size: 19px;
+  }
+  .description{
+    font-size: 14px;
+  }
 }

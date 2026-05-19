@@ -54,7 +54,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1.25rem;
-  margin-top: 0.75rem;
+  margin: 28px 0;
 }
 
 .author {
@@ -119,16 +119,17 @@
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 50px;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -5%;
   margin: 0 0 0.5rem;
   color: #000000;
+  line-height: 100%;
 }
 
 .date {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: #171717;
+  color: #17171780;
 }
 
 .empty {
@@ -137,4 +138,10 @@
   font-size: 15px;
   font-weight: 500;
   color: #262626;
+}
+
+@media (max-width: 640px) {
+  .h1 {
+    font-size: 34px;
+  }
 }

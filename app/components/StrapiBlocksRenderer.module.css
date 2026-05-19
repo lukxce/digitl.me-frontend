@@ -234,4 +234,26 @@ letter-spacing: -4%;
   .imageRowThreeTop {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .h2{
+    font-size: 24px;
+  }
+
+  .h3{
+    font-size: 20px;
+  }
+
+  .h4{
+    font-size: 18px;
+  }
+
+  .p{
+    font-size: 16px;
+    margin: 14px 0 0;
+  }
+
+  .imageRowBreakout{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useId, useState } from "react";
 import Title from "./Title";
 import styles from "./Faq.module.css";
@@ -34,6 +35,29 @@ const FAQS = [
       "I can share relevant case studies and, when an NDA allows, a few more specific examples. If the work is under NDA, we can start with a small paid workshop or audit so you can evaluate the fit on a real problem of yours.",
   },
 ];
+
+function AskArrowIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <title>Arrow</title>
+      <path
+        d="M7 17L17 7M17 7H9M17 7V15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 function PlusMinusIcon({ open, reduceMotion }) {
   return (
@@ -130,14 +154,14 @@ function FaqItem({ question, answer }) {
 export default function Faq() {
   return (
     <section className={styles.root} aria-labelledby="faq-title">
-      <motion.div
+            <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         viewport={{ once: true }}
         className={styles.titleContainer}
       >
-              <Title title="FAQ" />
+    <Title title="FAQ" />
       </motion.div>
       <ul className={styles.list}>
         {FAQS.map((item) => (
@@ -146,6 +170,13 @@ export default function Faq() {
           </li>
         ))}
       </ul>
+      <div className={styles.rootInner}>
+      <p className={styles.followUpText}>Do you have any other questions?</p>
+      <Link href="/#contact" className={styles.askLink}>
+        <span>Ask me directly</span>
+        <AskArrowIcon className={styles.askArrow} />
+      </Link>
+      </div>
     </section>
   );
 }

@@ -26,7 +26,7 @@
 
 .inner {
   width: 550px;
-  height: 840px;
+  height: 790px;
   background-color: #F6F6F6;
   border-radius: 46px;
   margin: -20px auto 100px;
@@ -69,6 +69,7 @@ transform: translateX(-42%);
 
 .card {
   position: relative;
+  z-index: 1;
   width: 100%;
   width: 532px;
   padding: 36px 40px 28px;
@@ -127,9 +128,70 @@ transform: translateX(-42%);
   margin: 0;
   max-width: 280px;
   font-size: 16px;
-  font-weight: 500;
-  line-height: 1.55;
-  color: #6b7280;
+  font-weight: 600;
+  line-height: 140%;
+  letter-spacing: -4%;
+  color: #171717;
+  opacity: 0.5;
+}
+
+.metaRow {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-top: 20px;
+  display: flex;
+  padding: 0 40px;
+  justify-content: space-between;
+}
+
+.metaText,
+.metaLink {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.05em;
+  color: #171717;
+}
+
+.metaText {
+  opacity: 0.5;
+}
+
+.metaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.metaLink:hover,
+.metaLink:focus-visible {
+  opacity: 0.7;
+}
+
+.metaLink:focus-visible {
+  outline: 2px solid #2a29ff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.metaArrow {
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.28s ease;
+  color: #1c1cff;
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .metaLink:hover .metaArrow {
+    transform: rotate(45deg);
+  }
 }
 
 .footer {
@@ -209,5 +271,9 @@ transform: translateX(-42%);
   .footer {
     flex-direction: column;
     text-align: center;
+  }
+
+  .metaRow {
+    justify-content: center;
   }
 }

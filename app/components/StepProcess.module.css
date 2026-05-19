@@ -80,8 +80,11 @@
 
 .description {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 600;
     color: #171717;
+    opacity: 0.5;
+    line-height: 130%;
+    letter-spacing: -4%;
     font-family: var(--font-manrope);
     flex: 1;
 }
@@ -120,6 +123,39 @@
     width: 530px;
     height: 152px;
   }
+
+.launchLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 16px;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -5%;
+  color: #171717;
+  text-decoration: none;
+}
+
+.launchArrow {
+  display: block;
+  flex-shrink: 0;
+  color: #2a29ff;
+  transition: transform 0.28s ease;
+}
+
+.launchLink:focus-visible {
+  outline: 2px solid #2a29ff;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .launchLink:hover .launchArrow {
+    transform: rotate(45deg);
+  }
+}
 
   @media (max-width: 640px) {
     .root {

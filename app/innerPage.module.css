@@ -66,3 +66,13 @@
   max-width: 550px;
   margin: 0 auto 32px;
 }
+
+@media (max-width: 640px) {
+  .showcaseInsights {
+    gap: 0;
+  }
+
+  .pageDetail{
+    padding: 0 10px 4rem;
+  }
+}

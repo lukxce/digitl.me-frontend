@@ -8,6 +8,29 @@ import ProgressBar from "./ProgressBar";
 import styles from "./HeroCard.module.css";
 import { motion } from "motion/react";
 
+function ViewAllArrowIcon({ className }) {
+  return (
+    <svg
+      className={className}
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <title>Arrow</title>
+      <path
+        d="M7 17L17 7M17 7H9M17 7V15"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 const DEFAULT_AVATAR =
   "https://picsum.photos/seed/digitl-hero-avatar/160/160?grayscale";
 
@@ -111,6 +134,15 @@ export default function HeroCard({
           secondaryHref={secondaryCtaHref}
           secondaryLabel={secondaryCtaLabel}
         />
+      </div>
+      <div className={styles.metaRow}>
+          <p className={styles.metaText}>
+            Located in {location}, available worldwide.
+          </p>
+          <Link href="/journal" className={styles.metaLink}>
+            <span>View all</span>
+            <ViewAllArrowIcon className={styles.metaArrow} />
+          </Link>
         </div>
       </div>
     </section>

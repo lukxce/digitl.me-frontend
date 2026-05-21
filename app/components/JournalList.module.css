@@ -89,14 +89,15 @@
 .titleText {
   display: block;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  display: block;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .date {
   flex-shrink: 0;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.2;
   color: rgba(23, 23, 23, 0.5);
   white-space: nowrap;
@@ -196,11 +197,11 @@
 
   .rowLink {
     max-height: 74px;
-    padding: 3px 20px 3px 10px;
+    padding: 0px 20px 0px 8px;
   }
 
   .thumb {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
   }
 }

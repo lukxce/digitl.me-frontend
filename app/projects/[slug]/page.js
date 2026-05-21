@@ -124,7 +124,7 @@ export default async function ClientShowcasePage(props) {
                 </>
               : <DetailPageOutlineMobileNav />}
           </div>
-          <MotionTitleBlock title={showcase.title} sectionId="project-overview" />
+          <MotionTitleBlock title={showcase.title} sectionId="project-overview" align="left" />
           {hasContent
             ? <StrapiBlocksRenderer blocks={showcase.content} />
             : <p className={articleStyles.empty}>No project details for this entry.</p>}
@@ -136,6 +136,9 @@ export default async function ClientShowcasePage(props) {
         subtitle="Check out some of my favorite & most recent projects."
         className={innerStyles.titleContainer}
         width={500}
+        subtitleWidth={300}
+        subtitleWidthMobile={200}
+        marginTop={90}
       />
       {moreProjects.length > 0
         ? <div className={innerStyles.cardColumn}>

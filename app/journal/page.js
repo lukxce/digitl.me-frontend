@@ -21,6 +21,7 @@ export default async function JournalPage() {
         subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth. "
         className={styles.titleContainer}
         width={500}
+        subtitleWidthMobile={300}
       />
       {articles.length > 0 && <JournalList
           limit={700}

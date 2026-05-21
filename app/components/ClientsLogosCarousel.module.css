@@ -93,6 +93,10 @@
   .root {
     margin: 34px auto 34px;
   }
+
+  .label{
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 370px) {

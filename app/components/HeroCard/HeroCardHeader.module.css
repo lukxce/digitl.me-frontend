@@ -66,11 +66,12 @@
   .header {
     flex-direction: column-reverse;
     text-align: center;
+    gap: 18px;
+    margin-top: 26px;
   }
 
   .left {
     flex-direction: row;
-    align-items: center;
         width: 85%;
   }
 
@@ -85,9 +86,16 @@
 
   .name {
     text-align: left;
+    font-size: 19px;
   }
 
   .subtitle {
     text-align: left;
+    font-size: 13px;
+  }
+
+  .avatarWrap{
+    width: 54px;
+    height: 54px;
   }
 }

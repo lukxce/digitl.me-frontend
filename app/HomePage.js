@@ -81,6 +81,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           <Title
             title="My work"
             subtitle="Check out some of my favorite & most recent projects."
+            subtitleWidthMobile={200}
           />
         </motion.div>
 
@@ -197,6 +198,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
             width={500}
             title="Journal"
             subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth."
+            subtitleWidthMobile={300}
           />
         </motion.div>
         <JournalList

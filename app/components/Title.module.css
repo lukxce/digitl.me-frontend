@@ -44,4 +44,8 @@
     font-size: 15px;
     max-width: var(--subtitle-max-width-mobile, var(--subtitle-max-width, 250px));
   }
+
+  .root{
+    margin-bottom: 0;
+  }
 }

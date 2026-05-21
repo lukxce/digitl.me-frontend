@@ -7,12 +7,6 @@
     margin-top: 50px;
     margin-bottom: 100px;
   }
-
-  @media (max-width: 640px) {
-    .root {
-      width: 100%;
-    }
-  }
   
   .step {
     position: relative; /* مهم */
@@ -114,4 +108,18 @@
     font-weight: 600;
     color: #fff; /* optional */
     backdrop-filter: blur(10px);
+  }
+
+  @media (max-width: 640px) {
+    .root {
+      width: 100%;
+    }
+
+    .stepTitle {
+      font-size: 14px;
+    }
+
+    .stepDescription {
+      font-size: 13px;
+    }
   }

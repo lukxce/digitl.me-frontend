@@ -3,7 +3,6 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 90px;
 }
 
 .articleMain {
@@ -152,5 +151,17 @@
 
   .bodyWrap{
     margin-bottom: 60px;
+  }
+
+  .back{
+    font-size: 13px;
+  }
+
+  .authorName{
+    font-size: 14px;
+  }
+
+  .date{
+    font-size: 13px;
   }
 }

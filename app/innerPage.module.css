@@ -74,10 +74,14 @@
   }
 
   .pageDetail{
-    padding: 0 10px 4rem;
+    padding: 0 10px 0rem;
   }
 
   .pageJournal{
-    padding: 6rem 10px 4rem;
+    padding: 6rem 10px 0rem;
+  }
+
+  .page{
+    padding: 0rem 10px 0rem;
   }
 }

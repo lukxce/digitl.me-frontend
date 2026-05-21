@@ -92,7 +92,7 @@ export default function StepProcess() {
         <div className={styles.mainStepText}>
           <h3 className={styles.mainStepTitle}>Step process</h3>
           <p className={styles.mainStepDescription}>
-            <b>A proven workflow</b> that ensures seamless collaboration and <b>outstanding results</b>.
+            <span className={styles.mainStepDescriptionBold}>A proven workflow</span> that ensures seamless collaboration and <span className={styles.mainStepDescriptionBold}>outstanding results</span>.
           </p>
         </div>
 

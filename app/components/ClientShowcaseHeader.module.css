@@ -198,4 +198,8 @@
   .visitWebsiteLink{
     font-size: 13px;
   }
+
+  .hole {
+    transform: translate(-42%);
+  }
 }

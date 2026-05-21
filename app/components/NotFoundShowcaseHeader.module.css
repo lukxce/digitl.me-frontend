@@ -144,4 +144,8 @@ transform: translateX(-60%);
   .hole {
     transform: translate(-42%);
   }
+
+  .inner {
+    padding-top: 44px;
+  }
 }

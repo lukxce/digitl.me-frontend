@@ -42,6 +42,7 @@ export default async function ProjectsPage() {
         subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
         className={styles.titleContainer}
         width={600}
+        subtitleWidth={425}
       />
       <ClientsLogosCarousel />
       <Subscribe />

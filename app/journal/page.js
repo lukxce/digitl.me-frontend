@@ -25,7 +25,7 @@ export default async function JournalPage() {
       />
       {articles.length > 0 && <JournalList
           limit={700}
-          hasLink={false}
+          hasLink={false} 
           items={articles.map((a) => ({
             slug: a.slug,
             title: a.title,

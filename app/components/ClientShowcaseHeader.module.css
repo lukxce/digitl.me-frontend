@@ -156,8 +156,8 @@
   .inner {
     width: 100%;
     max-width: 100%;
-    margin: 0 auto 2rem;
-    padding: 6px;
+    margin: -18px auto 2rem;
+    padding: 32px 6px;
     border-radius: 46px;
   }
 

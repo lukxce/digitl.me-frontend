@@ -76,4 +76,8 @@
   .pageDetail{
     padding: 0 10px 4rem;
   }
+
+  .pageJournal{
+    padding-top: 6rem;
+  }
 }

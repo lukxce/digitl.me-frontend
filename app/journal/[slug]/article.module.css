@@ -143,6 +143,11 @@
 @media (max-width: 640px) {
   .h1 {
     font-size: 34px;
+    padding: 0 10px;
+    padding-right: 50px;
+  }
+  .meta {
+    padding: 0 10px;
   }
 
   .articleLayout{

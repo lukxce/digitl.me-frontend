@@ -113,6 +113,7 @@ export default async function JournalArticlePage(props) {
         subtitle=""
         className={innerStyles.titleContainer}
         width={500}
+        subtitleWidthMobile={350}
       />
       {moreArticles.length > 0
         ? <JournalList limit={3} items={moreArticles} />

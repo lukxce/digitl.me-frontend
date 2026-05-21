@@ -35,6 +35,7 @@ export default function PhoneInHand() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [progressEpoch, setProgressEpoch] = useState(0);
+  const [intervalKey, setIntervalKey] = useState(0);
 
   useEffect(() => {
     setReducedMotion(
@@ -49,9 +50,21 @@ export default function PhoneInHand() {
       setActiveIndex((i) => (i + 1) % STORIES.length);
     }, STORY_DURATION_MS);
     return () => window.clearInterval(id);
-  }, [reducedMotion]);
+  }, [reducedMotion, intervalKey]);
 
   const story = STORIES[reducedMotion ? 0 : activeIndex];
+
+  function handleLeft() {
+  setActiveIndex((i) => (i - 1 + STORIES.length) % STORIES.length);
+  setProgressEpoch((e) => e + 1);
+  setIntervalKey((k) => k + 1);
+}
+
+function handleRight() {
+  setActiveIndex((i) => (i + 1) % STORIES.length);
+  setProgressEpoch((e) => e + 1);
+  setIntervalKey((k) => k + 1);
+}
 
   return (
     <div className={styles.root}>
@@ -65,6 +78,8 @@ export default function PhoneInHand() {
           priority={false}
         />
         <div className={styles.screen}>
+        <button className={styles.tapLeft} onClick={handleLeft} aria-label="Previous" />
+        <button className={styles.tapRight} onClick={handleRight} aria-label="Next" />
           <div className={styles.storyLayer}>
             <Image
               src={storyBackground}

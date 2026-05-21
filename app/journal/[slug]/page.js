@@ -88,7 +88,7 @@ export default async function JournalArticlePage(props) {
   });
 
   return (
-    <main className={`${innerStyles.pageDetail} ${innerStyles.pageDetailTop}`.trim()}>
+    <main className={`${innerStyles.pageDetail} ${innerStyles.pageDetailTop} ${innerStyles.pageJournal}`.trim()}>
       {/* <DetailPageOutline items={outline}> */}
         <JournalArticleContent
           title={article.title}

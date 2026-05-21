@@ -15,7 +15,7 @@ export const metadata = {
 export default async function JournalPage() {
   const articles = await tryGetArticlesForHome(10);
   return (
-    <main className={`${styles.page} ${styles.pageJournal}`.trim()}>
+    <main className={`${styles.page}`.trim()}>
       <MotionTitleBlock
         title="Journal"
         subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth. "

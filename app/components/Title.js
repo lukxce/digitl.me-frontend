@@ -15,6 +15,7 @@ export default function Title({
   hasImage,
   subtitleWidth,
   subtitleWidthMobile,
+  align = 'center',
 }) {
   const headerStyle = {
     ...(width != null && { "--title-max-width": toCssLength(width) }),
@@ -25,6 +26,7 @@ export default function Title({
     ...(subtitleWidthMobile != null && {
       "--subtitle-max-width-mobile": toCssLength(subtitleWidthMobile),
     }),
+    ...(align != null && { textAlign: align, marginLeft: align === 'left' ? '10px' : 'auto' }),
   };
 
   return (

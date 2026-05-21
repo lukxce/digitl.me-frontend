@@ -26,7 +26,6 @@ export default function Title({
     ...(subtitleWidthMobile != null && {
       "--subtitle-max-width-mobile": toCssLength(subtitleWidthMobile),
     }),
-    ...(align != null && { textAlign: align, marginLeft: align === 'left' ? '10px' : 'auto' }),
   };
 
   return (
@@ -34,7 +33,7 @@ export default function Title({
       className={styles.root}
       style={Object.keys(headerStyle).length ? headerStyle : undefined}
     >
-      <h1 className={styles.title}>{title}</h1>
+      <h1 className={styles.title} style={{ textAlign: align, marginLeft: align === 'left' ? '10px' : 'auto' }}>{title}</h1>
       {hasImage && (
         <Image src={clientsImage} alt="Title Image" />
       )}

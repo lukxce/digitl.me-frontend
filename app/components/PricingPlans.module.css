@@ -59,4 +59,8 @@
   .featureText{
     font-size: 14px;
   }
+
+  .root{
+    gap: 4px;
+  }
 }

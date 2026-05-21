@@ -77,3 +77,15 @@
     transform: none;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .name {
+    font-size: 19px;
+  }
+
+  .role {
+    font-size: 13px;
+  }
+  
+  
+}

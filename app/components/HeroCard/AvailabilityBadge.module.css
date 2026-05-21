@@ -58,7 +58,8 @@
     align-items: center;
     text-align: center;
     width: 100%;
-    display: none;
+    flex-direction: row;
+    gap: 5px;
   }
 
   .row {

@@ -24,6 +24,7 @@ export default async function JournalPage() {
       />
       {articles.length > 0 && <JournalList
           limit={700}
+          hasLink={false}
           items={articles.map((a) => ({
             slug: a.slug,
             title: a.title,
@@ -37,6 +38,7 @@ export default async function JournalPage() {
         subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
         className={styles.titleContainer}
         width={600}
+        subtitleWidth={425}
       />
       <ClientsLogosCarousel />
       <Subscribe />

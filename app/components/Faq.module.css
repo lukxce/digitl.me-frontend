@@ -24,7 +24,7 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 8px;
 }
 
 .listItem {
@@ -70,6 +70,7 @@
   line-height: 140%;
   letter-spacing: -4%;
   color: #171717;
+  font-family: var(--font-manrope);
 }
 
 .iconWrap {
@@ -166,5 +167,21 @@
 
   .answer{
     font-size: 15px;
+  }
+
+  .list{
+    gap: 6px
+  }
+
+  .followUpText{
+    font-size: 12px;
+  }
+
+  .askLink{
+    font-size: 13px;
+  }
+
+  .askArrow{
+    width: 13px;
   }
 }

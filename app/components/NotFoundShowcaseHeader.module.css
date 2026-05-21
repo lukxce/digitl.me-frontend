@@ -9,10 +9,23 @@
   justify-content: space-between;
 }
 
+.hole {
+  border: 1px solid #EAEAEA;
+  background-color: #fff;
+  width: 63px;
+  height: 19px;
+  border-radius: 46px;
+  position: absolute;
+top: 12px;
+left: 50%;
+transform: translateX(-60%);
+}
+
 @media (max-width: 640px) {
   .root {
     width: 100%;
     padding: 30px;
+    height: 650px;
   }
 }
 
@@ -26,6 +39,7 @@
     line-height: 1.2;
     color: #111827;
     margin-bottom: 20px;
+    letter-spacing: -5%;
 }
 
 .description {
@@ -34,6 +48,7 @@
     line-height: 1.2;
     color: #111827;
     margin-bottom: 10px;
+    letter-spacing: -5%;
 }
 
 .subDescription {
@@ -42,6 +57,7 @@
     line-height: 1.5;
     color: #6b7280;
     margin-bottom: 70px;
+    letter-spacing: -5%;
 }
 
 .profile {

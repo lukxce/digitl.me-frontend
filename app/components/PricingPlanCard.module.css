@@ -168,40 +168,6 @@
   margin-top: 35px;
 }
 
-@media (max-width: 640px) {
-  .features {
-    width: 100%;
-    padding: 0 36px 36px 36px;
-  }
-
-  .featureText{
-    font-size: 14px;
-  }
-
-  .planName{
-  font-size: 30px;
-  }
-
-  .subtitleText{
-    margin: 15px 0 0;
-    font-size: 14px;
-  }
-
-  .price{
-  font-size: 25px;
-  }
-
-  .ctaRow{
-    justify-content: center;
-    width: 100%;
-    display: flex;
-    margin-top: 15px;
-  }
-
-  .titleRow{
-    flex-direction: column;
-  }
-}
 .featuresLead {
   font-weight: 600;
   font-size: 14px;
@@ -255,4 +221,47 @@ opacity: 0.5;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (max-width: 640px) {
+  .features {
+    width: 100%;
+    padding: 0 36px 36px 36px;
+  }
+
+  .featureText{
+    font-size: 14px;
+  }
+
+  .planName{
+  font-size: 30px;
+  }
+
+  .subtitleText{
+    margin: 15px 0 0;
+    font-size: 14px;
+  }
+
+  .price{
+  font-size: 25px;
+  }
+
+  .ctaRow{
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .titleRow{
+    flex-direction: column;
+  }
+
+  .cardContent{
+    padding: 34px;
+  }
+
+  .card {
+    height: 650px;
+  }
 }

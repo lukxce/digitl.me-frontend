@@ -104,7 +104,7 @@ function JournalRow({ item }) {
  *   }>;
  * }} props
  */
-export default function JournalList({ items = [], limit = 3 }) {
+export default function JournalList({ items = [], limit = 3, hasLink = true }) {
   const reduceMotion = useReducedMotion() === true;
 
   if (!items.length) {
@@ -147,12 +147,12 @@ export default function JournalList({ items = [], limit = 3 }) {
           >
             {listContent}
           </motion.ul>}
-      <div className={styles.viewAllFooter}>
-        <Link href="/journal" className={styles.viewAllLink}>
-          <span className={styles.viewAllLabel}>View all</span>
-          <ViewAllArrowIcon className={styles.viewAllArrow} />
-        </Link>
-      </div>
+      {hasLink && (<div className={styles.viewAllFooter}>
+          <Link href="/journal" className={styles.viewAllLink}>
+            <span className={styles.viewAllLabel}>View all</span>
+            <ViewAllArrowIcon className={styles.viewAllArrow} />
+          </Link>        
+      </div>)}
     </motion.section>
   );
 }

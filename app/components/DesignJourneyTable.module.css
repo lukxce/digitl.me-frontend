@@ -256,6 +256,10 @@
 }
 
 @media (max-width: 640px) {
+  .root {
+    margin-bottom: 60px;
+  }
+
   .twinRow {
     flex-direction: row;
     gap: 4px;
@@ -292,14 +296,14 @@
   }
 
   .colMid {
-    font-size: 14px;
-    flex: 0.5;
+    font-size: 13px;
+    flex: 0.8;
     text-align: right;
   }
 
   .colRight {
-    font-size: 14px;
-    flex: 1;
+    font-size: 13px;
+    flex: 0.7;
     text-align: right;
   }
 }

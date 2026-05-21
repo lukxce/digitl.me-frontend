@@ -233,6 +233,19 @@
   .phoneWrap {
     right: 74px;
   }
+
+  .storyBodyText{
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -4%;
+    line-height: 140%;
+  }
+}
+
+@media (max-width: 400px) {
+  .phoneWrap {
+    right: 95px;
+  }
 }
 
 @media (max-width: 380px) {

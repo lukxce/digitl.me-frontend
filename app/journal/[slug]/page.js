@@ -123,6 +123,7 @@ export default async function JournalArticlePage(props) {
         subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
         className={innerStyles.titleContainer}
         width={600}
+        subtitleWidth={425}
       />
       <ClientsLogosCarousel />
       <Subscribe />

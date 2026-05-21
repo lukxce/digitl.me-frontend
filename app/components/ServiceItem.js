@@ -53,7 +53,7 @@ export default function ServiceItem({ icon, title, description }) {
 
   return (
     <div className={styles.root}>
-      <div className={styles.row}>
+      <div className={styles.row} onClick={() => setOpen((v) => !v)}>
         <div className={styles.iconContainer}>
           <span className={styles.iconSlot}>{icon}</span>
           <span className={styles.title} id={titleId}>
@@ -66,7 +66,6 @@ export default function ServiceItem({ icon, title, description }) {
           aria-expanded={open}
           aria-controls={panelId}
           aria-label={`${open ? "Hide" : "Show"} details: ${title}`}
-          onClick={() => setOpen((v) => !v)}
         >
           <motion.span
             className={styles.toggle}

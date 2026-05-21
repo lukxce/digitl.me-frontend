@@ -161,7 +161,7 @@
     width: 100%;
     max-width: 100%;
     margin: -18px auto 2rem;
-    padding: 32px 6px 12px;
+    padding: 32px 6px 2px;
     border-radius: 46px;
   }
 
@@ -205,5 +205,9 @@
 
   .hole {
     transform: translate(-42%);
+  }
+
+  .metaList {
+    margin: 0 0 25px;
   }
 }

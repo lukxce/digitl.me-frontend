@@ -22,6 +22,7 @@ export default async function ProjectsPage() {
         subtitle="Check out some of my favorite & most recent projects."
         className={styles.titleContainer}
         width={300}
+        subtitleWidthMobile={200}
       />
       <div className={styles.cardColumn}>
         {workCards.map((card) => (

@@ -50,6 +50,7 @@ export default async function NotFound() {
         width={600}
         subtitleWidth={425}
         subtitleWidthMobile={350}
+        marginTop={110}
       />
       <ClientsLogosCarousel />
       <Subscribe />

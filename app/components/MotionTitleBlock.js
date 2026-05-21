@@ -13,6 +13,8 @@ import Title from "./Title";
  *   subtitleWidthMobile?: number;
  *   className?: string;
  *   sectionId?: string;
+ *   marginTop?: number;
+ *   align?: 'center' | 'left' | 'right';
  * }} props
  */
 export default function MotionTitleBlock({
@@ -24,6 +26,8 @@ export default function MotionTitleBlock({
   subtitleWidthMobile,
   className,
   sectionId,
+  marginTop,
+  align = 'center',
 }) {
   return (
     <motion.div
@@ -33,6 +37,7 @@ export default function MotionTitleBlock({
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
       className={className}
+      style={{ marginTop: marginTop ? `${marginTop}px` : undefined, textAlign: align, marginLeft: align === 'left' && '10px' }}
     >
       <Title
         title={title}

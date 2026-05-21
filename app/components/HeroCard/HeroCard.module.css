@@ -114,7 +114,7 @@ transform: translateX(-42%);
   color: #111111;
   font-size: 11px;
   line-height: 1;
-  letter-spacing: 1px;
+  letter-spacing: -5%;
 }
 
 .socialProofText {

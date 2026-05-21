@@ -52,13 +52,16 @@
 
 .mainStepDescription {
     font-size: 14px;
-    font-weight: 400;
-    color: #fff;
+    font-weight: 600;
+    color: #FFFFFF99;
     font-family: var(--font-manrope);
     letter-spacing: -4%;
     line-height: 120%;
 }  
 
+.mainStepDescriptionBold {
+    color: #fff;
+}
 .step {
     display: flex;
     justify-content: space-between;

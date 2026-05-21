@@ -65,4 +65,8 @@
   .row {
     justify-content: center;
   }
+
+  .slots{
+    font-size: 12px;
+  }
 }

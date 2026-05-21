@@ -144,7 +144,7 @@
   .h1 {
     font-size: 34px;
     padding: 0 10px;
-    padding-right: 50px;
+    padding-right: 30px;
   }
   .meta {
     padding: 0 10px;
@@ -168,5 +168,11 @@
 
   .date{
     font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .h1 {
+    font-size: 28px;
   }
 }

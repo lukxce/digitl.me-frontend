@@ -37,7 +37,7 @@ export default function MotionTitleBlock({
       transition={{ duration: 0.6, ease: "easeOut" }}
       viewport={{ once: true }}
       className={className}
-      style={{ marginTop: marginTop ? `${marginTop}px` : undefined, textAlign: align, marginLeft: align === 'left' && '10px' }}
+      style={{ marginTop: marginTop ? `${marginTop}px` : undefined }}
     >
       <Title
         title={title}
@@ -46,6 +46,7 @@ export default function MotionTitleBlock({
         widthMobile={widthMobile}
         subtitleWidth={subtitleWidth}
         subtitleWidthMobile={subtitleWidthMobile}
+        align={align}
       />
     </motion.div>
   );

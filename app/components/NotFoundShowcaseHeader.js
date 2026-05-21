@@ -91,6 +91,7 @@ export default function NotFoundShowcaseHeader() {
           </div>
 
           <div className={`${heroStyles.inner} ${styles.inner} ${stylesNotFound.inner}`.trim()}>
+          <div className={stylesNotFound.hole}></div>
             <div className={`${heroStyles.card} ${styles.card}`.trim()}>
               <div className={stylesNotFound.root}>
                 <div className={stylesNotFound.profile}>

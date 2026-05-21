@@ -155,6 +155,7 @@ export default function ClientShowcaseHeader({
           </div>
 
           <div className={`${heroStyles.inner} ${styles.inner}`.trim()}>
+            <div className={heroStyles.hole}></div>
             <div className={`${heroStyles.card} ${styles.card}`.trim()}>
               {coverUrl
                 ? <figure className={styles.cover}>

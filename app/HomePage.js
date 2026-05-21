@@ -177,6 +177,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           <Title
             title="Flexible plans for every need"
             subtitle="Whether you’re starting fresh or need a complete overhaul, choose the plan that fits your project."
+            width={425}
           />
         </motion.div>
         <PricingPlans />
@@ -214,6 +215,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
             title="Join 150+ professionals elevating their brand"
             subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
             width={600}
+            subtitleWidth={425}
           />
         </motion.div>
         <ClientsLogosCarousel marginTop={60} marginBottom={60} />

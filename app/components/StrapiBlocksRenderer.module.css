@@ -225,26 +225,32 @@ letter-spacing: -4%;
 
   .imageRowOne {
     grid-template-columns: auto;
+    gap: 2px;
   }
   
   .imageRowTwo {
     grid-template-columns: auto;
+    gap: 2px;
   }
   
   .imageRowThreeTop {
     grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
   }
 
   .h2{
     font-size: 24px;
+    margin-top: 1.5rem;
   }
 
   .h3{
     font-size: 20px;
+    margin-top: 1.5rem;
   }
 
   .h4{
     font-size: 18px;
+    margin-top: 1.5rem;
   }
 
   .p{
@@ -255,5 +261,9 @@ letter-spacing: -4%;
   .imageRowBreakout{
     margin-top: 40px;
     margin-bottom: 40px;
+  }
+
+  .dynamicBlock{
+    gap: 0px;
   }
 }

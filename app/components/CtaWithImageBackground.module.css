@@ -70,7 +70,11 @@
 
 @media (max-width: 640px) {
   .title {
-    font-size: 30px;
+    font-size: 34px;
+  }
+
+  .description{
+    font-size: 15px;
   }
 }
 

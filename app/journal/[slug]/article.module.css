@@ -3,6 +3,7 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 90px;
 }
 
 .articleMain {
@@ -20,10 +21,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 40px;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #171717;
   text-decoration: none;
 }
@@ -127,8 +128,8 @@
 
 .date {
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   color: #17171780;
 }
 
@@ -151,5 +152,8 @@
 
   .bodyWrap{
     margin-bottom: 60px;
+  }
+  .articleMain{
+    padding-top: 6rem;
   }
 }

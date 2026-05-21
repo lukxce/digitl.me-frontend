@@ -73,4 +73,8 @@
     padding: 18px 16px;
     gap: 14px;
   }
+
+  .description{
+    font-weight: 600;
+  }
 }

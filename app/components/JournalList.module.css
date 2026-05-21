@@ -30,6 +30,7 @@
   display: flex;
   width: 100%;
   min-height: 72px;
+  max-height: 74px;
   align-items: center;
   gap: 16px;
   padding: 10px;
@@ -144,13 +145,13 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
   color: #171717;
   text-decoration: none;
   border-radius: 8px;
-  margin: 15px auto;
+  margin: 10px auto;
 }
 
 .viewAllLink:focus-visible {
@@ -177,4 +178,29 @@
 
 .viewAllLink:focus-visible .viewAllArrow {
   transform: rotate(45deg);
+}
+
+@media screen and (max-width: 640px) {
+  .title {
+    font-size: 14px;
+  }
+
+  .date {
+    font-size: 12px;
+  }
+
+  .viewAllLink {
+    font-size: 13px;
+    margin: 5px auto;
+  }
+
+  .rowLink {
+    max-height: 74px;
+    padding: 3px 20px 3px 10px;
+  }
+
+  .thumb {
+    width: 56px;
+    height: 56px;
+  }
 }

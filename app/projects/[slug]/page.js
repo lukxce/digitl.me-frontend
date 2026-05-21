@@ -160,6 +160,7 @@ export default async function ClientShowcasePage(props) {
         className={innerStyles.titleContainer}
         width={600}
         subtitleWidth={425}
+        subtitleWidthMobile={350}
       />
       <ClientsLogosCarousel />
       <Subscribe />

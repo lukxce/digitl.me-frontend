@@ -8,6 +8,9 @@ import Title from "./Title";
  *   title: string;
  *   subtitle: string;
  *   width?: number;
+ *   widthMobile?: number;
+ *   subtitleWidth?: number;
+ *   subtitleWidthMobile?: number;
  *   className?: string;
  *   sectionId?: string;
  * }} props
@@ -16,6 +19,9 @@ export default function MotionTitleBlock({
   title,
   subtitle,
   width,
+  widthMobile,
+  subtitleWidth,
+  subtitleWidthMobile,
   className,
   sectionId,
 }) {
@@ -28,7 +34,14 @@ export default function MotionTitleBlock({
       viewport={{ once: true }}
       className={className}
     >
-      <Title title={title} subtitle={subtitle} width={width} />
+      <Title
+        title={title}
+        subtitle={subtitle}
+        width={width}
+        widthMobile={widthMobile}
+        subtitleWidth={subtitleWidth}
+        subtitleWidthMobile={subtitleWidthMobile}
+      />
     </motion.div>
   );
 }

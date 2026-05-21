@@ -43,6 +43,7 @@ export default async function ProjectsPage() {
         className={styles.titleContainer}
         width={600}
         subtitleWidth={425}
+        subtitleWidthMobile={350}
       />
       <ClientsLogosCarousel />
       <Subscribe />

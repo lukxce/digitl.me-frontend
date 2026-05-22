@@ -113,12 +113,13 @@ export default function HomePage({ articles = [], showcases = [] }) {
           />
         </motion.div>
         <div className={styles.servicesList}>
-          {services.map(({ key, title, description, Icon }) => (
+          {services.map(({ key, title, description, Icon }, index) => (
             <ServiceItem
               key={key}
               icon={<Icon />}
               title={title}
               description={description}
+              initialOpen={index === 0}
             />
           ))}
         </div>

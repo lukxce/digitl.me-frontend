@@ -44,8 +44,8 @@ function ToggleIcon({ open, reduceMotion }) {
   );
 }
 
-export default function ServiceItem({ icon, title, description }) {
-  const [open, setOpen] = useState(false);
+export default function ServiceItem({ icon, title, description, initialOpen }) {
+  const [open, setOpen] = useState(initialOpen ?? false);
   const panelId = useId();
   const titleId = useId();
   const prefersReducedMotion = useReducedMotion();

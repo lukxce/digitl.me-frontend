@@ -95,8 +95,8 @@ function PlusMinusIcon({ open, reduceMotion }) {
   );
 }
 
-function FaqItem({ question, answer }) {
-  const [open, setOpen] = useState(false);
+function FaqItem({ question, answer, initialOpen }) {
+  const [open, setOpen] = useState(initialOpen ?? false);
   const contentId = useId();
   const reduceMotion = useReducedMotion() === true;
 
@@ -164,9 +164,9 @@ export default function Faq() {
     <Title title="FAQ" />
       </motion.div>
       <ul className={styles.list}>
-        {FAQS.map((item) => (
+        {FAQS.map((item, index) => (
           <li key={item.question} className={styles.listItem}>
-            <FaqItem question={item.question} answer={item.answer} />
+            <FaqItem initialOpen={index === 0} question={item.question} answer={item.answer} />
           </li>
         ))}
       </ul>

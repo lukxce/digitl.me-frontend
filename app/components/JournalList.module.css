@@ -33,8 +33,7 @@
   max-height: 74px;
   align-items: center;
   gap: 16px;
-  padding: 10px;
-  padding-right: 30px;
+  padding: 10px 30px 10px 5px;
   border-radius: 41px;
   background-color: #fff;
   color: inherit;

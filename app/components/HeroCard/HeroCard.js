@@ -7,6 +7,7 @@ import HeroCardHeader from "./HeroCardHeader";
 import ProgressBar from "./ProgressBar";
 import styles from "./HeroCard.module.css";
 import { motion } from "motion/react";
+import locationIcon from "../../assets/location.svg";
 
 function ViewAllArrowIcon({ className }) {
   return (
@@ -136,9 +137,12 @@ export default function HeroCard({
         />
       </div>
       <div className={styles.metaRow}>
+          <div className={styles.metaRowLocation}>
+          <Image src={locationIcon} alt="Location" width={11} height={11} className={styles.metaRowLocationIcon} />
           <p className={styles.metaText}>
             Located in {location}, available worldwide.
           </p>
+          </div>
           <Link href="/journal" className={styles.metaLink}>
             <span>View all</span>
             <ViewAllArrowIcon className={styles.metaArrow} />

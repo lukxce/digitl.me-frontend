@@ -21,7 +21,7 @@
 .shell {
   transform-origin: top center;
   margin: auto;
-  height: 1000px;
+  height: 920px;
 }
 
 .inner {
@@ -63,6 +63,7 @@ transform: translateX(-42%);
 .stripeImg {
   display: block;
   height: auto;
+  margin-top: -60px;
   filter: drop-shadow(0 12px 24px rgba(15, 23, 42, 0.18))
     drop-shadow(0 4px 8px rgba(15, 23, 42, 0.12));
 }
@@ -168,6 +169,17 @@ transform: translateX(-42%);
   text-decoration: none;
   position: relative;
   z-index: 2;
+  font-size: 14px;
+}
+
+.metaRowLocationIcon {
+  opacity: 0.5;
+}
+
+.metaRowLocation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .metaLink:hover,
@@ -276,5 +288,9 @@ transform: translateX(-42%);
 
   .metaRow {
     justify-content: center;
+  }
+
+  .stripeImg {
+    margin-top: -15px;
   }
 }

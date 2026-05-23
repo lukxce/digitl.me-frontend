@@ -20,6 +20,7 @@ import Subscribe from "../../components/Subscribe";
 import innerStyles from "../../innerPage.module.css";
 import articleStyles from "../../journal/[slug]/article.module.css";
 import AvatarInfo from "../../components/AvatarInfo";
+import Title from "../../components/Title";
 
 function blocksToPlainText(blocks) {
   if (blocks == null) return "";
@@ -124,7 +125,7 @@ export default async function ClientShowcasePage(props) {
                 </>
               : <DetailPageOutlineMobileNav />}
           </div>
-          <MotionTitleBlock title={showcase.title} sectionId="project-overview" align="left" />
+          <Title title={showcase.title} sectionId="project-overview" align="left" />
           {hasContent
             ? <StrapiBlocksRenderer blocks={showcase.content} />
             : <p className={articleStyles.empty}>No project details for this entry.</p>}

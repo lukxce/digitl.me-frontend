@@ -2,7 +2,6 @@
 
 import { ReactLenis } from "lenis/react";
 import { useEffect, useState } from "react";
-import "lenis/dist/lenis.css";
 
 function shouldEnableLenis() {
   if (typeof window === "undefined") {
@@ -12,10 +11,9 @@ function shouldEnableLenis() {
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
-  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
   const mobileViewport = window.matchMedia("(max-width: 768px)").matches;
 
-  return !reduceMotion && !coarsePointer && !mobileViewport;
+  return !reduceMotion && !mobileViewport;
 }
 
 export default function SmoothScroll({ children }) {
@@ -24,7 +22,6 @@ export default function SmoothScroll({ children }) {
   useEffect(() => {
     const mediaQueries = [
       window.matchMedia("(prefers-reduced-motion: reduce)"),
-      window.matchMedia("(pointer: coarse)"),
       window.matchMedia("(max-width: 768px)"),
     ];
 
@@ -41,6 +38,14 @@ export default function SmoothScroll({ children }) {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    import("lenis/dist/lenis.css");
+  }, [enabled]);
 
   if (!enabled) {
     return children;

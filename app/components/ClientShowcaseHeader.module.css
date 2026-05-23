@@ -4,7 +4,7 @@
 }
 
 .shell {
-  width: 96%;
+  width: 100%;
   height: 900px;
 }
 
@@ -150,6 +150,7 @@
 
   .shell {
     height: auto;
+    width: 96%;
   }
 
   .outer {

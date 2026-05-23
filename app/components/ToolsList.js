@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { scrollRevealEase } from "../../lib/scrollReveal";
 import styles from "./ToolsList.module.css";
 import Image from "next/image";
 import FigmaIcon from "../assets/figma.svg";
@@ -10,7 +11,7 @@ import FramerIcon from "../assets/framer.svg";
 
 export default function ToolsList() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   const steps = [
     {
@@ -43,7 +44,7 @@ export default function ToolsList() {
             className={styles.fill}
             initial={{ width: 0 }}
             animate={isInView ? { width: `${step.percentage}%` } : {}}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 1.6, ease: scrollRevealEase }}
           />
 
           <div className={styles.stepIcon}>{step.icon}</div>

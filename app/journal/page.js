@@ -1,4 +1,5 @@
 import MotionTitleBlock from "../components/MotionTitleBlock";
+import ScrollReveal from "../components/ScrollReveal";
 import styles from "../innerPage.module.css";
 import JournalList from "../components/JournalList";
 import { tryGetArticlesForHome } from "../../lib/articles";
@@ -41,10 +42,18 @@ export default async function JournalPage() {
         width={600}
         subtitleWidth={425}
       />
-      <ClientsLogosCarousel />
-      <Subscribe />
-      <AvatarInfo />
-      <ContactForm />
+      <ScrollReveal>
+        <ClientsLogosCarousel />
+      </ScrollReveal>
+      <ScrollReveal delay={0.08}>
+        <Subscribe />
+      </ScrollReveal>
+      <ScrollReveal delay={0.16}>
+        <AvatarInfo />
+      </ScrollReveal>
+      <ScrollReveal delay={0.24}>
+        <ContactForm />
+      </ScrollReveal>
     </main>
   );
 }

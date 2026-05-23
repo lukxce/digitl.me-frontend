@@ -1,9 +1,6 @@
 .root {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  width: 450px;
   margin-bottom: 50px;
-  margin-left: 20px;
 }
 
 .track {
@@ -85,6 +82,7 @@
 @media (max-width: 640px) {
   .root {
     margin-left: 0;
+    width: 100%;
   }
   .track {
     width: 100%;

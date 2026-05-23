@@ -3,10 +3,15 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getScrollRevealTransition,
+  scrollRevealDistance,
+  scrollRevealEase,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import styles from "./LinkCard.module.css";
 
-const easeOut = [0.22, 1, 0.36, 1];
-const viewport = { once: true, amount: 0.12, margin: "0px 0px -6% 0px" };
+const viewport = scrollRevealViewport;
 
 function ArrowIcon() {
   return (
@@ -52,12 +57,10 @@ export default function LinkCard({
   return (
     <motion.div
       className={styles.reveal}
-      initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: scrollRevealDistance }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={reduceMotion ? undefined : viewport}
-      transition={
-        reduceMotion ? { duration: 0 } : { duration: 1.05, ease: easeOut }
-      }
+      transition={getScrollRevealTransition(0, reduceMotion)}
     >
       <Link href={href} className={styles.card}>
         <div className={styles.media}>
@@ -67,7 +70,9 @@ export default function LinkCard({
             whileInView={reduceMotion ? undefined : { scale: 1 }}
             viewport={reduceMotion ? undefined : viewport}
             transition={
-              reduceMotion ? { duration: 0 } : { duration: 1.45, ease: easeOut }
+              reduceMotion
+                ? { duration: 0 }
+                : { duration: 1.4, ease: scrollRevealEase }
             }
           >
             <div className={styles.imageHoverZoom}>

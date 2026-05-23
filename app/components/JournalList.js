@@ -3,27 +3,33 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  getScrollRevealTransition,
+  scrollRevealDistance,
+  scrollRevealEase,
+  scrollRevealStagger,
+  scrollRevealStaggerDelay,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import fallbackThumb from "../assets/clients.png";
 import styles from "./JournalList.module.css";
-
-const easeOut = [0.22, 1, 0.36, 1];
 
 const listVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.06,
+      staggerChildren: scrollRevealStagger,
+      delayChildren: scrollRevealStaggerDelay,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: scrollRevealDistance },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.42, ease: easeOut },
+    transition: { duration: 1, ease: scrollRevealEase },
   },
 };
 
@@ -129,12 +135,10 @@ export default function JournalList({ items = [], limit = 3, hasLink = true }) {
     <motion.section
       className={styles.container}
       aria-label="Journal entries"
-      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
+      initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: scrollRevealDistance }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={
-        reduceMotion ? { duration: 0 } : { duration: 0.5, ease: easeOut }
-      }
+      viewport={scrollRevealViewport}
+      transition={getScrollRevealTransition(0, reduceMotion)}
     >
       {reduceMotion
         ? <ul className={styles.list}>{listContent}</ul>
@@ -143,7 +147,7 @@ export default function JournalList({ items = [], limit = 3, hasLink = true }) {
             variants={listVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+            viewport={scrollRevealViewport}
           >
             {listContent}
           </motion.ul>}

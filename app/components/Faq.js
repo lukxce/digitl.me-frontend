@@ -3,10 +3,38 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useId, useState } from "react";
+import {
+  scrollRevealDistance,
+  scrollRevealDuration,
+  scrollRevealEase,
+  scrollRevealStagger,
+  scrollRevealStaggerDelay,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
+import ScrollReveal from "./ScrollReveal";
 import Title from "./Title";
 import styles from "./Faq.module.css";
 
 const easeOut = [0.22, 1, 0.36, 1];
+
+const faqListVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: scrollRevealStagger,
+      delayChildren: scrollRevealStaggerDelay,
+    },
+  },
+};
+
+const faqItemVariants = {
+  hidden: { opacity: 0, y: scrollRevealDistance },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: scrollRevealDuration, ease: scrollRevealEase },
+  },
+};
 
 const FAQS = [
   {
@@ -152,31 +180,59 @@ function FaqItem({ question, answer, initialOpen }) {
 }
 
 export default function Faq() {
+  const reduceMotion = useReducedMotion() === true;
+
+  const listContent = FAQS.map((item, index) => {
+    const faqItem = (
+      <FaqItem
+        initialOpen={index === 0}
+        question={item.question}
+        answer={item.answer}
+      />
+    );
+
+    return reduceMotion ? (
+      <li key={item.question} className={styles.listItem}>
+        {faqItem}
+      </li>
+    ) : (
+      <motion.li
+        key={item.question}
+        className={styles.listItem}
+        variants={faqItemVariants}
+      >
+        {faqItem}
+      </motion.li>
+    );
+  });
+
   return (
     <section className={styles.root} aria-labelledby="faq-title">
-            <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className={styles.titleContainer}
-      >
-    <Title title="FAQ" />
-      </motion.div>
-      <ul className={styles.list}>
-        {FAQS.map((item, index) => (
-          <li key={item.question} className={styles.listItem}>
-            <FaqItem initialOpen={index === 0} question={item.question} answer={item.answer} />
-          </li>
-        ))}
-      </ul>
-      <div className={styles.rootInner}>
-      <p className={styles.followUpText}>Do you have any other questions?</p>
-      <Link href="/#contact" className={styles.askLink}>
-        <span>Ask me directly</span>
-        <AskArrowIcon className={styles.askArrow} />
-      </Link>
-      </div>
+      <ScrollReveal className={styles.titleContainer}>
+        <Title title="FAQ" />
+      </ScrollReveal>
+      {reduceMotion ? (
+        <ul className={styles.list}>{listContent}</ul>
+      ) : (
+        <motion.ul
+          className={styles.list}
+          variants={faqListVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={scrollRevealViewport}
+        >
+          {listContent}
+        </motion.ul>
+      )}
+      <ScrollReveal delay={0.24}>
+        <div className={styles.rootInner}>
+          <p className={styles.followUpText}>Do you have any other questions?</p>
+          <Link href="/#contact" className={styles.askLink}>
+            <span>Ask me directly</span>
+            <AskArrowIcon className={styles.askArrow} />
+          </Link>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }

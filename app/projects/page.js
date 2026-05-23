@@ -1,4 +1,5 @@
 import MotionTitleBlock from "../components/MotionTitleBlock";
+import ScrollReveal from "../components/ScrollReveal";
 import styles from "../innerPage.module.css";
 import LinkCard from "../components/LinkCard";
 import ClientsLogosCarousel from "../components/ClientsLogosCarousel";
@@ -46,10 +47,18 @@ export default async function ProjectsPage() {
         subtitleWidth={425}
         subtitleWidthMobile={350}
       />
-      <ClientsLogosCarousel />
-      <Subscribe />
-      <AvatarInfo />
-      <ContactForm />
+      <ScrollReveal>
+        <ClientsLogosCarousel />
+      </ScrollReveal>
+      <ScrollReveal delay={0.08}>
+        <Subscribe />
+      </ScrollReveal>
+      <ScrollReveal delay={0.16}>
+        <AvatarInfo />
+      </ScrollReveal>
+      <ScrollReveal delay={0.24}>
+        <ContactForm />
+      </ScrollReveal>
     </main>
   );
 }

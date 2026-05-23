@@ -3,6 +3,11 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import {
+  getScrollRevealTransition,
+  scrollRevealDistance,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import dotsSvg from "../assets/dots.svg";
 import doubleCheck from "../assets/double-checkmark.svg";
 import girlLaptop from "../assets/girl-laptop.png";
@@ -37,7 +42,7 @@ const PCT_STEP_MS = 12;
 
 function ScrollCountCard() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.35 });
+  const isInView = useInView(ref, { amount: 0.4 });
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -86,7 +91,7 @@ function ScrollCountCard() {
 
 function TwinSatisfactionRow() {
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.3 });
+  const inView = useInView(ref, { amount: 0.4 });
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
@@ -155,18 +160,25 @@ function TwinSatisfactionRow() {
 export default function DesignJourneyTable() {
   return (
     <div className={styles.root}>
-      {ROWS.map((row) => (
-        <div key={row.title} className={styles.row}>
+      {ROWS.map((row, index) => (
+        <motion.div
+          key={row.title}
+          className={styles.row}
+          initial={{ opacity: 0, y: scrollRevealDistance }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={scrollRevealViewport}
+          transition={getScrollRevealTransition(index * 0.08)}
+        >
           <div className={styles.colLeft}>{row.title}</div>
           <div className={styles.colMid}>{row.middle}</div>
           <div className={styles.colRight}>{row.right}</div>
-        </div>
+        </motion.div>
       ))}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: scrollRevealDistance }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        viewport={{ once: true }}
+        transition={getScrollRevealTransition(0.16)}
+        viewport={scrollRevealViewport}
         className={styles.statsWrap}
       >
         <ScrollCountCard />

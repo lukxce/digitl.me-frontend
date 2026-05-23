@@ -8,18 +8,21 @@ import storyBackground from "../assets/girl-laptop.png";
 import handPhone from "../assets/hand-phone.png";
 import phoneFrame from "../assets/phone.png";
 import starsSvg from "../assets/stars.svg";
+import {
+  scrollRevealBaseDelay,
+  scrollRevealEase,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import styles from "./PhoneInHand.module.css";
 
 const STORY_DURATION_MS = 10_000;
-
-const easeOut = [0.22, 1, 0.36, 1];
 
 const phoneVariants = {
   hidden: { y: 120, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.9, ease: easeOut },
+    transition: { duration: 0.9, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
   },
 };
 
@@ -28,7 +31,7 @@ const sidePanelLeftVariants = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: { duration: 1.5, ease: easeOut, delay: 0.08 },
+    transition: { duration: 1.5, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
   },
 };
 
@@ -37,7 +40,7 @@ const sidePanelRightVariants = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: { duration: 1.5, ease: easeOut, delay: 0.08 },
+    transition: { duration: 1.5, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
   },
 };
 
@@ -106,14 +109,14 @@ export default function PhoneInHand() {
           variants={sidePanelLeftVariants}
           initial={reduceMotion ? "visible" : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={scrollRevealViewport}
         />
         <motion.div
           className={styles.phoneGroup}
           variants={phoneVariants}
           initial={reduceMotion ? "visible" : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={scrollRevealViewport}
         >
           <Image
             src={handPhone}
@@ -217,7 +220,7 @@ export default function PhoneInHand() {
           variants={sidePanelRightVariants}
           initial={reduceMotion ? "visible" : "hidden"}
           whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={scrollRevealViewport}
         />
       </div>
     </div>

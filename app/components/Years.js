@@ -1,9 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  scrollRevealDistance,
+  scrollRevealEase,
+  scrollRevealDuration,
+  scrollRevealStaggerDelay,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import styles from "./Years.module.css";
-
-const easeOut = [0.22, 1, 0.36, 1];
 
 const CURRENT_YEAR = 2026;
 const YEARS = [CURRENT_YEAR, 2025, 2024, 2023, 2022];
@@ -11,11 +16,11 @@ const YEAR_OPACITIES = [1, 0.5, 0.4, 0.3, 0.2];
 
 function getYearVariants(targetOpacity) {
   return {
-    hidden: { opacity: 0, y: 18 },
+    hidden: { opacity: 0, y: scrollRevealDistance },
     visible: {
       opacity: targetOpacity,
       y: 0,
-      transition: { duration: 0.4, ease: easeOut },
+      transition: { duration: scrollRevealDuration, ease: scrollRevealEase },
     },
   };
 }
@@ -25,7 +30,7 @@ const trackVariants = {
   visible: {
     transition: {
       staggerChildren: 0.14,
-      delayChildren: 0.05,
+      delayChildren: scrollRevealStaggerDelay,
     },
   },
 };
@@ -44,7 +49,7 @@ const dotVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.35, ease: easeOut },
+    transition: { duration: 0.8, ease: scrollRevealEase },
   },
 };
 
@@ -57,7 +62,7 @@ export default function Years() {
       variants={trackVariants}
       initial={reduceMotion ? "visible" : "hidden"}
       whileInView="visible"
-      viewport={{ once: true, amount: 0.6 }}
+      viewport={scrollRevealViewport}
     >
       <div className={styles.track}>
         <span className={styles.line} aria-hidden />

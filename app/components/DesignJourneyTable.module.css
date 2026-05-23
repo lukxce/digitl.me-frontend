@@ -18,6 +18,10 @@
   margin: auto;
 }
 
+.ctaButton {
+  margin-left: 50px;
+}
+
 .colLeft {
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 16px;
@@ -307,5 +311,9 @@
     font-size: 13px;
     flex: 0.7;
     text-align: right;
+  }
+
+  .ctaButton {
+    margin-left: 0;
   }
 }

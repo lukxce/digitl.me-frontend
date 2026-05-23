@@ -71,7 +71,9 @@ function ScrollCountCard() {
 
   return (
     <div className={styles.statsGroup}>
-      <CtaButton title="Get in touch" action={() => {}} />
+      <div className={styles.ctaButton}>
+        <CtaButton title="Get in touch" action={() => {}} />
+      </div>
       <div ref={ref} className={styles.statsCard}>
         <div className={styles.statsLeft}>
           <span className={styles.statsNumber} aria-live="polite">

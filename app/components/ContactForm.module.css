@@ -225,7 +225,7 @@
   opacity: 0.5;
 }
 
-.disclaimer {
+.disclaimer, .disclaimerBold {
   margin: 0;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 13px;
@@ -237,8 +237,24 @@
     justify-content: center;
     align-items: center;
     padding: auto;
-    margin-top: 30px;
     text-align: center;
+}
+
+.disclaimerBold {
+  color: #171717;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.createdBy {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 30px auto 0;
 }
 
 
@@ -247,6 +263,10 @@
     font-size: 28px;
   }
 
+  .createdBy{
+    margin-top: 20px;
+  }
+  
   .form{
     gap: 8px;
   }
@@ -263,10 +283,6 @@
   .outer{
     padding-bottom: 20px;
     height: 770px;
-  }
-
-  .disclaimer{
-    margin-top: 20px;
   }
 
   .inner{

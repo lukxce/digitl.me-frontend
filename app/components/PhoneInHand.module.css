@@ -14,11 +14,43 @@
   position: relative;
   width: min(420px, 88vw);
   right: 53px;
+  overflow: visible;
+}
+.sidePanelLeft,
+.sidePanelRight {
+  position: absolute;
+  top: 48px;
+  width: 339px;
+  height: 732px;
+  border-radius: 44px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sidePanelLeft {
+  background: linear-gradient(270deg, #f3f3f3 0%, #ffffff 100%);
+  left: calc(96px - 379px);
+}
+
+.sidePanelRight {
+  background: linear-gradient(270deg, #ffffff 0%, #f3f3f3 100%);
+  left: calc(96px + 379px);
+}
+
+.phoneGroup {
+  position: relative;
+  z-index: 2;
 }
 
 .handImage {
   display: block;
   width: 730px;
+  height: auto;
+}
+
+.phoneImage {
+  display: none;
+  width: 100%;
   height: auto;
 }
 
@@ -79,6 +111,7 @@
   flex-direction: column;
   overflow: hidden;
   background: #2a29ff;
+  z-index: 3;
 }
 
 .storyBackground {
@@ -115,7 +148,7 @@
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  padding: 10px 20px 60px;
+  padding: 10px 40px 60px;
   box-sizing: border-box;
 }
 
@@ -160,6 +193,27 @@
   width: 100%;
   animation: none;
   opacity: 0.45;
+}
+
+.storyBodyReviewer {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #fff;
+  margin-top: 40px;
+  margin-bottom: 8px;
+}
+
+.storyBodyReviewerRole {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 100%;
+  letter-spacing: -4%;
+  color: #fff;
+  opacity: 0.6;
 }
 
 @keyframes storyProgress {
@@ -232,6 +286,10 @@
 
 .storyBodyText {
   margin-top: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -4%;
+  line-height: 120%;
 }
 
 .storyFooter {
@@ -261,30 +319,44 @@
 }
 
 @media (max-width: 480px) {
+  .storyBody{
+    overflow: hidden;
+  }
   .footerLine {
     font-size: 18px;
   }
 
   .phoneWrap {
-    right: 74px;
+    right: 0;
+    width: min(540px, 88vw);
+    margin-inline: auto;
   }
 
-  .storyBodyText{
+  .handImage {
+    display: none;
+  }
+
+  .phoneImage {
+    display: block;
+  }
+
+  .sidePanelLeft,
+  .sidePanelRight {
+    display: none;
+  }
+
+  .screen {
+    border-radius: 43px;
+    width: 92%;
+    height: 96%;
+    top: 2%;
+    left: 4%;
+  }
+
+  .storyBodyText {
     font-size: 19px;
     font-weight: 600;
     letter-spacing: -4%;
     line-height: 140%;
-  }
-}
-
-@media (max-width: 400px) {
-  .phoneWrap {
-    right: 95px;
-  }
-}
-
-@media (max-width: 380px) {
-  .phoneWrap {
-    right: 107px;
-  }
+    }
 }

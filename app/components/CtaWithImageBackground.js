@@ -2,11 +2,14 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import {
+  getScrollRevealTransition,
+  scrollRevealDistance,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import bgImage from "../assets/girl-laptop.png";
 import CtaButton from "./CtaButton";
 import styles from "./CtaWithImageBackground.module.css";
-
-const easeOut = [0.22, 1, 0.36, 1];
 
 export default function CtaWithImageBackground() {
   const reduceMotion = useReducedMotion() === true;
@@ -15,12 +18,10 @@ export default function CtaWithImageBackground() {
     <motion.section
       className={styles.root}
       aria-labelledby="cta-with-bg-title"
-      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 28 }}
+      initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: scrollRevealDistance }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={
-        reduceMotion ? { duration: 0 } : { duration: 0.7, ease: easeOut }
-      }
+      viewport={scrollRevealViewport}
+      transition={getScrollRevealTransition(0, reduceMotion)}
     >
       <Image
         src={bgImage}

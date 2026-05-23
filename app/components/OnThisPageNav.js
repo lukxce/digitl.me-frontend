@@ -1,5 +1,6 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import styles from "./OnThisPageNav.module.css";
 
 /**
@@ -14,6 +15,8 @@ export default function OnThisPageNav({
   className = "",
   headingId = "on-this-page-title",
 }) {
+  const lenis = useLenis();
+
   if (!Array.isArray(items) || items.length === 0) return null;
 
   return (
@@ -32,9 +35,12 @@ export default function OnThisPageNav({
               className={styles.link}
               onClick={(event) => {
                 event.preventDefault();
-                document
-                  .getElementById(item.id)
-                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                const target = document.getElementById(item.id);
+                if (lenis && target) {
+                  lenis.scrollTo(target, { offset: 0 });
+                } else {
+                  target?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
                 window.history.replaceState(null, "", `#${item.id}`);
               }}
             >

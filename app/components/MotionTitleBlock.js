@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import ScrollReveal from "./ScrollReveal";
 import Title from "./Title";
 
 /**
@@ -15,6 +15,8 @@ import Title from "./Title";
  *   sectionId?: string;
  *   marginTop?: number;
  *   align?: 'center' | 'left' | 'right';
+ *   hasImage?: boolean;
+ *   delay?: number;
  * }} props
  */
 export default function MotionTitleBlock({
@@ -27,16 +29,15 @@ export default function MotionTitleBlock({
   className,
   sectionId,
   marginTop,
-  align = 'center',
+  align = "center",
+  hasImage,
+  delay = 0,
 }) {
   return (
-    <motion.div
+    <ScrollReveal
       id={sectionId}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true }}
       className={className}
+      delay={delay}
       style={{ marginTop: marginTop ? `${marginTop}px` : undefined }}
     >
       <Title
@@ -47,7 +48,8 @@ export default function MotionTitleBlock({
         subtitleWidth={subtitleWidth}
         subtitleWidthMobile={subtitleWidthMobile}
         align={align}
+        hasImage={hasImage}
       />
-    </motion.div>
+    </ScrollReveal>
   );
 }

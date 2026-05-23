@@ -4,19 +4,24 @@ import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import DetailPageOutlineMobileNav from "./DetailPageOutlineMobileNav";
+import {
+  scrollRevealDistance,
+  scrollRevealEase,
+  scrollRevealDuration,
+  scrollRevealBaseDelay,
+  scrollRevealStagger,
+} from "../../lib/scrollReveal";
 import styles from "../journal/[slug]/article.module.css";
 
-const easeOut = [0.22, 1, 0.36, 1];
-
 const sectionVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: scrollRevealDistance },
   visible: (index) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
-      ease: easeOut,
-      delay: index * 0.16,
+      duration: scrollRevealDuration,
+      ease: scrollRevealEase,
+      delay: scrollRevealBaseDelay + index * scrollRevealStagger,
     },
   }),
 };

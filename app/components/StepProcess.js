@@ -7,6 +7,12 @@ import {
   useInView,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import {
+  scrollRevealDistance,
+  scrollRevealEase,
+  scrollRevealDuration,
+  scrollRevealViewport,
+} from "../../lib/scrollReveal";
 import Link from "next/link";
 import styles from "./StepProcess.module.css";
 import Image from "next/image";
@@ -38,7 +44,7 @@ function LaunchArrowIcon({ className }) {
 
 export default function StepProcess() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { amount: 0.5 });
+  const isInView = useInView(ref, { amount: 0.4 });
 
   const count = useMotionValue(1);
   const [display, setDisplay] = useState(1);
@@ -101,7 +107,6 @@ export default function StepProcess() {
 
       {/* STEPS */}
       {steps.map((step, index) => {
-        const isEven = index % 2 !== 0;
         const isReversed = index % 2 === 0;
         const titleAlign = isReversed ? styles.alignLeft : styles.alignRight;
         const descriptionAlign = isReversed ? styles.alignRight : styles.alignLeft;
@@ -109,12 +114,12 @@ export default function StepProcess() {
         const animation = {
           hidden: {
             opacity: 0,
-            x: isEven ? 50 : -50,
+            y: scrollRevealDistance,
           },
           visible: {
             opacity: 1,
-            x: 0,
-            transition: { duration: 0.5 },
+            y: 0,
+            transition: { duration: scrollRevealDuration, ease: scrollRevealEase },
           },
         };
 
@@ -126,7 +131,7 @@ export default function StepProcess() {
               variants={animation}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={scrollRevealViewport}
             >
               {step.title}
             </motion.h3>
@@ -141,8 +146,8 @@ export default function StepProcess() {
               variants={animation}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
+              viewport={scrollRevealViewport}
+              transition={{ duration: scrollRevealDuration, delay: 0.12, ease: scrollRevealEase }}
             >
               {step.description}
             </motion.p>

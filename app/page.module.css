@@ -33,7 +33,7 @@
   align-items: center;
   justify-content: flex-start;
   background-color: var(--foreground);
-  padding: 0 60px 120px;
+  padding: 0 60px 100px;
 }
 
 .articleStrip {

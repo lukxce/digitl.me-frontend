@@ -189,7 +189,6 @@
 
   .metaLabel {
     font-size: 13px;
-    margin-bottom: 14px;
   }
 
   .metaValue {
@@ -210,6 +209,6 @@
   }
 
   .metaList {
-    margin: 0 0 25px;
+    margin: 0 0 14px;
   }
 }

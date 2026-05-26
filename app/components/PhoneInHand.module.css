@@ -319,6 +319,9 @@
 }
 
 @media (max-width: 480px) {
+  .root{
+    padding: 0;
+  }
   .storyBody{
     overflow: hidden;
   }
@@ -328,7 +331,7 @@
 
   .phoneWrap {
     right: 0;
-    width: min(540px, 88vw);
+    width: 100%;
     margin-inline: auto;
   }
 

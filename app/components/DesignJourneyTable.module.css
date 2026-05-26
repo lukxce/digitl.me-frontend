@@ -316,4 +316,9 @@
   .ctaButton {
     margin-left: 0;
   }
+
+  .row {
+    padding: 10px 0px;
+    max-width: calc(100% - 48px);
+  }
 }

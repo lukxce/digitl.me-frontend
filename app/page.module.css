@@ -241,6 +241,7 @@ a.secondary {
 @media (max-width: 600px) {
   .main {
     padding: 0px 10px;
+    margin-bottom: 10px;
   }
 
   .intro {
@@ -255,12 +256,13 @@ a.secondary {
 
   .servicesList {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 10px;
   }
 
   .journeyContainer {
     margin: 0;
     max-width: 100%;
+    padding: 0 24px;
   }
 
   .cardColumn {

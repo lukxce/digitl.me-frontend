@@ -107,10 +107,11 @@ function JournalRow({ item }) {
  *     title: string;
  *     publishedAt?: string | null;
  *     imageUrl?: string | null;
+ *     marginTop?: number;
  *   }>;
  * }} props
  */
-export default function JournalList({ items = [], limit = 3, hasLink = true }) {
+export default function JournalList({ items = [], limit = 3, hasLink = true, marginTop = 40 }) {
   const reduceMotion = useReducedMotion() === true;
 
   if (!items.length) {
@@ -134,6 +135,7 @@ export default function JournalList({ items = [], limit = 3, hasLink = true }) {
   return (
     <motion.section
       className={styles.container}
+      style={{ marginTop: marginTop }}
       aria-label="Journal entries"
       initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: scrollRevealDistance }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}

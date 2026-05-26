@@ -117,7 +117,7 @@ export default async function JournalArticlePage(props) {
         marginTop={90}
       />
       {moreArticles.length > 0
-        ? <JournalList limit={3} items={moreArticles} />
+        ? <JournalList limit={3} items={moreArticles} marginTop={0} />
         : null}
 
       <MotionTitleBlock

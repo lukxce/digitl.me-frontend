@@ -10,12 +10,12 @@ import ContactForm from "../../components/ContactForm";
 import DetailPageOutline, {
   DetailPageOutlineMobileNav,
 } from "../../components/DetailPageOutline";
-import JournalArticleContent from "../../components/JournalArticleContent";
+import ProjectArticleContent from "../../components/ProjectArticleContent";
 import LinkCard from "../../components/LinkCard";
 import MotionTitleBlock from "../../components/MotionTitleBlock";
 import ShowcaseKeyTakeaways from "../../components/ShowcaseKeyTakeaways";
 import ShowcaseSuccessRate from "../../components/ShowcaseSuccessRate";
-import StrapiBlocksRenderer from "../../components/StrapiBlocksRenderer";
+import ProjectBlocksRenderer from "../../components/ProjectBlocksRenderer";
 import Subscribe from "../../components/Subscribe";
 import innerStyles from "../../innerPage.module.css";
 import articleStyles from "../../journal/[slug]/article.module.css";
@@ -94,7 +94,7 @@ export default async function ClientShowcasePage(props) {
   return (
     <main className={innerStyles.pageDetail}>
       {/* <DetailPageOutline items={outline}> */}
-        <JournalArticleContent
+        <ProjectArticleContent
           title={showcase.title}
           showTitle={false}
           showMobileOutline={false}
@@ -127,9 +127,9 @@ export default async function ClientShowcasePage(props) {
           </div>
           <Title title={showcase.title} sectionId="project-overview" align="left" />
           {hasContent
-            ? <StrapiBlocksRenderer blocks={showcase.content} />
+            ? <ProjectBlocksRenderer blocks={showcase.content} />
             : <p className={articleStyles.empty}>No project details for this entry.</p>}
-        </JournalArticleContent>
+        </ProjectArticleContent>
       {/* </DetailPageOutline> */}
 
       <MotionTitleBlock

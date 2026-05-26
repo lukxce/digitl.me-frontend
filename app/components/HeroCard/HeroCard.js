@@ -79,9 +79,8 @@ export default function HeroCard({
       filter: 'blur(0px)',
     }}
     transition={{
-      type: 'spring',
-      stiffness: 30,
-      damping: 14,
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
     }}
   >
     <section className={`${styles.outer} ${className}`.trim()}>

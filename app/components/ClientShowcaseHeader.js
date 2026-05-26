@@ -132,7 +132,7 @@ export default function ClientShowcaseHeader({
           filter: "blur(0px)",
         }}
         transition={{
-          duration: 0.8,
+          duration: 2.5,
           ease: [0.22, 1, 0.36, 1],
         }}
         style={{

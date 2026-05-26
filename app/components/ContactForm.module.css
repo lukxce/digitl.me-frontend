@@ -259,7 +259,7 @@
 
 @media (max-width: 640px) {
   .emailLink{
-    font-size: 28px;
+    font-size: 34px;
   }
 
   .createdBy{
@@ -289,7 +289,7 @@
   }
 
   .copyright{
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .footer{
@@ -299,5 +299,9 @@
 
   .submit{
     font-size: 15px;
+  }
+
+  .chatLabel{
+    font-size: 13px;
   }
 }

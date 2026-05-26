@@ -62,5 +62,6 @@
 
   .root{
     gap: 4px;
+    margin-top: 40px;
   }
 }

@@ -1,10 +1,10 @@
 .root {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     width: 550px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 100px;
   }
   
@@ -113,6 +113,8 @@
   @media (max-width: 640px) {
     .root {
       width: 100%;
+      gap: 10px;
+      margin-bottom: 80px;
     }
 
     .stepTitle {

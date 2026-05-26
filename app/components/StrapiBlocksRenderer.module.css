@@ -276,4 +276,8 @@ letter-spacing: -4%;
   .dynamicBlock{
     gap: 0px;
   }
+
+  .listItem{
+    font-size: 16px;
+  }
 }

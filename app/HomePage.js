@@ -103,6 +103,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           title="My services"
           subtitle="Here’s how I can help bring your vision to life:"
           className={styles.titleContainer}
+          widthMobile={200}
         />
 
         <div className={styles.servicesList}>

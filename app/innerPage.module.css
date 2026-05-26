@@ -84,5 +84,10 @@
 
   .page{
     padding: 100px 10px 0rem;
+    margin-bottom: 10px
+  }
+
+  .cardColumn{
+    margin-bottom: 60px;
   }
 }

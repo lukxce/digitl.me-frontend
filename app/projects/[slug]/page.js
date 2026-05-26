@@ -139,7 +139,7 @@ export default async function ClientShowcasePage(props) {
         width={500}
         subtitleWidth={300}
         subtitleWidthMobile={200}
-        marginTop={90}
+        marginTop={118}
       />
       {moreProjects.length > 0
         ? <div className={innerStyles.cardColumn}>

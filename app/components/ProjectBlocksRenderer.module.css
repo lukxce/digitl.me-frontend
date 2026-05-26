@@ -1,0 +1,283 @@
+.prose {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  color: #171717;
+}
+
+.prosePlain {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  color: #171717;
+  white-space: pre-wrap;
+}
+
+.htmlFromCms {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #171717;
+}
+
+.htmlFromCms p {
+  margin: 0 0 1rem;
+}
+
+.htmlFromCms h2,
+.htmlFromCms h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+}
+
+.htmlFromCms ul,
+.htmlFromCms ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: #171717;
+}
+
+.htmlFromCms li {
+  color: #171717;
+}
+
+.htmlFromCms img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.dynamicBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: -4%;
+  color: #171717;
+  opacity: 0.5;
+  font-weight: 600;
+  margin: 19px 0 37px;
+}
+
+.p a {
+  color: #2a29ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.h2,
+.h3,
+.h4 {
+  margin: 0.25rem 0 0;
+  font-weight: 600;
+  color: #0a0a0a;
+  scroll-margin-top: 120px;
+
+font-size: 26px;
+line-height: 130%;
+letter-spacing: -4%;
+
+}
+
+.h3 {
+  font-size: 1.25rem;
+}
+
+.h4 {
+  font-size: 1.1rem;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.35rem;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #171717;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.listItem {
+  margin: 0.35rem 0;
+}
+
+.blockquote {
+  margin: 0;
+  padding: 0.75rem 0 0.75rem 1rem;
+  border-left: 3px solid #2a29ff;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #111827;
+  background: rgba(42, 41, 255, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.quoteBody {
+  margin: 0;
+  font-style: italic;
+}
+
+.quoteAttribution {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.imageRowBreakout {
+  width: min(1010px, 100vw);
+  max-width: 1010px;
+  margin-top: 90px;
+  margin-bottom: 90px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.imageRow {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.imageRowOne {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.imageRowTwo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.imageRowThreeLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.imageRowThreeTop {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.imageRowFigure {
+  margin: 0;
+}
+
+.pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border-radius: 10px;
+  background: #1e1e1e;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e8e8e8;
+}
+
+.inlineCode {
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 0.9em;
+  color: #111827;
+}
+
+.figure {
+  margin: 0.5rem 0 0;
+}
+
+.blockImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.hr {
+  margin: 1.25rem 0;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.link {
+  color: #2a29ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  color: #221fc9;
+}
+
+@media (max-width: 640px) {
+  .blockImage {
+    width: 96%;
+    margin: auto;
+  }
+
+  .imageRowOne {
+    grid-template-columns: auto;
+    gap: 2px;
+  }
+  
+  .imageRowTwo {
+    grid-template-columns: auto;
+    gap: 2px;
+  }
+  
+  .imageRowThreeTop {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .imageRowThreeLayout{
+    gap: 2px;
+  }
+
+  .h2{
+    font-size: 24px;
+    margin-top: 1.5rem;
+    padding: 0 10px 0;
+  }
+
+  .h3{
+    font-size: 20px;
+    margin-top: 1.5rem;
+    padding: 0 10px 0;
+  }
+
+  .h4{
+    font-size: 18px;
+    margin-top: 1.5rem;
+    padding: 0 10px 0;
+  }
+
+  .p{
+    font-size: 16px;
+    margin: 14px 0 0;
+    padding: 0 10px 0;
+  }
+
+  .imageRowBreakout{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  .dynamicBlock{
+    gap: 0px;
+  }
+
+  .listItem{
+    font-size: 16px;
+  }
+}

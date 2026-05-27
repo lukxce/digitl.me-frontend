@@ -110,14 +110,14 @@ export default async function JournalArticlePage(props) {
 
       <MotionTitleBlock
         title="More articles"
-        subtitle=""
-        className={innerStyles.titleContainer}
+        subtitle="Check out some of my favorite & most recent articles."
+        className={`${innerStyles.titleContainer} ${innerStyles.moreArticlesTitle}`}
         width={500}
-        subtitleWidthMobile={350}
-        marginTop={90}
+        subtitleWidth={300}
+        subtitleWidthMobile={200}
       />
       {moreArticles.length > 0
-        ? <JournalList limit={3} items={moreArticles} marginTop={0} />
+        ? <JournalList limit={3} items={moreArticles} marginTop={40} />
         : null}
 
       <MotionTitleBlock

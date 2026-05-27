@@ -60,6 +60,14 @@
   margin-bottom: 100px;
 }
 
+.moreProjectsTitle {
+  margin-top: 118px;
+}
+
+.moreArticlesTitle {
+  margin-top: 90px;
+}
+
 .showcaseInsights {
   display: flex;
   flex-direction: column;
@@ -88,6 +96,12 @@
   }
 
   .cardColumn{
+    margin-top: 40px;
     margin-bottom: 60px;
+  }
+
+  .moreProjectsTitle,
+  .moreArticlesTitle {
+    margin-top: 60px;
   }
 }

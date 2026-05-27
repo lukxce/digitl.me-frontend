@@ -135,11 +135,10 @@ export default async function ClientShowcasePage(props) {
       <MotionTitleBlock
         title="More projects"
         subtitle="Check out some of my favorite & most recent projects."
-        className={innerStyles.titleContainer}
+        className={`${innerStyles.titleContainer} ${innerStyles.moreProjectsTitle}`}
         width={500}
         subtitleWidth={300}
         subtitleWidthMobile={200}
-        marginTop={118}
       />
       {moreProjects.length > 0
         ? <div className={innerStyles.cardColumn}>

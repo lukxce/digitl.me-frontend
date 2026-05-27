@@ -38,6 +38,7 @@
   .title {
     font-size:34px;
     max-width: var(--title-max-width-mobile, var(--title-max-width, 370px));
+    margin-bottom: 18px;
   }
 
   .subtitle {

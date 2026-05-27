@@ -155,7 +155,7 @@ export default function PricingPlanCard({ planId }) {
 
       <div className={styles.titleBlock}>
         <div className={styles.titleRow}>
-          <h3 className={styles.planName}>{detail.name}</h3>
+          <h2 className={styles.planName}>{detail.name}</h2>
           <div className={styles.priceWrap}>
             <span className={styles.price}>{detail.price}</span>
             <span className={styles.priceSuffix}>{detail.priceUnit}</span>

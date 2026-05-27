@@ -68,9 +68,8 @@ export default function NotFoundShowcaseHeader() {
           filter: "blur(0px)",
         }}
         transition={{
-          type: "spring",
-          stiffness: 30,
-          damping: 14,
+          duration: 2.5,
+          ease: [0.22, 1, 0.36, 1],
         }}
         style={{
           transformOrigin: "top center",
@@ -86,6 +85,7 @@ export default function NotFoundShowcaseHeader() {
               height={164}
               className={heroStyles.stripeImg}
               priority
+              fetchPriority="high"
               unoptimized
             />
           </div>

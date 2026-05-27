@@ -157,6 +157,10 @@
 
 @media (max-width: 640px) {
 
+  .rootInner {
+    margin-top: 40px;
+  }
+
   .item {
     width: 100%;
   }

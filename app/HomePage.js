@@ -82,6 +82,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           subtitle="Check out some of my favorite & most recent projects."
           subtitleWidthMobile={200}
           className={styles.titleContainer}
+          marginTop={10}
         />
 
         <div className={styles.cardColumn}>
@@ -181,6 +182,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           width={500}
           title="Journal"
           subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth."
+          subtitleWidth={400}
           subtitleWidthMobile={300}
           className={styles.titleContainer}
         />

@@ -30,6 +30,10 @@
   margin-top: 10px;
 }
 
+.titleLeft {
+  margin-left: 0;
+}
+
 .subtitle b {
   font-weight: 700;
   color: #171717;
@@ -49,5 +53,9 @@
 
   .root{
     margin-bottom: 0;
+  }
+
+  .titleLeft {
+    margin-left: 10px;
   }
 }

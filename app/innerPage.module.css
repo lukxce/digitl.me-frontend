@@ -72,6 +72,16 @@
   margin-top: 110px;
 }
 
+.showcaseDescription {
+  margin: 19px 0 40px;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: -0.04em;
+  color: #171717;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
 .showcaseInsights {
   display: flex;
   flex-direction: column;
@@ -117,5 +127,9 @@
 
   .joinTitle {
     margin-top: 60px;
+  }
+
+  .showcaseDescription {
+    padding: 0 10px;
   }
 }

@@ -91,6 +91,11 @@
     margin-bottom: 0;
   }
 
+  .pageProject {
+    padding: 0rem 1rem 0rem;
+    margin-bottom: 10px;
+  }
+
   .pageJournal{
     padding: 6rem 10px 0rem;
   }

@@ -182,6 +182,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           width={500}
           title="Journal"
           subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth."
+          subtitleWidth={400}
           subtitleWidthMobile={300}
           className={styles.titleContainer}
         />

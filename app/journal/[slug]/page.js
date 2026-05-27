@@ -36,7 +36,10 @@ function blocksToPlainText(blocks) {
   return lines.filter(Boolean).join("\n\n");
 }
 
-export const dynamic = "force-dynamic";
+export async function generateStaticParams() {
+  const articles = await tryGetArticlesForHome(200);
+  return articles.map((a) => ({ slug: a.slug }));
+}
 
 export async function generateMetadata(props) {
   const params = await props.params;

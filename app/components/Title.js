@@ -33,7 +33,7 @@ export default function Title({
       className={styles.root}
       style={Object.keys(headerStyle).length ? headerStyle : undefined}
     >
-      <h1 className={styles.title} style={{ textAlign: align, marginLeft: align === 'left' ? '10px' : 'auto' }}>{title}</h1>
+      <h1 className={`${styles.title} ${align === 'left' ? styles.titleLeft : ''}`.trim()} style={{ textAlign: align }}>{title}</h1>
       {hasImage && (
         <Image src={clientsImage} alt="Title Image" />
       )}

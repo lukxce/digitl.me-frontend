@@ -44,7 +44,10 @@ function blocksToPlainText(blocks) {
   return lines.filter(Boolean).join("\n\n");
 }
 
-export const dynamic = "force-dynamic";
+export async function generateStaticParams() {
+  const showcases = await tryGetClientShowcases(200);
+  return showcases.map((s) => ({ slug: s.slug }));
+}
 
 export async function generateMetadata(props) {
   const params = await props.params;
@@ -114,6 +117,10 @@ export default async function ClientShowcasePage(props) {
             />
           }
         >
+          <Title title={showcase.title} sectionId="project-overview" align="left" />
+          {showcase.description
+            ? <p className={innerStyles.showcaseDescription}>{showcase.description}</p>
+            : null}
           <div className={innerStyles.showcaseInsights}>
             {showcase.successRate.length > 0
               ? <ShowcaseSuccessRate items={showcase.successRate} />
@@ -125,7 +132,6 @@ export default async function ClientShowcasePage(props) {
                 </>
               : <DetailPageOutlineMobileNav />}
           </div>
-          <Title title={showcase.title} sectionId="project-overview" align="left" />
           {hasContent
             ? <ProjectBlocksRenderer blocks={showcase.content} />
             : <p className={articleStyles.empty}>No project details for this entry.</p>}

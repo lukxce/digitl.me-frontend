@@ -32,6 +32,7 @@
 
 .subtitle b {
   font-weight: 700;
+  color: #171717;
 }
 
 @media (max-width: 640px) {

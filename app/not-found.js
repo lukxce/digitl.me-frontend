@@ -46,11 +46,10 @@ export default async function NotFound() {
       <MotionTitleBlock
         title="Join 150+ professionals elevating their brand"
         subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
-        className={innerStyles.titleContainer}
+        className={`${innerStyles.titleContainer} ${innerStyles.joinTitle}`}
         width={600}
         subtitleWidth={425}
         subtitleWidthMobile={350}
-        marginTop={110}
       />
       <ClientsLogosCarousel />
       <Subscribe />

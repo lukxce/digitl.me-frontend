@@ -82,6 +82,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           subtitle="Check out some of my favorite & most recent projects."
           subtitleWidthMobile={200}
           className={styles.titleContainer}
+          marginTop={10}
         />
 
         <div className={styles.cardColumn}>

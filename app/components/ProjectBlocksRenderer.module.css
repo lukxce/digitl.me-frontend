@@ -60,7 +60,7 @@
   margin: 0;
   font-size: 18px;
   line-height: 140%;
-  letter-spacing: -4%;
+  letter-spacing: -0.04em;
   color: #171717;
   opacity: 0.5;
   font-weight: 600;
@@ -82,7 +82,7 @@
 
 font-size: 26px;
 line-height: 130%;
-letter-spacing: -4%;
+letter-spacing: -0.04em;
 
 }
 
@@ -99,9 +99,16 @@ letter-spacing: -4%;
   padding-left: 1.35rem;
   font-size: 18px;
   line-height: 1.55;
+  letter-spacing: -0.04em;
   color: #171717;
   opacity: 0.5;
   font-weight: 600;
+}
+
+.h2 + .list,
+.h3 + .list,
+.h4 + .list {
+  margin-top: 18px;
 }
 
 .listItem {

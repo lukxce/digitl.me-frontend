@@ -321,6 +321,7 @@
 @media (max-width: 480px) {
   .root{
     padding: 0;
+    margin-top: 24px;
   }
   .storyBody{
     overflow: hidden;

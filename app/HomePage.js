@@ -136,7 +136,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
         <ScrollReveal>
           <Years />
           <div className={styles.journeyContainer}>
-            <h3 className={styles.journeyTitleTitle}>My journey through design</h3>
+            <h2 className={styles.journeyTitleTitle}>My journey through design</h2>
             <p className={styles.journeyTitleSubtitle}>
               Explore the milestones and experiences that have shaped my career,
               year by year.

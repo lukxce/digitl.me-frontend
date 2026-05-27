@@ -92,6 +92,7 @@ export default function HeroCard({
           height={164}
           className={styles.stripeImg}
           priority
+          fetchPriority="high"
           unoptimized
         />
       </div>

@@ -44,7 +44,7 @@
   transform-origin: top center;
 }
 .floatingTab {
-  width: 52px;
+  width: 63px;
   margin: 0 auto;
 }
 
@@ -57,7 +57,7 @@
   position: absolute;
 top: 12px;
 left: 50%;
-transform: translateX(-42%);
+transform: translateX(-50%);
 }
 
 .stripeImg {

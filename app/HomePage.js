@@ -71,15 +71,15 @@ export default function HomePage({ articles = [], showcases = [] }) {
       <main className={styles.main} data-article-count={articles.length}>
         <HeroCard
           primaryCtaHref="/contact"
-          headlineLines={["I create websites that work as hard as you do"]}
+          headlineLines={["Where marketing meets real business results."]}
         />
         <ScrollReveal>
-          <ClientsLogosCarousel title="Proudly worked with:" />
+          <ClientsLogosCarousel title="Trusted by:" />
         </ScrollReveal>
 
         <MotionTitleBlock
-          title="My work"
-          subtitle="Check out some of my favorite & most recent projects."
+          title="Work that speaks for itself"
+          subtitle="From strategy to execution, <br> here's what that looks like in practice."
           subtitleWidthMobile={200}
           className={styles.titleContainer}
           marginTop={10}
@@ -101,8 +101,8 @@ export default function HomePage({ articles = [], showcases = [] }) {
         </div>
 
         <MotionTitleBlock
-          title="My services"
-          subtitle="Here’s how I can help bring your vision to life:"
+          title="What we do"
+          subtitle="The core marketing services we handle for our clients."
           className={styles.titleContainer}
           widthMobile={200}
         />
@@ -150,8 +150,8 @@ export default function HomePage({ articles = [], showcases = [] }) {
         </ScrollReveal>
 
         <MotionTitleBlock
-          title="Words from my clients"
-          subtitle="<b>Loved by those</b> <br> who value thoughtful design."
+          title="Trusted by our clients"
+          subtitle="<b>What clients say</b> <br> about working with us."
           hasImage={true}
           className={styles.titleContainer}
         />
@@ -172,17 +172,19 @@ export default function HomePage({ articles = [], showcases = [] }) {
           <PricingPlans />
         </ScrollReveal>
 
-        <ScrollReveal>
-          <Faq />
-        </ScrollReveal>
+        <div id="faq">
+          <ScrollReveal>
+            <Faq />
+          </ScrollReveal>
+        </div>
 
         <CtaWithImageBackground />
 
         <MotionTitleBlock
           width={500}
-          title="Journal"
-          subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth."
-          subtitleWidth={400}
+          title="The Digitl Journal"
+          subtitle="Practical thoughts on marketing, growth, and building brands that stand out."
+          subtitleWidth={310}
           subtitleWidthMobile={300}
           className={styles.titleContainer}
         />

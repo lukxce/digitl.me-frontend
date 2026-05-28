@@ -33,31 +33,31 @@ function ViewAllArrowIcon({ className }) {
 }
 
 const DEFAULT_AVATAR =
-  "https://picsum.photos/seed/digitl-hero-avatar/160/160?grayscale";
+  "https://api.digitl.me/uploads/icon_1ea74e1afa.png";
 
 /** Full-viewport portfolio hero with floating `stripe.svg` tab and soft card. */
 export default function HeroCard({
-  name = "Alex Rivera",
-  subtitle = "Web designer · Developer",
+  name = "Digitl",
+  subtitle = "Full-service marketing for businesses",
   headlineLines = [
     "Design that moves",
     "products forward",
   ],
   description =
-    "I build designs that solve problems, inspire action, and drive success.",
-  socialProofLabel = "50+ customers",
+    "We build brands that stand out, convert harder, and scale faster.",
+  socialProofLabel = "Helping 50+ companies grow",
   progressActiveCount = 2,
   avatarSrc = DEFAULT_AVATAR,
   avatarAlt = "Profile photo",
   availabilitySlotsLabel = "2 open slots",
-  availabilityPeriodLabel = "for December",
-  location = "Berlin, Germany",
+  availabilityPeriodLabel = "for June",
+  location = "London",
   templateHref = "#",
   templateLabel = "Praxis template →",
   primaryCtaHref = "/contact",
-  primaryCtaLabel = "Book a call",
+  primaryCtaLabel = "Get started",
   secondaryCtaHref = "/projects",
-  secondaryCtaLabel = "View work",
+  secondaryCtaLabel = "What we do",
   socialLinks,
   className = "",
 }) {
@@ -140,11 +140,11 @@ export default function HeroCard({
           <div className={styles.metaRowLocation}>
           <Image src={locationIcon} alt="Location" width={11} height={11} className={styles.metaRowLocationIcon} />
           <p className={styles.metaText}>
-            Located in {location}, available worldwide.
+            Based in {location}, working with businesses worldwide.
           </p>
           </div>
-          <Link href="/journal" className={styles.metaLink}>
-            <span>View all</span>
+          <Link href="/#faq" className={styles.metaLink}>
+            <span>FAQ</span>
             <ViewAllArrowIcon className={styles.metaArrow} />
           </Link>
         </div>

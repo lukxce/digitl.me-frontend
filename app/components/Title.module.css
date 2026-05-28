@@ -16,7 +16,7 @@
 }
 
 .subtitle {
-  max-width: var(--subtitle-max-width, 250px);
+  max-width: var(--subtitle-max-width, 300px);
   margin: 0 auto;
   color: #8B8B8B;
   font-size: 17px;

@@ -38,29 +38,29 @@ const faqItemVariants = {
 
 const FAQS = [
   {
-    question: "What is your typical project timeline?",
+    question: "What types of businesses do you work with?",
     answer:
-      "Most website and product design projects run 6–12 weeks depending on scope, review cycles, and how many surfaces are in the first release. I share a week-by-week plan after the kickoff so you always know what to expect.",
+      "We work with a wide range of businesses, from local companies to established brands, across industries where clear marketing and results matter.",
   },
   {
-    question: "Do you work with clients in other time zones?",
+    question: "How long does it take to start working together?",
     answer:
-      "Yes. I keep a few predictable hours of overlap for live calls and use async updates the rest of the time. That way you get clear progress on Figma, Loom, and shared docs without late-night meetings for either of us.",
+      "Most projects start within one to two weeks after an initial conversation, depending on scope, priorities, and availability.",
   },
   {
-    question: "How do you hand off designs to development?",
+    question: "Do you work on ongoing marketing or one-time projects?",
     answer:
-      "Handoff includes organized Figma files, component states, spacing and type notes, and exportable assets. I can also sit in on a short dev sync to walk through edge cases and keep the build aligned with the spec.",
+      "Both. Some clients need ongoing support, while others hire us for specific projects like a website, campaign, or brand refresh.",
   },
   {
-    question: "What is included in a standard engagement?",
+    question: "Do you offer contracts or long-term commitments?",
     answer:
-      "A standard project usually covers discovery, IA and key user flows, high-fidelity UI, a small set of responsive patterns, and one or two revision rounds. Add-ons like design system work, motion, or content help are scoped separately when you need them.",
+      "We don’t lock clients into long contracts. Work is scoped clearly upfront, and ongoing collaborations are based on mutual fit and results.",
   },
   {
-    question: "Can I see work similar to my product before we start?",
+    question: "What services do you offer?",
     answer:
-      "I can share relevant case studies and, when an NDA allows, a few more specific examples. If the work is under NDA, we can start with a small paid workshop or audit so you can evaluate the fit on a real problem of yours.",
+      "We provide paid advertising, SEO, website design and development, branding, and marketing strategy. We focus on practical work that supports real business needs.",
   },
 ];
 
@@ -226,9 +226,9 @@ export default function Faq() {
       )}
       <ScrollReveal delay={0.24}>
         <div className={styles.rootInner}>
-          <p className={styles.followUpText}>Do you have any other questions?</p>
+          <p className={styles.followUpText}>Have more questions?</p>
           <Link href="/#contact" className={styles.askLink}>
-            <span>Ask me directly</span>
+            <span>We’re happy to help</span>
             <AskArrowIcon className={styles.askArrow} />
           </Link>
         </div>

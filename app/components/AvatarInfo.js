@@ -48,8 +48,8 @@ const defaultSocialLinks = [
  * }} props
  */
 export default function AvatarInfo({
-  name = "Alex Rivera",
-  role = "Web designer · Developer",
+  name = "Digitl",
+  role = "Full-service marketing for businesses",
   imageSrc = "https://picsum.photos/seed/digitl-hero-avatar/160/160?grayscale",
   imageAlt = "Profile photo",
   socialLinks = defaultSocialLinks,

@@ -7,7 +7,7 @@
   margin: -8px auto 0;
   padding: 0 8px;
   box-sizing: border-box;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 .phoneWrap {
@@ -156,7 +156,7 @@
   display: flex;
   flex-shrink: 0;
   gap: 5px;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .progressTrack {
@@ -181,7 +181,7 @@
 }
 
 .progressFill[data-state="active"] {
-  animation: storyProgress 10s linear forwards;
+  animation: storyProgress 5s linear forwards;
 }
 
 .progressFill[data-state="idle"] {
@@ -230,8 +230,24 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
+  justify-content: flex-start;
   gap: 10px;
   margin-bottom: 10px;
+}
+
+.brandMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandLogo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
 }
 
 .avatarRing {

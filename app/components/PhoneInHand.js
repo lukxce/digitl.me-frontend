@@ -15,7 +15,7 @@ import {
 } from "../../lib/scrollReveal";
 import styles from "./PhoneInHand.module.css";
 
-const STORY_DURATION_MS = 10_000;
+const STORY_DURATION_MS = 5_000;
 
 const phoneVariants = {
   hidden: { y: 120, opacity: 0 },
@@ -47,27 +47,21 @@ const sidePanelRightVariants = {
 const STORIES = [
   {
     id: "1",
-    name: "Alex Morgan",
-    role: "Product Lead, Northwind",
-    body: "Client satisfaction went through the roof after the redesign. Every flow finally feels obvious.",
-    reviewer: "Stanley Black",
+    body: "They delivered exceptional work – creative, detailed, and perfectly aligned with our vision. Highly recommend!",
+    reviewer: "Jessica Stone",
     reviewerRole: "Creative Director at Lumina",
   },
   {
     id: "2",
-    name: "Jordan Lee",
-    role: "Marketing Director, Acme",
-    body: "We finally have a story that matches how good the product is. Retention looks stronger every week.",
-    reviewer: "Stanley Black",
-    reviewerRole: "Creative Director at Lumina",
+    body: "Working with the guys from digitl was a game-changer for our company. The website design they created not only looks stunning but also improved our user engagement significantly.",
+    reviewer: "John Carter",
+    reviewerRole: "Creative Lead at Garnish",
   },
   {
     id: "3",
-    name: "Sam Rivera",
-    role: "Founder, Brightline",
-    body: "The level of care in every screen makes us look like a much bigger team than we are.",
-    reviewer: "Stanley Black",
-    reviewerRole: "Creative Director at Lumina",
+    body: "We transformed our outdated website into a sleek, modern portfolio that stands out. A fantastic team to collaborate with!",
+    reviewer: "Rachel Simmons",
+    reviewerRole: "Product Manager at Brightline Solutions",
   },
 ];
 
@@ -182,18 +176,19 @@ export default function PhoneInHand() {
                 </div>
 
                 <header className={styles.storyHeader}>
-                  <div className={styles.avatarRing}>
+                  <div className={styles.brandMeta}>
                     <Image
-                      src={clientsAvatar}
-                      alt=""
-                      width={40}
-                      height={40}
-                      className={styles.avatar}
+                      src="https://api.digitl.me/uploads/icon_1ea74e1afa.png"
+                      alt="Digitl"
+                      width={32}
+                      height={32}
+                      className={styles.brandLogo}
+                      unoptimized
                     />
-                  </div>
-                  <div className={styles.meta}>
-                    <p className={styles.posterName}>{story.name}</p>
-                    <p className={styles.posterRole}>{story.role}</p>
+                    <div>
+                      <p className={styles.posterName}>Digitl</p>
+                      <p className={styles.posterRole}>Marketing Agency</p>
+                    </div>
                   </div>
                 </header>
 

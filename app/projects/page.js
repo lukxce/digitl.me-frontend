@@ -19,8 +19,8 @@ export default async function ProjectsPage() {
   return (
     <main className={styles.page}>
       <MotionTitleBlock
-        title="My work"
-        subtitle="Check out some of my favorite & most recent projects."
+        title="Our work"
+        subtitle="A selection of projects we've built for clients across different industries."
         className={styles.titleContainer}
         width={300}
         subtitleWidthMobile={200}

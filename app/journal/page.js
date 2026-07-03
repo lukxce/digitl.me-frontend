@@ -9,8 +9,8 @@ import ContactForm from "../components/ContactForm";
 import AvatarInfo from "../components/AvatarInfo";
 
 export const metadata = {
-  title: "Journal",
-  description: "Notes, updates, and longer-form writing.",
+  title: "Insights",
+  description: "Articles on marketing, growth, and building brands that stand out.",
 };
 
 export default async function JournalPage() {
@@ -18,11 +18,12 @@ export default async function JournalPage() {
   return (
     <main className={`${styles.page}`.trim()}>
       <MotionTitleBlock
-        title="Journal"
-        subtitle="A space where I share updates, insights, and reflections on design, creativity, and growth. "
+        title="Insights"
+        subtitle="Articles on marketing, growth, and building brands that stand out."
         className={styles.titleContainer}
-        width={500}
-        subtitleWidthMobile={300}
+        width={300}
+        subtitleWidth={300}
+        subtitleWidthMobile={280}
       />
       {articles.length > 0 && <JournalList
           limit={700}

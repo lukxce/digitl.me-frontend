@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "./ContactForm.module.css";
-import logo from "../assets/figma.svg";
+const DIGITL_LOGO = "https://api.digitl.me/uploads/icon_1ea74e1afa.png";
 import Image from "next/image";
 
 /**
@@ -59,14 +59,10 @@ export default function ContactForm({ onSubmit }) {
       <div className={styles.inner}>
         <header className={styles.header}>
           <h2 id="contact-form-title" className={styles.title}>
-            Ready to
-            <br />
-            get started?
+            Contact
           </h2>
           <p className={styles.subtitle}>
-            {
-              "Fill out the form, or reach out directly. I'll respond within 24 hours."
-            }
+            Fill out the form or reach out directly. We typically respond within one business day.
           </p>
         </header>
 
@@ -104,24 +100,24 @@ export default function ContactForm({ onSubmit }) {
         {success ? <p className={styles.statusSuccess}>Message sent.</p> : null}
 
         <footer className={styles.footer}>
-          <p className={styles.chatLabel}>{"Let's chat!"}</p>
+          <p className={styles.chatLabel}>Prefer phone or email?</p>
           <p className={styles.phone}>
-            <a className={styles.phoneLink} href="tel:+15108956500">
-              (510) 895-6500
+            <a className={styles.phoneLink} href="tel:+38641962522">
+              (+386) 41 962 522
             </a>
           </p>
           <p className={styles.email}>
-            <a className={styles.emailLink} href="mailto:hello@praxis.com">
-              hello@praxis.com
+            <a className={styles.emailLink} href="mailto:hello@digitl.me">
+              hello@digitl.me
             </a>
           </p>
-          <p className={styles.copyright}>© Copyright 2026. All rights Reserved.</p>
+          <p className={styles.copyright}>© 2026. All rights Reserved.</p>
         </footer>
       </div>
       <div className={styles.createdBy}>
         <p className={styles.disclaimer}>Created by</p>
-        <Image src={logo} alt="Logo" width={100} height={100} className={styles.logo} />
-        <p className={styles.disclaimerBold}>Anatolii Dmitrienko</p>
+        <Image src={DIGITL_LOGO} alt="Digitl" width={32} height={32} className={styles.logo} unoptimized />
+        <p className={styles.disclaimerBold}>Digitl</p>
       </div>
     </section>
   );

@@ -38,9 +38,9 @@
 }
 
 .title {
-  margin: 0 0 14px;
+  margin: 0 0 28px;
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 38px;
+  font-size: 50px;
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -5%;
@@ -48,15 +48,13 @@
 }
 
 .subtitle {
-  margin: 0 auto;
-  max-width: 420px;
+  margin: 0 0 28px;
+  max-width: 230px;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 17px;
   font-weight: 600;
   line-height: 1.5;
   color: #17171780;
-  max-width: 300px;
-  margin-bottom: 20px;
   letter-spacing: -4%;
 }
 
@@ -119,7 +117,7 @@
   border-radius: 50px;
   background-color: #2a29ff;
   font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1;
   color: #fff;

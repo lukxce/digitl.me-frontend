@@ -69,20 +69,20 @@ export default function StepProcess() {
 
   const steps = [
     {
-      title: "Discovery call",
-      description: "We’ll discuss your goals and vision",
+      title: "Discovery & Audit",
+      description: "We understand your business, goals and data",
     },
     {
-      title: "Custom design",
-      description: "I’ll create a custom design tailored to your needs",
+      title: "Strategy & Direction",
+      description: "We define focus, priorities, and growth roadmap.",
     },
     {
-      title: "Development",
-      description: "The design comes to life with clean, efficient code",
+      title: "Execution & Optimization",
+      description: "We launch, test, iterate, and scale what actually works.",
     },
     {
-      title: "Launch",
-      description: "I’ll help you get your website live and ready for the world",
+      title: "Reporting & Growth",
+      description: "Clear reporting, insights, and next-step decisions.",
     },
   ];
 
@@ -96,9 +96,9 @@ export default function StepProcess() {
         </motion.div>
 
         <div className={styles.mainStepText}>
-          <h3 className={styles.mainStepTitle}>Step process</h3>
+          <h3 className={styles.mainStepTitle}>How we work</h3>
           <p className={styles.mainStepDescription}>
-            <span className={styles.mainStepDescriptionBold}>A proven workflow</span> that ensures seamless collaboration and <span className={styles.mainStepDescriptionBold}>outstanding results</span>.
+            <span className={styles.mainStepDescriptionBold}>A proven process</span> designed to keep things clear, efficient, and focused from <span className={styles.mainStepDescriptionBold}>start to finish</span>.
           </p>
         </div>
 
@@ -156,8 +156,8 @@ export default function StepProcess() {
         );
       })}
 
-      <Link href="/contact" className={styles.launchLink}>
-        <span>Launch your business</span>
+      <Link href="/#contact" className={styles.launchLink}>
+        <span>Start a conversation</span>
         <LaunchArrowIcon className={styles.launchArrow} />
       </Link>
     </div>

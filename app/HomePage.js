@@ -1,15 +1,14 @@
 "use client";
 
+import AvatarInfo from "./components/AvatarInfo";
 import ClientsLogosCarousel from "./components/ClientsLogosCarousel";
 import ContactForm from "./components/ContactForm";
-import CtaWithImageBackground from "./components/CtaWithImageBackground";
-import DesignJourneyTable from "./components/DesignJourneyTable";
 import Faq from "./components/Faq";
+import HeroCard from "./components/HeroCard";
 import JournalList from "./components/JournalList";
 import LinkCard from "./components/LinkCard";
 import MotionTitleBlock from "./components/MotionTitleBlock";
 import PhoneInHand from "./components/PhoneInHand";
-import PricingPlans from "./components/PricingPlans";
 import ScrollReveal from "./components/ScrollReveal";
 import ServiceItem from "./components/ServiceItem";
 import StepProcess from "./components/StepProcess";
@@ -21,11 +20,7 @@ import {
   IconStrategy,
   IconWeb,
 } from "./components/serviceIcons";
-import ToolsList from "./components/ToolsList";
-import Years from "./components/Years";
 import styles from "./page.module.css";
-import HeroCard from "./components/HeroCard";
-import AvatarInfo from "./components/AvatarInfo";
 
 const services = [
   {
@@ -221,7 +216,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
           <Subscribe />
         </ScrollReveal>
 
-        <ScrollReveal id="contact" style={{ scrollMarginTop: "0px" }}>
+        <ScrollReveal style={{ scrollMarginTop: "0px" }}>
           <AvatarInfo />
         </ScrollReveal>
 

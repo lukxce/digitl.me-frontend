@@ -12,7 +12,7 @@
   background-color: #f6f6f6;
   overflow-y: auto;
   padding-bottom: 30px;
-  border: 1px solid #EAEAEA
+  border: 1px solid #eaeaea;
 }
 
 .inner {
@@ -84,7 +84,7 @@
   letter-spacing: -4%;
 }
 
-.field::placeholder{
+.field::placeholder {
   color: #17171780;
   font-weight: 600;
 }
@@ -102,7 +102,7 @@
   resize: none;
 }
 
-.textarea::placeholder{
+.textarea::placeholder {
   color: #17171780;
   font-weight: 600;
 }
@@ -222,7 +222,8 @@
   opacity: 0.5;
 }
 
-.disclaimer, .disclaimerBold {
+.disclaimer,
+.disclaimerBold {
   margin: 0;
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 13px;
@@ -231,10 +232,10 @@
   letter-spacing: -4%;
   color: #17171780;
   display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: auto;
-    text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  text-align: center;
 }
 
 .disclaimerBold {
@@ -254,52 +255,51 @@
   margin: 30px auto 0;
 }
 
-
 @media (max-width: 640px) {
-  .emailLink{
+  .emailLink {
     font-size: 34px;
   }
 
-  .createdBy{
+  .createdBy {
     margin-top: 20px;
   }
-  
-  .form{
+
+  .form {
     gap: 8px;
   }
 
-  .title{
+  .title {
     font-size: 34px;
   }
 
-  .subtitle{
+  .subtitle {
     margin: 0;
     font-size: 15px;
   }
 
-  .outer{
+  .outer {
     padding-bottom: 20px;
     height: 760px;
   }
 
-  .inner{
+  .inner {
     padding: 44px 20px 40px;
   }
 
-  .copyright{
+  .copyright {
     font-size: 13px;
   }
 
-  .footer{
+  .footer {
     padding-top: 0px;
     margin-top: 0px;
   }
 
-  .submit{
+  .submit {
     font-size: 15px;
   }
 
-  .chatLabel{
+  .chatLabel {
     font-size: 13px;
   }
 }

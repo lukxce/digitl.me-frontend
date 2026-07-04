@@ -1,23 +1,18 @@
-'use client';
+"use client";
 
-import {
-  motion,
-  useMotionValue,
-  animate,
-  useInView,
-} from "framer-motion";
+import { animate, motion, useInView, useMotionValue } from "motion/react";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   scrollRevealDistance,
-  scrollRevealEase,
   scrollRevealDuration,
+  scrollRevealEase,
   scrollRevealViewport,
 } from "../../lib/scrollReveal";
-import Link from "next/link";
-import styles from "./StepProcess.module.css";
-import Image from "next/image";
 import ladder from "../assets/ladder.svg";
 import OvalIcon from "../assets/Oval.svg";
+import styles from "./StepProcess.module.css";
 
 function LaunchArrowIcon({ className }) {
   return (
@@ -88,7 +83,6 @@ export default function StepProcess() {
 
   return (
     <div className={styles.root}>
-      
       {/* MAIN STEP */}
       <div className={styles.mainStep}>
         <motion.div ref={ref} className={styles.mainStepContent}>
@@ -98,18 +92,34 @@ export default function StepProcess() {
         <div className={styles.mainStepText}>
           <h3 className={styles.mainStepTitle}>How we work</h3>
           <p className={styles.mainStepDescription}>
-            <span className={styles.mainStepDescriptionBold}>A proven process</span> designed to keep things clear, efficient, and focused from <span className={styles.mainStepDescriptionBold}>start to finish</span>.
+            <span className={styles.mainStepDescriptionBold}>
+              A proven process
+            </span>{" "}
+            designed to keep things clear, efficient, and focused from{" "}
+            <span className={styles.mainStepDescriptionBold}>
+              start to finish
+            </span>
+            .
           </p>
         </div>
 
-        <Image src={ladder} alt="Ladder" width={124} height={164} unoptimized className={styles.ladder} />
+        <Image
+          src={ladder}
+          alt="Ladder"
+          width={124}
+          height={164}
+          unoptimized
+          className={styles.ladder}
+        />
       </div>
 
       {/* STEPS */}
       {steps.map((step, index) => {
         const isReversed = index % 2 === 0;
         const titleAlign = isReversed ? styles.alignLeft : styles.alignRight;
-        const descriptionAlign = isReversed ? styles.alignRight : styles.alignLeft;
+        const descriptionAlign = isReversed
+          ? styles.alignRight
+          : styles.alignLeft;
 
         const animation = {
           hidden: {
@@ -119,13 +129,15 @@ export default function StepProcess() {
           visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: scrollRevealDuration, ease: scrollRevealEase },
+            transition: {
+              duration: scrollRevealDuration,
+              ease: scrollRevealEase,
+            },
           },
         };
 
         return (
           <div className={styles.step} key={step.title}>
-            
             <motion.h3
               className={`${styles.title} ${titleAlign}`}
               variants={animation}
@@ -137,7 +149,13 @@ export default function StepProcess() {
             </motion.h3>
 
             <div className={styles.stepNumberContainer}>
-              <Image src={OvalIcon} alt="Oval" width={26} height={26} unoptimized />
+              <Image
+                src={OvalIcon}
+                alt="Oval"
+                width={26}
+                height={26}
+                unoptimized
+              />
               <p className={styles.stepNumber}>0{index + 1}</p>
             </div>
 
@@ -147,11 +165,14 @@ export default function StepProcess() {
               initial="hidden"
               whileInView="visible"
               viewport={scrollRevealViewport}
-              transition={{ duration: scrollRevealDuration, delay: 0.12, ease: scrollRevealEase }}
+              transition={{
+                duration: scrollRevealDuration,
+                delay: 0.12,
+                ease: scrollRevealEase,
+              }}
             >
               {step.description}
             </motion.p>
-
           </div>
         );
       })}

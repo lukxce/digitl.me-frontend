@@ -1,18 +1,17 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import clientsAvatar from "../assets/clients.png";
-import storyBackground from "../assets/girl-laptop.png";
-import handPhone from "../assets/hand-phone.png";
-import phoneFrame from "../assets/phone.png";
-import starsSvg from "../assets/stars.svg";
 import {
   scrollRevealBaseDelay,
   scrollRevealEase,
   scrollRevealViewport,
 } from "../../lib/scrollReveal";
+import storyBackground from "../assets/girl-laptop.png";
+import handPhone from "../assets/hand-phone.png";
+import phoneFrame from "../assets/phone.png";
+import starsSvg from "../assets/stars.svg";
 import styles from "./PhoneInHand.module.css";
 
 const STORY_DURATION_MS = 5_000;
@@ -22,7 +21,11 @@ const phoneVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.9, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
+    transition: {
+      duration: 0.9,
+      ease: scrollRevealEase,
+      delay: scrollRevealBaseDelay,
+    },
   },
 };
 
@@ -31,7 +34,11 @@ const sidePanelLeftVariants = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: { duration: 1.5, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
+    transition: {
+      duration: 1.5,
+      ease: scrollRevealEase,
+      delay: scrollRevealBaseDelay,
+    },
   },
 };
 
@@ -40,14 +47,18 @@ const sidePanelRightVariants = {
   visible: {
     x: 0,
     opacity: 1,
-    transition: { duration: 1.5, ease: scrollRevealEase, delay: scrollRevealBaseDelay },
+    transition: {
+      duration: 1.5,
+      ease: scrollRevealEase,
+      delay: scrollRevealBaseDelay,
+    },
   },
 };
 
 const STORIES = [
   {
     id: "1",
-    body: "They delivered exceptional work – creative, detailed, and perfectly aligned with our vision. Highly recommend!",
+    body: "They delivered exceptional work, creative and detailed, perfectly aligned with our vision. Highly recommend!",
     reviewer: "Jessica Stone",
     reviewerRole: "Creative Director at Lumina",
   },
@@ -130,11 +141,13 @@ export default function PhoneInHand() {
           />
           <div className={styles.screen}>
             <button
+              type="button"
               className={styles.tapLeft}
               onClick={handleLeft}
               aria-label="Previous"
             />
             <button
+              type="button"
               className={styles.tapRight}
               onClick={handleRight}
               aria-label="Next"
@@ -203,7 +216,9 @@ export default function PhoneInHand() {
                   />
                   <p className={styles.storyBodyText}>{story.body}</p>
                   <p className={styles.storyBodyReviewer}>{story.reviewer}</p>
-                  <p className={styles.storyBodyReviewerRole}>{story.reviewerRole}</p>
+                  <p className={styles.storyBodyReviewerRole}>
+                    {story.reviewerRole}
+                  </p>
                 </div>
               </div>
             </div>

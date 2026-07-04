@@ -13,19 +13,33 @@ const logos = [
 function LogoRow({ keyPrefix }) {
   return logos.map((logo) => (
     <div key={`${keyPrefix}-${logo.alt}`} className={styles.logoItem}>
-      <Image src={logo.src} alt={logo.alt} height={logo.height} width={200} style={{ height: `${logo.height}px`, width: 'auto' }} unoptimized />
+      <Image
+        src={logo.src}
+        alt={logo.alt}
+        height={logo.height}
+        width={200}
+        style={{ height: `${logo.height}px`, width: "auto" }}
+        unoptimized
+      />
     </div>
   ));
 }
 
-export default function ClientsLogosCarousel({ title, marginTop, marginBottom }) {
+export default function ClientsLogosCarousel({
+  title,
+  marginTop,
+  marginBottom,
+}) {
   const style = {
     ...(marginTop != null && { marginTop }),
     ...(marginBottom != null && { marginBottom }),
   };
 
   return (
-    <div className={styles.root} style={Object.keys(style).length ? style : undefined}>
+    <div
+      className={styles.root}
+      style={Object.keys(style).length ? style : undefined}
+    >
       {title && <p className={styles.label}>{title}</p>}
       <div className={styles.viewport}>
         <div className={styles.track}>

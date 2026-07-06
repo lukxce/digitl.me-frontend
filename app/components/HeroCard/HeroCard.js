@@ -139,7 +139,9 @@ export default function HeroCard({
                 className={styles.metaRowLocationIcon}
               />
               <p className={styles.metaText}>
-                Based in {location}, working with businesses worldwide.
+                Based in{" "}
+                <span className={styles.metaTextStrong}>{location}</span>,
+                working with businesses worldwide.
               </p>
             </div>
             <Link href="/#faq" className={styles.metaLink}>

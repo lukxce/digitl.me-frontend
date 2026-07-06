@@ -163,8 +163,14 @@
 }
 
 .metaText {
-  opacity: 0.5;
+  color: #6b7280;
+  font-weight: 500;
   text-align: center;
+}
+
+.metaTextStrong {
+  color: #171717;
+  font-weight: 600;
 }
 
 .metaLink {
@@ -248,7 +254,7 @@
   }
 
   .shell {
-    height: 900px;
+    height: auto;
   }
 
   .outer {
@@ -281,6 +287,7 @@
 
   .description {
     text-align: left;
+    font-size: 15px;
   }
 
   .footer {
@@ -290,6 +297,14 @@
 
   .metaRow {
     justify-content: center;
+  }
+
+  .metaText {
+    font-size: 12px;
+  }
+
+  .metaLink {
+    font-size: 13px;
   }
 
   .stripeImg {

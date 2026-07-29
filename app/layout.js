@@ -12,9 +12,9 @@ const manrope = Manrope({
 
 const SITE_URL = "https://www.digitl.me";
 const SITE_NAME = "Digitl";
-const SITE_TITLE = "Digitl | Full-Service Marketing Agency";
+const SITE_TITLE = "Digitl | Full-Service Marketing, Run by Operators";
 const SITE_DESCRIPTION =
-  "Digitl is a full-service marketing agency for businesses that want real results: paid advertising, web design and development, SEO, social media and branding.";
+  "Digitl runs your whole marketing function as one system: paid, web, SEO, social, and brand. Led by operators who've scaled companies, not just campaigns.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

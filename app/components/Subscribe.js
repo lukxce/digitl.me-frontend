@@ -117,7 +117,7 @@ export default function Subscribe({ onSubmit }) {
       {success
         ? <p className={styles.statusSuccess}>Thanks for subscribing.</p>
         : null}
-      <p className={styles.unsubscribe}>Unsubscribe at any time.</p>
+      <p className={styles.unsubscribe}>Unsubscribe anytime.</p>
     </>
   );
 }

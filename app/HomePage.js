@@ -27,35 +27,35 @@ const services = [
     key: "paid-advertising",
     title: "Paid Advertising (Search & Social)",
     description:
-      "We plan, run, and manage paid campaigns across search and social platforms, focusing on efficient spend, clear messaging, and consistent lead or sales generation.",
+      "Campaigns on Google and social, built and scaled to drive sales, not just clicks.",
     Icon: IconProduct,
   },
   {
     key: "web-design",
     title: "Website Design & Development",
     description:
-      "We design and build clear, professional websites that explain what you do, build trust, and make it easy for visitors to take the next step.",
+      "Fast sites built to convert, turning the traffic you pay for into customers.",
     Icon: IconWeb,
   },
   {
     key: "seo",
     title: "Search Engine Optimization (SEO)",
     description:
-      "We improve your search presence by fixing technical issues, improving site structure, and optimizing content so your business appears more often in relevant searches.",
+      "Be first where your customers search, on Google and in AI search.",
     Icon: IconStrategy,
   },
   {
     key: "social",
     title: "Social Content & Presence",
     description:
-      "We help shape your social presence with clear messaging and consistent visuals, ensuring your brand looks professional and aligned across platforms.",
+      "On-brand social that feeds your other channels, not an island of its own.",
     Icon: IconMotion,
   },
   {
     key: "branding",
     title: "Branding & Visual Identity",
     description:
-      "We design brand identities, including logos and brand guidelines, that establish consistency, clarity, and credibility across digital platforms, advertising, and marketing assets.",
+      "The positioning and visual system underneath it all, so you read as one brand.",
     Icon: IconBrand,
   },
 ];
@@ -75,7 +75,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
 
         <MotionTitleBlock
           title="Work that speaks for itself"
-          subtitle="From strategy to execution, <br> here's what that looks like in practice."
+          subtitle="From strategy to execution, here's what that looks like in practice."
           subtitleWidthMobile={200}
           className={styles.titleContainer}
           marginTop={10}
@@ -99,7 +99,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
         <div id="what-we-do" style={{ scrollMarginTop: "20px" }}>
           <MotionTitleBlock
             title="What we do"
-            subtitle="The core marketing services we handle for our clients."
+            subtitle="The full marketing function, handled as one system, not a menu of disconnected services."
             className={styles.titleContainer}
             subtitleWidth={220}
             widthMobile={200}
@@ -150,7 +150,7 @@ export default function HomePage({ articles = [], showcases = [] }) {
 
         <MotionTitleBlock
           title="Trusted by our clients"
-          subtitle="<b>What clients say</b> <br> about working with us."
+          subtitle="What it's like to work with us."
           hasImage={true}
           width={520}
           className={styles.titleContainer}
@@ -182,8 +182,8 @@ export default function HomePage({ articles = [], showcases = [] }) {
 
         <MotionTitleBlock
           width={500}
-          title="The Digitl Journal"
-          subtitle="Practical thoughts on marketing, growth, and building brands that stand out."
+          title="Journal"
+          subtitle="Practical thinking on marketing, growth, and building brands that move numbers."
           subtitleWidth={310}
           subtitleWidthMobile={300}
           marginTop={80}
@@ -200,8 +200,8 @@ export default function HomePage({ articles = [], showcases = [] }) {
         />
 
         <MotionTitleBlock
-          title="Join 150+ professionals elevating their brand"
-          subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
+          title="Join 150+ operators growing their brand"
+          subtitle="Marketing notes, campaign breakdowns, and what's actually working right now. Unsubscribe anytime."
           width={600}
           subtitleWidth={425}
           subtitleWidthMobile={350}

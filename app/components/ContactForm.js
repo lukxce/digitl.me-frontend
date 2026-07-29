@@ -71,7 +71,7 @@ export default function ContactForm({ onSubmit }) {
             Contact
           </h2>
           <p className={styles.subtitle}>
-            Fill out the form or reach out directly. We typically respond within
+            Fill out the form or reach out directly. We usually respond within
             one business day.
           </p>
         </header>

@@ -40,27 +40,27 @@ const FAQS = [
   {
     question: "What types of businesses do you work with?",
     answer:
-      "We work with a wide range of businesses, from local companies to established brands, across industries where clear marketing and results matter.",
+      "From local companies to established brands, across any industry where clear marketing and real results matter.",
   },
   {
-    question: "How long does it take to start working together?",
+    question: "How long does it take to start?",
     answer:
-      "Most projects start within one to two weeks after an initial conversation, depending on scope, priorities, and availability.",
+      "Usually 1 to 2 weeks from the first call, depending on scope and capacity.",
   },
   {
-    question: "Do you work on ongoing marketing or one-time projects?",
+    question: "Ongoing marketing or one-time projects?",
     answer:
-      "Both. Some clients need ongoing support, while others hire us for specific projects like a website, campaign, or brand refresh.",
+      "Both, but we do our best work as an ongoing partner running the whole function.",
   },
   {
     question: "Do you offer contracts or long-term commitments?",
     answer:
-      "We don’t lock clients into long contracts. Work is scoped clearly upfront, and ongoing collaborations are based on mutual fit and results.",
+      "Flexible partnerships with a short initial commitment. We’d rather earn the renewal than lock you in.",
   },
   {
     question: "What services do you offer?",
     answer:
-      "We provide paid advertising, SEO, website design and development, branding, and marketing strategy. We focus on practical work that supports real business needs.",
+      "Paid, web, SEO, social, and branding, run together as one system, not sold as separate line items.",
   },
 ];
 

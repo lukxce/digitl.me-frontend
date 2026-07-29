@@ -65,19 +65,19 @@ export default function StepProcess() {
   const steps = [
     {
       title: "Discovery & Audit",
-      description: "We understand your business, goals and data",
+      description: "We analyze the business, goals, and numbers to see what's working and what isn't.",
     },
     {
       title: "Strategy & Direction",
-      description: "We define focus, priorities, and growth roadmap.",
+      description: "We set priorities, channel mix, and a clear growth plan.",
     },
     {
       title: "Execution & Optimization",
-      description: "We launch, test, iterate, and scale what actually works.",
+      description: "We launch, test, and scale what earns its budget.",
     },
     {
       title: "Reporting & Growth",
-      description: "Clear reporting, insights, and next-step decisions.",
+      description: "Clear reporting and concrete decisions on the next move.",
     },
   ];
 
@@ -92,10 +92,8 @@ export default function StepProcess() {
         <div className={styles.mainStepText}>
           <h3 className={styles.mainStepTitle}>How we work</h3>
           <p className={styles.mainStepDescription}>
-            <span className={styles.mainStepDescriptionBold}>
-              A proven process
-            </span>{" "}
-            designed to keep things clear, efficient, and focused from{" "}
+            One connected process that keeps strategy, execution, and results
+            moving in the same direction,{" "}
             <span className={styles.mainStepDescriptionBold}>
               start to finish
             </span>

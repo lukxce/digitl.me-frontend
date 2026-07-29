@@ -45,7 +45,7 @@ export default function HeroCard({
   avatarSrc = digitlLogo,
   avatarAlt = "Digitl logo",
   availabilitySlotsLabel = "2 slots open",
-  availabilityPeriodLabel = "for August",
+  availabilityPeriodLabel = "for September",
   location = "Belgrade & London",
   primaryCtaHref = "/contact",
   primaryCtaLabel = "Get started",

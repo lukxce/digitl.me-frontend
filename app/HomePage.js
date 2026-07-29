@@ -208,9 +208,9 @@ export default function HomePage({ articles = [], showcases = [] }) {
           className={styles.titleContainer}
         />
 
-        <ScrollReveal>
+        {/* <ScrollReveal>
           <ClientsLogosCarousel />
-        </ScrollReveal>
+        </ScrollReveal> */}
 
         <ScrollReveal>
           <Subscribe />

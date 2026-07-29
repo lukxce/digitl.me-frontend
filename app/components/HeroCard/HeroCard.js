@@ -37,9 +37,9 @@ import digitlLogo from "../../assets/digitl-logo.png";
 /** Full-viewport portfolio hero with floating `stripe.svg` tab and soft card. */
 export default function HeroCard({
   name = "Digitl",
-  subtitle = "Full-service marketing for businesses",
+  subtitle = "Full-service marketing agency",
   headlineLines = ["Design that moves", "products forward"],
-  description = "We build brands that stand out, convert harder, and scale faster. We run the whole marketing function, paid, web, SEO, and brand, as one system.",
+  description = "We build brands that stand out, convert harder, and scale faster. Everything your business needs, under one roof.",
   socialProofLabel = "Helped 50+ companies grow",
   progressActiveCount = 2,
   avatarSrc = digitlLogo,
@@ -141,7 +141,7 @@ export default function HeroCard({
               <p className={styles.metaText}>
                 Based in{" "}
                 <span className={styles.metaTextStrong}>{location}</span>,
-                working with businesses worldwide.
+                working on projects worldwide.
               </p>
             </div>
             <Link href="/#faq" className={styles.metaLink}>

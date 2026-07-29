@@ -39,7 +39,7 @@ export default function HeroCard({
   name = "Digitl",
   subtitle = "Full-service marketing for businesses",
   headlineLines = ["Design that moves", "products forward"],
-  description = "We run the whole marketing function, paid, web, SEO, and brand, as one system. So growth doesn't stall in the gaps between channels.",
+  description = "We build brands that stand out, convert harder, and scale faster. We run the whole marketing function, paid, web, SEO, and brand, as one system.",
   socialProofLabel = "Helped 50+ companies grow",
   progressActiveCount = 2,
   avatarSrc = digitlLogo,

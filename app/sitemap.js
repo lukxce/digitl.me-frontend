@@ -1,5 +1,4 @@
-import { tryGetArticlesForHome } from "../lib/articles.js";
-import { tryGetClientShowcases } from "../lib/clientShowcases.js";
+import { tryGetArticlesForHome, tryGetClientShowcases } from "../lib/cms.js";
 
 const SITE_URL = "https://www.digitl.me";
 

@@ -1,5 +1,4 @@
-import { tryGetArticlesForHome } from "../lib/articles.js";
-import { tryGetClientShowcases } from "../lib/clientShowcases.js";
+import { tryGetArticlesForHome, tryGetClientShowcases } from "../lib/cms.js";
 import HomePage from "./HomePage";
 
 export default async function Home() {

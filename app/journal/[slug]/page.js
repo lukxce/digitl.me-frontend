@@ -3,6 +3,8 @@ import {
   tryFindArticle,
   tryGetArticlesForHome,
 } from "../../../lib/cms.js";
+
+export const revalidate = 60;
 import AvatarInfo from "../../components/AvatarInfo";
 import ClientsLogosCarousel from "../../components/ClientsLogosCarousel";
 import ContactForm from "../../components/ContactForm";

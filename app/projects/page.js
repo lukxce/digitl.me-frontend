@@ -8,6 +8,9 @@ import ScrollReveal from "../components/ScrollReveal";
 import Subscribe from "../components/Subscribe";
 import styles from "../innerPage.module.css";
 
+/** Re-fetch CMS data at most every 60 s so content updates propagate without a redeploy. */
+export const revalidate = 60;
+
 export const metadata = {
   title: "Projects",
   description:

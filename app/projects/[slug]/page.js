@@ -3,6 +3,8 @@ import {
   tryFindClientShowcase,
   tryGetClientShowcases,
 } from "../../../lib/cms.js";
+
+export const revalidate = 60;
 import AvatarInfo from "../../components/AvatarInfo";
 import ClientShowcaseHeader from "../../components/ClientShowcaseHeader";
 import ClientsLogosCarousel from "../../components/ClientsLogosCarousel";

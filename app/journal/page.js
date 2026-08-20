@@ -8,6 +8,8 @@ import ScrollReveal from "../components/ScrollReveal";
 import Subscribe from "../components/Subscribe";
 import styles from "../innerPage.module.css";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Journal",
   description:

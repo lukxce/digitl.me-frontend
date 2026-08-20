@@ -280,11 +280,11 @@
 
   .outer {
     padding-bottom: 20px;
-    height: 760px;
+    min-height: 760px;
   }
 
   .inner {
-    padding: 44px 20px 40px;
+    padding: 44px 20px 24px;
   }
 
   .copyright {

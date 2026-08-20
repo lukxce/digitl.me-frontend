@@ -45,10 +45,21 @@
 
 @media (max-width: 640px) {
   .row {
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px 0;
+  }
+
+  .item {
+    flex: 1 1 calc(50% - 6px);
+    min-width: 120px;
   }
 
   .title {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
   }
 }

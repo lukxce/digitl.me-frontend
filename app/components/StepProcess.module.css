@@ -22,7 +22,6 @@
   height: 100%;
   background-color: #2a29ff;
   border-radius: 40px;
-  min-width: 530px;
   max-width: 530px;
   padding-left: 40px;
   padding-right: 40px;
@@ -47,7 +46,7 @@
   font-weight: 600;
   color: #fff;
   font-family: var(--font-manrope);
-  letter-spacing: -4%;
+  letter-spacing: -0.04em;
   line-height: 120%;
 }
 
@@ -56,7 +55,7 @@
   font-weight: 600;
   color: #ffffff99;
   font-family: var(--font-manrope);
-  letter-spacing: -4%;
+  letter-spacing: -0.04em;
   line-height: 120%;
 }
 
@@ -88,7 +87,7 @@
   color: #17171780;
   opacity: 0.5;
   line-height: 130%;
-  letter-spacing: -4%;
+  letter-spacing: -0.04em;
   font-family: var(--font-manrope);
   flex: 1;
 }
@@ -138,7 +137,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -5%;
+  letter-spacing: -0.05em;
   color: #171717;
   text-decoration: none;
 }

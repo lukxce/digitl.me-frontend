@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import digitlLogo from "../assets/digitl-logo.png";
 import styles from "./ContactForm.module.css";
 
 export const MESSAGE_MAX_LENGTH = 4000;
@@ -142,17 +141,6 @@ export default function ContactForm({ onSubmit }) {
             © {new Date().getFullYear()}. All rights reserved.
           </p>
         </footer>
-      </div>
-      <div className={styles.createdBy}>
-        <p className={styles.disclaimer}>Created by</p>
-        <Image
-          src={digitlLogo}
-          alt="Digitl"
-          width={32}
-          height={32}
-          className={styles.logo}
-        />
-        <p className={styles.disclaimerBold}>Digitl</p>
       </div>
     </section>
   );

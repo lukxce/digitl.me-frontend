@@ -18,7 +18,7 @@
 .subtitle {
   max-width: var(--subtitle-max-width, 300px);
   margin: 0 auto;
-  color: rgba(23, 23, 23, 0.55);
+  color: rgba(23, 23, 23, 0.6);
   font-size: 17px;
   font-weight: 500;
   font-family: var(--font-manrope), system-ui, sans-serif;

@@ -39,6 +39,20 @@ function extractFirstParagraph(blocks) {
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i];
     if (!block || typeof block !== "object") continue;
+
+    // Sanity Portable Text shape: { _type: "block", style, listItem?, children: [{ text }] }
+    // (Strapi-authored articles use `type`/`__component` instead, handled below.)
+    if (block._type === "block" && !block.listItem) {
+      const style = block.style || "normal";
+      if (style === "normal" && Array.isArray(block.children)) {
+        const text = block.children.map((c) => c.text ?? "").join("");
+        if (text.trim()) return [text.trim(), [...blocks.slice(0, i), ...blocks.slice(i + 1)]];
+      }
+      if (/^h[1-4]$/.test(style)) continue; // heading before the first paragraph: keep looking
+      break; // blockquote or anything else: stop, same as the Strapi path below
+    }
+    if (block._type === "image") continue; // image before the first paragraph: keep looking
+
     if (block.type === "paragraph" && !block.__component && Array.isArray(block.children)) {
       const text = block.children.map((c) => c.text ?? "").join("");
       if (text.trim()) return [text.trim(), [...blocks.slice(0, i), ...blocks.slice(i + 1)]];

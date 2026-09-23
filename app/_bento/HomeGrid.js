@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import prima_dentalLogo from "../assets/clients/prima-dental.webp";
+import thermiqLogo from "../assets/clients/thermiq.webp";
+import elektromilLogo from "../assets/clients/elektromil.webp";
+import startups_rsLogo from "../assets/clients/startups-rs.webp";
 import locationIcon from "../assets/location.svg";
 import stripeSvg from "../assets/stripe.svg";
-import elektromilLogo from "../assets/elektromil-logo.webp";
-import primaDentalLogo from "../assets/primadental logo.webp";
-import startupsLogo from "../assets/startups.rs logo.webp";
-import thermiqLogo from "../assets/thermiq logo.webp";
 import { useEffect, useRef, useState } from "react";
 import {
   IconBrand,
@@ -87,68 +87,76 @@ const SERVICES = Object.fromEntries(SERVICE_LIST.map((x) => [x.id, x]));
 const QUIZ = [
   {
     id: "source",
-    q: "Where do your customers come from today?",
+    q: "How do people usually find you?",
     options: [
       {
         id: "referral",
-        label: "Referral",
+        label: "Word of mouth",
         w: { seo: 3, ads: 2, web: 2 },
-        gap: "Referral has a ceiling. It works until the circle runs out.",
+        gap: "Referral works until the circle runs out. After that there is nowhere for it to come from.",
       },
       {
         id: "paid",
-        label: "Paid ads",
+        label: "Ads we pay for",
         w: { seo: 3, brand: 2 },
-        gap: "Paid works while you pay. Without organic, the price of an enquiry climbs every year.",
+        gap: "Ads work while you pay. The day you stop, the calls stop with them.",
       },
       {
         id: "organic",
-        label: "Google, organic",
+        label: "They find us on Google",
         w: { ads: 3, social: 2 },
-        gap: "Organic delivers, but there is no lever when you need more enquiries this month.",
+        gap: "A good base, but there is no lever when you need more work this month.",
       },
       {
         id: "social",
-        label: "Social",
+        label: "Through Instagram or Facebook",
         w: { seo: 3, web: 2 },
-        gap: "Social builds recognition, not intent. A customer ready to buy searches.",
+        gap: "Social makes you known. Someone ready to buy still searches first.",
       },
       {
         id: "unknown",
-        label: "We don't measure",
+        label: "Honestly, I don't know",
         w: { web: 3, seo: 2, ads: 2 },
-        gap: "Without measurement every budget decision is a guess. That is the first problem.",
+        gap: "You're not alone. The first thing we do is find out, because without it every euro is a guess.",
       },
     ],
   },
   {
     id: "site",
-    q: "How is your website doing?",
+    q: "Do you have a website, and are you happy with it?",
     options: [
       { id: "none", label: "We don't have one", w: { web: 4, brand: 2 } },
-      { id: "old", label: "Old and slow", w: { web: 3, seo: 1 } },
-      { id: "ok", label: "Decent, but no enquiries", w: { web: 2, ads: 1 } },
+      {
+        id: "old",
+        label: "We do, but it's old and slow",
+        w: { web: 3, seo: 1 },
+      },
+      {
+        id: "ok",
+        label: "Looks fine, but nobody calls",
+        w: { web: 2, ads: 1 },
+      },
       { id: "good", label: "We're happy with it", w: { ads: 1, seo: 1 } },
     ],
   },
   {
     id: "goal",
-    q: "What do you need six months from now?",
+    q: "What would mean the most six months from now?",
     options: [
-      {
-        id: "fast",
-        label: "Enquiries as soon as possible",
-        w: { ads: 4, web: 2 },
-      },
+      { id: "fast", label: "The phone ringing, soon", w: { ads: 4, web: 2 } },
       {
         id: "steady",
-        label: "Flow without paying per click",
+        label: "Work arriving without paying for ads",
         w: { seo: 4, web: 1 },
       },
-      { id: "known", label: "To be recognised", w: { brand: 4, social: 3 } },
+      {
+        id: "known",
+        label: "People knowing us by name",
+        w: { brand: 4, social: 3 },
+      },
       {
         id: "all",
-        label: "All of it, not sure where to start",
+        label: "A bit of everything, not sure where to start",
         w: { web: 2, seo: 2, ads: 2, brand: 1 },
       },
     ],
@@ -176,12 +184,11 @@ const OPEN_SLOTS = 2;
 /* Matching the heights made a wide wordmark read three times the size of a
    compact mark — at h=30 these ran 45px to 127px wide. Matching the AREA
    instead is what the eye actually reads as "the same size". */
-const LOGO_AREA = 2744;
 const CLIENT_LOGOS = [
-  { src: primaDentalLogo, alt: "Prima Dental", ratio: 512 / 341 },
-  { src: thermiqLogo, alt: "ThermiQ", ratio: 300 / 160 },
-  { src: elektromilLogo, alt: "ElektroMil", ratio: 1050 / 300 },
-  { src: startupsLogo, alt: "startups.rs", ratio: 512 / 121 },
+  { src: prima_dentalLogo, alt: "Prima Dental", w: 129, h: 29 },
+  { src: thermiqLogo, alt: "ThermiQ", w: 93, h: 27 },
+  { src: elektromilLogo, alt: "ElektroMil", w: 126, h: 22 },
+  { src: startups_rsLogo, alt: "startups.rs", w: 110, h: 26 },
 ];
 
 const SOCIALS = [
@@ -285,12 +292,9 @@ function ClientsTile() {
         <Image
           src={l.src}
           alt={l.alt}
-          height={Math.round(Math.sqrt(LOGO_AREA / l.ratio))}
-          width={Math.round(Math.sqrt(LOGO_AREA * l.ratio))}
-          style={{
-            height: `${Math.round(Math.sqrt(LOGO_AREA / l.ratio))}px`,
-            width: "auto",
-          }}
+          height={l.h}
+          width={l.w}
+          style={{ height: `${l.h}px`, width: `${l.w}px` }}
           unoptimized
         />
       </span>
@@ -646,7 +650,7 @@ function NewsletterCard() {
         <input
           className={s.subInput}
           type="email"
-          placeholder="vas@email.com"
+          placeholder="you@email.com"
           aria-label="Email address"
           value={email}
           onChange={(e) => {
@@ -720,13 +724,15 @@ function ContactCard({ prefill }) {
       <span className={s.dots} aria-hidden />
       <span className={s.eyebrow}>Your turn</span>
       <p className={s.contactTitle}>
-        {prefill ? "Finish the sentence." : "Where are you now?"}
+        {prefill
+          ? "Finish the sentence."
+          : "Let’s build a brand that stands out."}
       </p>
       <form className={s.contactForm} onSubmit={submit}>
         <input
           className={s.field}
           type="email"
-          placeholder="vas@email.com"
+          placeholder="you@email.com"
           aria-label="Email address"
           value={email}
           onChange={(e) => {
@@ -799,6 +805,12 @@ export default function HomeGrid({
     ? [matched, ...clients.filter((c) => c.slug !== matched.slug)].slice(0, 2)
     : clients.slice(0, 2);
   const q = QUIZ[step];
+
+  function answer(qid, oid) {
+    setAnswers((a) => ({ ...a, [qid]: oid }));
+    // No scroll: the recommendation replaces the quiz inside this same card.
+    if (step < QUIZ.length - 1) setStep(step + 1);
+  }
 
   /* A metric of ours that is a bare number is the only kind worth guessing. */
 

@@ -97,8 +97,21 @@ export default function HomePage({ articles = [], showcases = [] }) {
           {showcases.length > 2 && (
             <a href="/projects" className={styles.viewAllLink}>
               <span>View all projects</span>
-              <svg className={styles.viewAllArrow} width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                className={styles.viewAllArrow}
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden
+              >
+                <path
+                  d="M7 17L17 7M17 7H9M17 7V15"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </a>
           )}

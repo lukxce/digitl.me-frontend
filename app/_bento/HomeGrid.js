@@ -454,7 +454,7 @@ function ServiceSheet({ id, recommended, onClose }) {
           <span className={s.eyebrow}>How it ties to the rest</span>
           <p>{sv.feeds}</p>
         </div>
-        <a className={s.sheetCta} href="#kontakt" onClick={onClose}>
+        <a className={s.sheetCta} href="#contact" onClick={onClose}>
           Ask us about this{" "}
           <span className={s.iconCircle}>
             <ArrowIcon size={12} />
@@ -720,7 +720,7 @@ function ContactCard({ prefill }) {
   }[state];
 
   return (
-    <article className={`${s.card} ${s.contact}`} id="kontakt">
+    <article className={`${s.card} ${s.contact}`} id="contact">
       <span className={s.dots} aria-hidden />
       <span className={s.eyebrow}>Your turn</span>
       <p className={s.contactTitle}>
@@ -913,7 +913,7 @@ export default function HomeGrid({
                 </p>
 
                 <div className={s.heroRow}>
-                  <a className={s.btnPrimary} href="#kontakt">
+                  <a className={s.btnPrimary} href="#contact">
                     Get started
                     <span className={s.iconCircle}>
                       <ArrowIcon size={12} />

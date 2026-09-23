@@ -65,7 +65,8 @@ export default function StepProcess() {
   const steps = [
     {
       title: "Discovery & Audit",
-      description: "We analyze the business, goals, and numbers to see what's working and what isn't.",
+      description:
+        "We analyze the business, goals, and numbers to see what's working and what isn't.",
     },
     {
       title: "Strategy & Direction",

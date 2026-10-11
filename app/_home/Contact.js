@@ -12,7 +12,7 @@ import { EASE, useApp } from "./ui";
 const SOCIALS = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/digitl.rs",
+    href: "https://www.instagram.com/digitl.me",
     Icon: IconInstagram,
   },
   {

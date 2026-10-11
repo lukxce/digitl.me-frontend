@@ -92,7 +92,7 @@ export default function Hero({ clients, visual = null }) {
               {/* the last two words stay together, so "roof." never sits
                   alone on a line */}
               {
-                "We build brands that stand out, convert harder, and scale faster. Everything your business needs, under one\u00a0roof."
+                "We build brands that stand out, websites that sell and campaigns that bring customers. From search and ads to social media, everything your business needs, under one\u00a0roof."
               }
             </p>
             <div className={h.ctas}>

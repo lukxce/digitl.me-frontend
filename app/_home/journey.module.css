@@ -1,0 +1,290 @@
+.section {
+  background: #fff;
+}
+
+/* the "4" and the sentence from the old homepage */
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  max-width: 760px;
+}
+.four {
+  font-size: clamp(88px, 9vw, 150px);
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  line-height: 0.8;
+  color: var(--accent);
+}
+.headText {
+  display: grid;
+  gap: 8px;
+}
+.headText p {
+  font-size: clamp(18px, 1.7vw, 25px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+  color: var(--ink-3);
+}
+.headText b {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* the steps */
+.track {
+  position: relative;
+  margin-top: clamp(28px, 3.6vw, 48px);
+}
+.rail {
+  position: absolute;
+  top: 17px;
+  /* from the first dot to the last one: each sits over the middle of its
+     card, so the line starts and ends half a column in (4 columns, 3 gaps
+     of 12px) */
+  left: calc((100% - 36px) / 8);
+  right: calc((100% - 36px) / 8);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.railFill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: left;
+}
+.steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.step {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+}
+.step > .dot {
+  justify-self: center;
+}
+.dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--line-2);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink-4);
+  transition:
+    background 0.45s var(--ease),
+    color 0.45s var(--ease),
+    box-shadow 0.45s var(--ease);
+}
+.step[data-done] .dot {
+  background: var(--accent);
+  box-shadow: none;
+  color: #fff;
+}
+.step[data-on] .dot {
+  background: var(--secondary);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--secondary) 32%, transparent);
+  color: var(--ink);
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+  padding: 24px 22px 28px;
+  border-radius: 24px;
+  background: var(--mist);
+  transition:
+    background-color 0.5s var(--ease),
+    color 0.5s var(--ease),
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+.step[data-on] .card {
+  background-color: var(--ink);
+  background-image: radial-gradient(
+    rgb(255 255 255 / 0.08) 1px,
+    transparent 1.4px
+  );
+  background-size: 16px 16px;
+  color: #fff;
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgb(11 11 22 / 0.55);
+}
+.card h3 {
+  font-size: clamp(22px, 1.9vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+.card p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  transition: color 0.5s var(--ease);
+}
+.step[data-on] .card p {
+  color: rgb(255 255 255 / 0.72);
+}
+.get {
+  display: grid;
+  align-content: end;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  transition: border-color 0.5s var(--ease);
+}
+.step[data-on] .get {
+  border-color: rgb(255 255 255 / 0.14);
+}
+.get li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.get li svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--accent);
+  transition: color 0.5s var(--ease);
+}
+.step[data-on] .get li svg {
+  color: var(--secondary);
+}
+.timer {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 12px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgb(255 255 255 / 0.12);
+  overflow: hidden;
+}
+.timer i {
+  position: absolute;
+  inset: 0;
+  background: var(--secondary);
+  transform-origin: left;
+}
+
+/* phones and tablets: the same cards in a sideways swipe, the next one
+   peeking in, and a tappable stepper above */
+.stepper {
+  display: none;
+}
+@media (max-width: 899px) {
+  .stepper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 28px;
+  }
+  .stepperRail {
+    position: absolute;
+    top: 17px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--line-2);
+    overflow: hidden;
+  }
+  .stepperRail i {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform-origin: left;
+  }
+  .stepperItem {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 7px;
+  }
+  .stepperItem .dot {
+    transition:
+      background 0.45s var(--ease),
+      color 0.45s var(--ease),
+      box-shadow 0.45s var(--ease);
+  }
+  .stepperItem[data-done] .dot {
+    background: var(--accent);
+    box-shadow: none;
+    color: #fff;
+  }
+  .stepperItem[data-on] .dot {
+    background: var(--secondary);
+    box-shadow: 0 0 0 5px color-mix(in oklab, var(--secondary) 32%, transparent);
+    color: var(--ink);
+  }
+  .stepperName {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink-4);
+    transition: color 0.3s var(--ease);
+  }
+  .stepperItem[data-on] .stepperName {
+    color: var(--ink);
+  }
+
+  .track {
+    margin-top: 18px;
+  }
+  .rail,
+  .step > .dot {
+    display: none;
+  }
+  .steps {
+    display: flex;
+    gap: 10px;
+    /* run the swipe edge to edge, aligned with the page gutter */
+    margin: 0 calc(-1 * clamp(16px, 3vw, 32px));
+    padding: 10px clamp(16px, 3vw, 32px) 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: clamp(16px, 3vw, 32px);
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .steps::-webkit-scrollbar {
+    display: none;
+  }
+  .step {
+    flex: 0 0 min(84%, 360px);
+    grid-template-rows: none;
+    scroll-snap-align: start;
+  }
+  .card {
+    padding: 22px 20px 24px;
+  }
+  /* the swipe clips at its own edge, so keep the lift shadow short */
+  .step[data-on] .card {
+    transform: none;
+    box-shadow: 0 14px 26px -16px rgb(11 11 22 / 0.5);
+  }
+  .card h3 {
+    font-size: 24px;
+  }
+  .timer {
+    display: none;
+  }
+}

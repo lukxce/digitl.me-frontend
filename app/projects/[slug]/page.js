@@ -3,23 +3,11 @@ import {
   tryFindClientShowcase,
   tryGetClientShowcases,
 } from "../../../lib/cms.js";
-
-export const revalidate = 60;
-import AvatarInfo from "../../components/AvatarInfo";
-import ClientShowcaseHeader from "../../components/ClientShowcaseHeader";
-import ClientsLogosCarousel from "../../components/ClientsLogosCarousel";
-import ContactForm from "../../components/ContactForm";
-import { DetailPageOutlineMobileNav } from "../../components/DetailPageOutline";
-import LinkCard from "../../components/LinkCard";
-import MotionTitleBlock from "../../components/MotionTitleBlock";
-import ProjectArticleContent from "../../components/ProjectArticleContent";
-import ProjectBlocksRendererAuto from "../../components/ProjectBlocksRendererAuto";
-import ShowcaseKeyTakeaways from "../../components/ShowcaseKeyTakeaways";
-import ShowcaseSuccessRate from "../../components/ShowcaseSuccessRate";
-import Subscribe from "../../components/Subscribe";
-import Title from "../../components/Title";
-import innerStyles from "../../innerPage.module.css";
-import articleStyles from "../../journal/[slug]/article.module.css";
+import { cardOf, SITE_URL, sized, trimText } from "../../_cases/lib";
+import { getStory } from "../../_cases/stories";
+import Study from "../../_cases/Study";
+import { sans } from "../../_home/font";
+import Shell from "../../_home/Shell";
 
 function blocksToPlainText(blocks) {
   if (blocks == null) return "";
@@ -34,7 +22,9 @@ function blocksToPlainText(blocks) {
   for (const block of blocks) {
     if (block?.__component) continue;
     if (
-      (block.type === "paragraph" || block.type === "heading") &&
+      (block.type === "paragraph" ||
+        block.type === "heading" ||
+        block._type === "block") &&
       Array.isArray(block.children)
     ) {
       lines.push(block.children.map((child) => child.text ?? "").join(""));
@@ -43,24 +33,37 @@ function blocksToPlainText(blocks) {
   return lines.filter(Boolean).join("\n\n");
 }
 
+/** The story's standfirst when there is one, else what the CMS holds. */
+function describe(showcase, story) {
+  const text =
+    story?.standfirst ??
+    showcase.description ??
+    showcase.category ??
+    showcase.subtitle ??
+    blocksToPlainText(showcase.content);
+  return trimText(text, 160);
+}
+
 export async function generateStaticParams() {
   const showcases = await tryGetClientShowcases(200);
   return showcases.map((s) => ({ slug: s.slug }));
 }
 
+export const revalidate = 60;
+
 export async function generateMetadata(props) {
   const params = await props.params;
   const showcase = await tryFindClientShowcase(params.slug);
   if (!showcase) {
-    return { title: "Project" };
+    return { title: "Projekat" };
   }
 
-  const description =
-    showcase.description ??
-    showcase.category ??
-    showcase.subtitle ??
-    blocksToPlainText(showcase.content).slice(0, 160);
+  const description = describe(showcase, getStory(showcase.slug));
   const canonicalPath = `/projects/${encodeURIComponent(showcase.slug)}`;
+  // the cover is a 3200px PNG; previews get a 1200px JPEG
+  const image = showcase.coverUrl
+    ? sized(showcase.coverUrl, 1200, 82, "jpg")
+    : null;
 
   return {
     title: showcase.title,
@@ -71,14 +74,62 @@ export async function generateMetadata(props) {
       url: canonicalPath,
       title: showcase.title,
       description,
-      images: showcase.coverUrl ? [{ url: showcase.coverUrl }] : undefined,
+      publishedTime: showcase.publishedAt ?? undefined,
+      images: image ? [{ url: image, alt: showcase.title }] : undefined,
     },
     twitter: {
-      card: showcase.coverUrl ? "summary_large_image" : "summary",
+      card: image ? "summary_large_image" : "summary",
       title: showcase.title,
       description,
+      images: image ? [image] : undefined,
     },
   };
+}
+
+function structuredData(showcase, story) {
+  const name = showcase.clientName || showcase.title;
+  const url = `${SITE_URL}/projects/${encodeURIComponent(showcase.slug)}`;
+  const publisher = {
+    "@type": "Organization",
+    name: "Digitl",
+    url: SITE_URL,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/digitl-logo.png` },
+  };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: story?.headline ?? showcase.title,
+      description: describe(showcase, story),
+      image: showcase.coverUrl
+        ? [sized(showcase.coverUrl, 1600, 82, "jpg")]
+        : undefined,
+      datePublished: showcase.publishedAt ?? undefined,
+      inLanguage: "sr-Latn",
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      author: publisher,
+      publisher,
+      about: {
+        "@type": "Organization",
+        name,
+        url: showcase.websiteUrl ?? undefined,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Početna", item: SITE_URL },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Projekti",
+          item: `${SITE_URL}/projects`,
+        },
+        { "@type": "ListItem", position: 3, name, item: url },
+      ],
+    },
+  ];
 }
 
 export default async function ClientShowcasePage(props) {
@@ -86,111 +137,31 @@ export default async function ClientShowcasePage(props) {
   const showcase = await tryFindClientShowcase(params.slug);
   if (!showcase) notFound();
 
-  const hasContent =
-    showcase.content != null &&
-    (typeof showcase.content === "string" ||
-      (Array.isArray(showcase.content) && showcase.content.length > 0));
-
+  const story = getStory(showcase.slug);
   const showcases = await tryGetClientShowcases(10);
-  const moreProjects = showcases
+  const more = showcases
     .filter(
       (entry) =>
         entry.slug !== showcase.slug &&
         entry.id !== showcase.id &&
         entry.documentId !== showcase.documentId,
     )
-    .slice(0, 3);
+    .slice(0, 3)
+    .map((entry) => cardOf(entry, getStory(entry.slug)));
 
   return (
-    <main className={innerStyles.pageDetail}>
-      {/* <DetailPageOutline items={outline}> */}
-      <ProjectArticleContent
-        title={showcase.title}
-        showTitle={false}
-        showMobileOutline={false}
-        backHref="/projects"
-        backLabel="Back to projects"
-        lead={
-          <ClientShowcaseHeader
-            title={showcase.title}
-            coverUrl={showcase.coverUrl}
-            coverAlt={showcase.backgroundAlt}
-            clientName={showcase.clientName}
-            clientImageUrl={showcase.thumbSrc}
-            clientImageAlt={showcase.thumbAlt}
-            category={showcase.category}
-            publishedAt={showcase.publishedAt}
-            websiteUrl={showcase.websiteUrl}
-          />
-        }
-      >
-        <Title
-          title={showcase.title}
-          sectionId="project-overview"
-          align="left"
-          as="h1"
+    <Shell fonts={sans.variable}>
+      {structuredData(showcase, story).map((data) => (
+        <script
+          key={data["@type"]}
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: our own JSON-LD, with "<" escaped
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+          }}
         />
-        {showcase.description
-          ? <p className={innerStyles.showcaseDescription}>
-              {showcase.description}
-            </p>
-          : null}
-        <div className={innerStyles.showcaseInsights}>
-          {showcase.successRate.length > 0
-            ? <ShowcaseSuccessRate items={showcase.successRate} />
-            : null}
-          {(showcase.keyTakeaways?.length ?? 0) > 0
-            ? <>
-                <DetailPageOutlineMobileNav />
-                <ShowcaseKeyTakeaways items={showcase.keyTakeaways} />
-              </>
-            : <DetailPageOutlineMobileNav />}
-        </div>
-        {hasContent
-          ? <ProjectBlocksRendererAuto blocks={showcase.content} />
-          : <p className={articleStyles.empty}>
-              No project details for this entry.
-            </p>}
-      </ProjectArticleContent>
-      {/* </DetailPageOutline> */}
-
-      <MotionTitleBlock
-        title="More projects"
-        subtitle="Check out some of my favorite & most recent projects."
-        className={`${innerStyles.titleContainer} ${innerStyles.moreProjectsTitle}`}
-        width={500}
-        subtitleWidth={300}
-        subtitleWidthMobile={200}
-      />
-      {moreProjects.length > 0
-        ? <div className={innerStyles.cardColumn}>
-            {moreProjects.map((card) => (
-              <LinkCard
-                key={card.id ?? card.title}
-                href={card.href}
-                backgroundSrc={card.backgroundSrc}
-                backgroundAlt={card.backgroundAlt}
-                thumbSrc={card.thumbSrc}
-                thumbAlt={card.thumbAlt}
-                title={card.title}
-                subtitle={card.subtitle}
-              />
-            ))}
-          </div>
-        : null}
-
-      <MotionTitleBlock
-        title="Join 150+ professionals elevating their brand"
-        subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
-        className={innerStyles.titleContainer}
-        width={600}
-        subtitleWidth={425}
-        subtitleWidthMobile={350}
-      />
-      <ClientsLogosCarousel />
-      <Subscribe />
-      <AvatarInfo />
-      <ContactForm />
-    </main>
+      ))}
+      <Study showcase={showcase} story={story} more={more} />
+    </Shell>
   );
 }

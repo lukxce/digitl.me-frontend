@@ -1,13 +1,12 @@
-import { sanityClient } from "../../../lib/sanity/client.js";
-import { tryGetArticlesForHome } from "../../../lib/cms.js";
-import HomeGrid from "../../_bento/HomeGrid";
+import { tryGetArticlesForHome } from "../../lib/cms.js";
+import { sanityClient } from "../../lib/sanity/client.js";
+import HomeGrid from "../_bento/HomeGrid";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "digitl — where do your customers come from?",
-  robots: { index: false, follow: false },
-};
+/* The bento homepage, parked here since the new design took / in October
+   2026. Kept out of the index so it cannot compete with /. */
+export const metadata = { robots: { index: false, follow: false } };
 
 /** @param {string} text */
 function firstSentence(text) {

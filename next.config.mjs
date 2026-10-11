@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactCompiler: true,
+  // Pages that moved when the new design took / in October 2026.
+  async redirects() {
+    return [
+      { source: "/v2home", destination: "/v2", permanent: true },
+      { source: "/bento/home", destination: "/v3", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {

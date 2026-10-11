@@ -3,8 +3,9 @@ import HomePage from "../HomePage";
 
 export const revalidate = 60;
 
-/* The previous homepage, parked while the bento takes / . Kept out of
-   the index so it cannot compete with the homepage it came from. */
+/* The original homepage design, parked at /v2 (it was at /v2home, which
+   now redirects here). Kept out of the index so it cannot compete with
+   the homepage it came from. */
 export const metadata = { robots: { index: false, follow: false } };
 
 export default async function Home() {

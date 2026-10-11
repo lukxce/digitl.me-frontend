@@ -1,0 +1,73 @@
+import { tryGetClientShowcases } from "../../lib/cms.js";
+import AvatarInfo from "../components/AvatarInfo";
+import ClientsLogosCarousel from "../components/ClientsLogosCarousel";
+import ContactForm from "../components/ContactForm";
+import LinkCard from "../components/LinkCard";
+import MotionTitleBlock from "../components/MotionTitleBlock";
+import ScrollReveal from "../components/ScrollReveal";
+import Subscribe from "../components/Subscribe";
+import styles from "../innerPage.module.css";
+
+/** Re-fetch CMS data at most every 60 s so content updates propagate without a redeploy. */
+export const revalidate = 60;
+
+/* The previous projects listing, kept in case the new one at /projects is
+   not liked. Out of the index; its cards open the previous case study design. */
+export const metadata = {
+  title: "Projects (previous design)",
+  robots: { index: false, follow: false },
+};
+
+const archived = (href) =>
+  typeof href === "string" ? href.replace(/^\/projects/, "/v2-projects") : href;
+
+export default async function ProjectsPage() {
+  const workCards = await tryGetClientShowcases();
+
+  return (
+    <main className={styles.page}>
+      <MotionTitleBlock
+        title="Our work"
+        subtitle="A selection of projects we've built for clients across different industries."
+        className={styles.titleContainer}
+        width={300}
+        subtitleWidthMobile={200}
+        as="h1"
+      />
+      <div className={styles.cardColumn}>
+        {workCards.map((card) => (
+          <LinkCard
+            key={card.id ?? card.title}
+            href={archived(card.href)}
+            backgroundSrc={card.backgroundSrc}
+            backgroundAlt={card.backgroundAlt}
+            thumbSrc={card.thumbSrc}
+            thumbAlt={card.thumbAlt}
+            title={card.title}
+            subtitle={card.subtitle}
+          />
+        ))}
+      </div>
+      <MotionTitleBlock
+        title="Join 150+ professionals elevating their brand"
+        subtitle="Discover design insights, project updates, and tips to elevate your work straight to your inbox."
+        className={styles.titleContainer}
+        width={600}
+        subtitleWidth={425}
+        subtitleWidthMobile={350}
+      />
+      <ScrollReveal>
+        <ClientsLogosCarousel />
+      </ScrollReveal>
+      <ScrollReveal delay={0.08}>
+        <Subscribe />
+      </ScrollReveal>
+      <ScrollReveal delay={0.16}>
+        <AvatarInfo />
+      </ScrollReveal>
+      <ScrollReveal delay={0.24}>
+        <ContactForm />
+      </ScrollReveal>
+    </main>
+  );
+}

@@ -1,3 +1,9 @@
+/* Pages that supply their own chrome mark themselves (data-own-chrome);
+   :has() avoids the hydration flash a usePathname check would give. */
+body:has([data-own-chrome]) .header {
+  display: none;
+}
+
 .header {
   border-bottom: 1px solid var(--nav-border, #ebebeb);
   position: fixed;

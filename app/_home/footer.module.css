@@ -1,0 +1,147 @@
+.footer {
+  padding: 0 0 clamp(14px, 2vw, 24px);
+  background: #fff;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: clamp(22px, 3vw, 32px);
+  padding: clamp(24px, 3vw, 36px);
+  border-radius: var(--r-card);
+  background:
+    radial-gradient(70% 120% at 100% 100%, var(--accent-deep), transparent 70%),
+    var(--accent);
+  color: #fff;
+}
+/* the same dot grain as the dark cards */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgb(255 255 255 / 0.14) 1px,
+    transparent 1.4px
+  );
+  background-size: 18px 18px;
+  mask-image: linear-gradient(90deg, transparent 30%, #000);
+  pointer-events: none;
+}
+.row,
+.base {
+  position: relative;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 40px;
+  }
+}
+.brand {
+  display: grid;
+  gap: 8px;
+  max-width: 24em;
+}
+.brand p {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.78);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+.logo img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  filter: invert(1);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 2px;
+}
+.links a {
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: rgb(255 255 255 / 0.88);
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.links a:hover {
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+}
+@media (max-width: 899px) {
+  .links {
+    margin-left: -12px;
+  }
+}
+.socials {
+  display: flex;
+  gap: 6px;
+}
+.socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+  transition:
+    background 0.25s var(--ease),
+    color 0.25s var(--ease);
+}
+.socials a:hover {
+  background: var(--secondary);
+  color: var(--ink);
+}
+.socials a svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+.base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.62);
+}
+.base a {
+  transition: color 0.25s var(--ease);
+}
+.base a:hover {
+  color: #fff;
+}
+.login {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-weight: 700;
+  color: #fff;
+}
+@media (max-width: 560px) {
+  .login {
+    margin-left: 0;
+  }
+}

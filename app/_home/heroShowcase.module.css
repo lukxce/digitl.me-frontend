@@ -1,0 +1,23 @@
+/* the cards differ a little in height; the stage keeps the tallest, so
+   switching never moves the page */
+.stage {
+  display: grid;
+  align-items: start;
+  min-width: 0;
+  min-height: 630px;
+}
+.card {
+  display: grid;
+  min-width: 0;
+}
+.wait {
+  min-height: 560px;
+}
+@media (max-width: 640px) {
+  .stage {
+    min-height: 424px;
+  }
+  .wait {
+    min-height: 340px;
+  }
+}

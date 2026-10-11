@@ -9,7 +9,7 @@ import s from "./adsCard.module.css";
    enquiries come in, the costliest ad is paused, its budget moves to the
    best one and the cost per enquiry falls. Then the next example business.
    The reader can move the daily budget, pick a business, or press
-   "Optimizuj" themselves. All names, ads and numbers are illustrative:
+   "Optimise" themselves. All names, ads and numbers are illustrative:
    one simple, deterministic model, no real campaign behind it. */
 
 const DAYS = 14;
@@ -30,7 +30,7 @@ const CPC = { search: 0.64, social: 0.31 };
 
 const BIZ = [
   {
-    name: "Klima servis Beograd",
+    name: "Boiler repair London",
     budget: 25,
     cost: 1,
     order: ["c", "d", "a", "b"],
@@ -38,31 +38,31 @@ const BIZ = [
       a: {
         ch: "search",
         role: "best",
-        head: "Klima servis isti dan",
-        text: "Servis i čišćenje u celom gradu, sa cenom unapred.",
+        head: "Boiler fixed same day",
+        text: "Repairs and servicing across the city, price up front.",
       },
       b: {
         ch: "social",
         role: "second",
-        head: "Očistite klimu pre leta",
-        text: "Kratak video: ceo servis za 40 minuta, bez nereda.",
+        head: "Winter boiler service",
+        text: "Short video: a full service in 40 minutes, no mess.",
       },
       c: {
         ch: "search",
         role: "third",
-        head: "Servis klima, sve marke",
-        text: "Montaža, servis i punjenje. Pozovite za termin.",
+        head: "We repair all makes",
+        text: "Installation, servicing, repairs. Call to book a visit.",
       },
       d: {
         ch: "social",
         role: "weak",
-        head: "Sve za vašu klimu",
-        text: "Pogledajte ponudu i radove iz našeg kraja.",
+        head: "All things boiler",
+        text: "See what we offer and our work in the area.",
       },
     },
   },
   {
-    name: "Stomatolog Niš",
+    name: "Dentist Leeds",
     budget: 30,
     cost: 1.1,
     order: ["a", "d", "c", "b"],
@@ -70,31 +70,31 @@ const BIZ = [
       a: {
         ch: "search",
         role: "second",
-        head: "Pregled zuba ove nedelje",
-        text: "Pregled i plan lečenja, sa cenom unapred.",
+        head: "Check-up this week",
+        text: "A check-up and treatment plan, price up front.",
       },
       b: {
         ch: "social",
         role: "best",
-        head: "Beli zubi u jednoj poseti",
-        text: "Kratak video iz ordinacije, bez filtera.",
+        head: "Whiter teeth in one visit",
+        text: "A short video from the practice, no filters.",
       },
       c: {
         ch: "search",
         role: "third",
-        head: "Ordinacija u centru Niša",
-        text: "Radimo i subotom. Zakažite telefonom.",
+        head: "Dentist in central Leeds",
+        text: "Open on Saturdays too. Book by phone.",
       },
       d: {
         ch: "social",
         role: "weak",
-        head: "Lep osmeh za svakoga",
-        text: "Pratite nas za savete o nezi zuba.",
+        head: "A great smile for all",
+        text: "Follow us for dental care tips.",
       },
     },
   },
   {
-    name: "Advokat Novi Sad",
+    name: "Solicitor Bristol",
     budget: 35,
     cost: 1.2,
     order: ["d", "c", "a", "b"],
@@ -102,31 +102,31 @@ const BIZ = [
       a: {
         ch: "search",
         role: "best",
-        head: "Advokat za radne sporove",
-        text: "Jasna cena prvog razgovora. Zakažite online.",
+        head: "Employment solicitor",
+        text: "A clear price for the first consultation. Book online.",
       },
       b: {
         ch: "social",
         role: "second",
-        head: "Otkaz? Prvi koraci",
-        text: "Kratak vodič iz prakse, pa razgovor sa advokatom.",
+        head: "Dismissal? First steps",
+        text: "A short practical guide, then a talk with a solicitor.",
       },
       c: {
         ch: "search",
         role: "third",
-        head: "Kancelarija u centru grada",
-        text: "Porodično, radno i privredno pravo.",
+        head: "City-centre law firm",
+        text: "Family, employment and commercial law.",
       },
       d: {
         ch: "social",
         role: "weak",
-        head: "Pravni saveti za svakoga",
-        text: "Pratite nas za savete iz prakse.",
+        head: "Legal advice for all",
+        text: "Follow us for practical legal tips.",
       },
     },
   },
   {
-    name: "Električar Niš",
+    name: "Electrician York",
     budget: 20,
     cost: 0.9,
     order: ["a", "b", "c", "d"],
@@ -134,26 +134,26 @@ const BIZ = [
       a: {
         ch: "search",
         role: "second",
-        head: "Električar Niš, isti dan",
-        text: "Utičnice, rasveta i instalacije u stanovima.",
+        head: "Electrician York, same day",
+        text: "Sockets, lighting and wiring for flats.",
       },
       b: {
         ch: "social",
         role: "weak",
-        head: "Sve za vašu struju",
-        text: "Pogledajte ponudu i naše radove.",
+        head: "Everything electrical",
+        text: "See what we offer and our work.",
       },
       c: {
         ch: "search",
         role: "best",
-        head: "Hitan dolazak, cena unapred",
-        text: "Dolazak u toku dana. Pozovite ili zakažite online.",
+        head: "Fast call-out, clear price",
+        text: "With you the same day. Call or book online.",
       },
       d: {
         ch: "social",
         role: "third",
-        head: "Nova tabla za jedan dan",
-        text: "Pre i posle: stara instalacija, nova tabla.",
+        head: "New fuse board in a day",
+        text: "Before and after: old wiring, new fuse board.",
       },
     },
   },
@@ -212,17 +212,10 @@ function orderOf(biz, k) {
   return [best, ...biz.order.filter((id) => id !== best && id !== weak), weak];
 }
 
-const money = (v) => `${v.toFixed(2).replace(".", ",")} €`;
-const one = (n) => n % 10 === 1 && n % 100 !== 11;
-const upit = (n) => (one(n) ? "upit" : "upita");
-const dan = (n) => (one(n) ? "dan" : "dana");
-function klik(n) {
-  if (one(n)) return "klik";
-  const t = n % 10;
-  const h = n % 100;
-  if (t >= 2 && t <= 4 && (h < 12 || h > 14)) return "klika";
-  return "klikova";
-}
+const money = (v) => `€${v.toFixed(2)}`;
+const enquiryWord = (n) => (n === 1 ? "enquiry" : "enquiries");
+const dayWord = (n) => (n === 1 ? "day" : "days");
+const clickWord = (n) => (n === 1 ? "click" : "clicks");
 
 function Megaphone() {
   return (
@@ -437,7 +430,7 @@ export default function AdsCard({ footer = null }) {
       setTimeout(check, ms);
     });
 
-  // one day passes: maybe the next optimization, maybe a "Novi upit"
+  // one day passes: maybe the next optimization, maybe a "New enquiry"
   const tick = (d) => {
     const cur = simRef.current;
     const biz = BIZ[cur.bi];
@@ -470,7 +463,7 @@ export default function AdsCard({ footer = null }) {
   };
 
   /* mode: "warm" (first view), "load" (a new business), "again" (same
-     business from day one), "now" (the reader pressed Pokreni) */
+     business from day one), "now" (the reader pressed Start) */
   const play = async (t, bi, mode) => {
     const sleep = napper(t);
     if (mode === "load") {
@@ -693,37 +686,41 @@ export default function AdsCard({ footer = null }) {
   const weak = roleOf(biz, "weak");
   const p = (budget - MIN) / (MAX - MIN);
 
-  let label = "Pokreni";
+  let label = "Start";
   let done = false;
   if (still || (phase === "run" && k >= OPT_AT.length)) {
-    label = "Optimizovano";
+    label = "Optimised";
     done = true;
-  } else if (phase === "run") label = "Optimizuj";
-  else if (end) label = "Ponovo";
+  } else if (phase === "run") label = "Optimise";
+  else if (end) label = "Again";
 
-  let status = "Kampanja spremna";
-  if (phase === "loading") status = "Nova kampanja";
+  let status = "Campaign ready";
+  if (phase === "loading") status = "New campaign";
   else if (phase === "run" || end)
-    status = `Aktivna · dan ${Math.max(1, sim.day)} od ${DAYS}`;
+    status = `Active · day ${Math.max(1, sim.day)} of ${DAYS}`;
 
   let hint = (
     <>
       <Pointer />
-      <span className={s.long}>Pomerite budžet ili izaberite delatnost</span>
-      <span className={s.short}>Pomerite budžet</span>
+      <span className={s.long}>Move the budget or pick a business</span>
+      <span className={s.short}>Set a budget</span>
     </>
   );
   if (user && sim.day > 0)
     hint = (
       <>
-        <span className={s.long}>Ukupno</span>
+        <span className={s.long}>Total</span>
         <b>
-          {m.total} {upit(m.total)}
+          {m.total} {enquiryWord(m.total)}
         </b>
-        za {sim.day} {dan(sim.day)}
+        {/* on phones the day count is left to the status line above: with
+            it, this row is wider than a 360px screen */}
+        <span className={s.long}>
+          in {sim.day} {dayWord(sim.day)}
+        </span>
       </>
     );
-  else if (user) hint = "Pritisnite Pokreni";
+  else if (user) hint = "Press Start";
 
   return (
     <div className={s.stage} ref={root}>
@@ -757,7 +754,7 @@ export default function AdsCard({ footer = null }) {
                 className={s.pick}
                 value={sim.bi}
                 onChange={onPick}
-                aria-label="Delatnost"
+                aria-label="Business"
               >
                 {BIZ.map((b, i) => (
                   <option key={b.name} value={i}>
@@ -786,8 +783,8 @@ export default function AdsCard({ footer = null }) {
               {hint}
             </span>
             <span className={s.rank} data-top={end && live}>
-              <span className={s.long}>Cena po upitu</span>
-              <span className={s.short}>Po upitu</span>
+              <span className={s.long}>Cost per enquiry</span>
+              <span className={s.short}>Per enquiry</span>
               <AnimatePresence initial={false}>
                 {live && sim.day > 1
                   ? <motion.s
@@ -797,9 +794,9 @@ export default function AdsCard({ footer = null }) {
                       animate={{ opacity: 1, width: "auto" }}
                       exit={{ opacity: 0, width: 0 }}
                       transition={{ duration: 0.4, ease: EASE }}
-                      aria-label={`bilo ${money(first)}`}
+                      aria-label={`was ${money(first)}`}
                     >
-                      {first.toFixed(2).replace(".", ",")}
+                      {first.toFixed(2)}
                     </motion.s>
                   : null}
               </AnimatePresence>
@@ -866,9 +863,12 @@ export default function AdsCard({ footer = null }) {
                     </span>
                     <span className={s.body}>
                       <span className={s.url}>
-                        <b>{ad.ch === "search" ? "Pretraga" : "Mreže"}</b>
+                        <b>{ad.ch === "search" ? "Search" : "Social"}</b>
                         <span className={s.path}>
-                          › {ad.ch === "search" ? "vasafirma.rs" : "Vaša firma"}
+                          ›{" "}
+                          {ad.ch === "search"
+                            ? "yourbusiness.com"
+                            : "Your business"}
                         </span>
                         <AnimatePresence initial={false}>
                           {top
@@ -884,7 +884,7 @@ export default function AdsCard({ footer = null }) {
                                   damping: 18,
                                 }}
                               >
-                                Najbolji
+                                Best
                               </motion.em>
                             : null}
                           {off
@@ -896,8 +896,10 @@ export default function AdsCard({ footer = null }) {
                                 exit={{ scale: 0.6, opacity: 0 }}
                                 transition={{ duration: 0.3, ease: EASE }}
                               >
-                                <span className={s.long}>Pauzirano: skupo</span>
-                                <span className={s.short}>Pauzirano</span>
+                                <span className={s.long}>
+                                  Paused: too costly
+                                </span>
+                                <span className={s.short}>Paused</span>
                               </motion.em>
                             : null}
                         </AnimatePresence>
@@ -919,7 +921,7 @@ export default function AdsCard({ footer = null }) {
                         >
                           {row.enq}
                         </motion.b>{" "}
-                        {upit(row.enq)}
+                        {enquiryWord(row.enq)}
                         <AnimatePresence>
                           {note && note.ad === id
                             ? <motion.span
@@ -944,8 +946,8 @@ export default function AdsCard({ footer = null }) {
                                 >
                                   <span className={s.long}>
                                     {note.gain > 1
-                                      ? `+${note.gain} upita`
-                                      : "Novi upit"}
+                                      ? `+${note.gain} enquiries`
+                                      : "New enquiry"}
                                   </span>
                                   <span className={s.short}>+{note.gain}</span>
                                 </motion.span>
@@ -954,7 +956,7 @@ export default function AdsCard({ footer = null }) {
                         </AnimatePresence>
                       </span>
                       <span className={s.clicks}>
-                        {row.clicks} {klik(row.clicks)}
+                        {row.clicks} {clickWord(row.clicks)}
                       </span>
                       <span className={s.share}>
                         <span className={s.track}>
@@ -973,8 +975,8 @@ export default function AdsCard({ footer = null }) {
 
           <div className={s.ctrl}>
             <span className={s.ctrlLabel} id={`${uid}-budget`}>
-              <span className={s.long}>Dnevni budžet</span>
-              <span className={s.short}>Budžet</span>
+              <span className={s.long}>Daily budget</span>
+              <span className={s.short}>Budget</span>
             </span>
             <div
               className={s.range}
@@ -984,7 +986,7 @@ export default function AdsCard({ footer = null }) {
               aria-valuemin={MIN}
               aria-valuemax={MAX}
               aria-valuenow={budget}
-              aria-valuetext={`${budget} evra dnevno`}
+              aria-valuetext={`${budget} euros a day`}
               data-drag={dragging || undefined}
               style={{ "--p": p }}
               onPointerDown={onDown}
@@ -999,8 +1001,8 @@ export default function AdsCard({ footer = null }) {
               <span className={s.knob} />
             </div>
             <span className={s.val}>
-              <b>{budget} €</b>
-              <span className={s.long}>/dan</span>
+              <b>€{budget}</b>
+              <span className={s.long}>/day</span>
             </span>
           </div>
           {footer}

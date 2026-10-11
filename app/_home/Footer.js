@@ -26,28 +26,24 @@ export default function Footer() {
                 ? <a
                     href="#top"
                     className={f.logo}
-                    aria-label="Digitl, na vrh"
+                    aria-label="Digitl, back to top"
                     onClick={(e) => go(e, "#top")}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={logo.src} alt="" />
                     <span>digitl</span>
                   </a>
-                : <Link
-                    href="/"
-                    className={f.logo}
-                    aria-label="Digitl, početna"
-                  >
+                : <Link href="/" className={f.logo} aria-label="Digitl, home">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={logo.src} alt="" />
                     <span>digitl</span>
                   </Link>}
               <p>
-                Full-Service marketing agencija. Sve što vaš biznis traži, na
-                jednom mestu.
+                Full-service marketing agency. Everything your business needs,
+                under one roof.
               </p>
             </div>
-            <nav className={f.links} aria-label="Na ovoj stranici">
+            <nav className={f.links} aria-label="Footer">
               {links.map((l) => (
                 <NavLink key={l.href} href={l.href} onGo={go}>
                   {l.label}
@@ -69,14 +65,14 @@ export default function Footer() {
             </div>
           </div>
           <div className={f.base}>
-            <span>© 2026 Digitl · Beograd / London</span>
+            <span>© 2026 Digitl · Belgrade & London</span>
             <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            <a href={CONTACT.en} hrefLang="en" lang="en">
-              English
+            <a href={CONTACT.sr} hrefLang="sr" lang="sr">
+              Srpski
             </a>
             <a className={f.login} href={CONTACT.hub}>
               <Lock size={13} />
-              Prijava za klijente
+              Client login
             </a>
           </div>
         </div>

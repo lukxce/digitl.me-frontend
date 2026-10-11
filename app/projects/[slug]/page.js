@@ -55,7 +55,7 @@ export async function generateMetadata(props) {
   const params = await props.params;
   const showcase = await tryFindClientShowcase(params.slug);
   if (!showcase) {
-    return { title: "Projekat" };
+    return { title: "Project" };
   }
 
   const description = describe(showcase, getStory(showcase.slug));
@@ -105,7 +105,7 @@ function structuredData(showcase, story) {
         ? [sized(showcase.coverUrl, 1600, 82, "jpg")]
         : undefined,
       datePublished: showcase.publishedAt ?? undefined,
-      inLanguage: "sr-Latn",
+      inLanguage: "en",
       mainEntityOfPage: { "@type": "WebPage", "@id": url },
       author: publisher,
       publisher,
@@ -119,11 +119,11 @@ function structuredData(showcase, story) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Početna", item: SITE_URL },
+        { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
         {
           "@type": "ListItem",
           position: 2,
-          name: "Projekti",
+          name: "Projects",
           item: `${SITE_URL}/projects`,
         },
         { "@type": "ListItem", position: 3, name, item: url },

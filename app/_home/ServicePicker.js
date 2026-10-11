@@ -29,8 +29,8 @@ function Mark() {
 export default function ServicePicker({ items, current, onPick }) {
   return (
     <div className={p.row}>
-      <span className={p.label}>Primer za</span>
-      <div className={p.chips} role="group" aria-label="Usluga">
+      <span className={p.label}>Example for</span>
+      <div className={p.chips} role="group" aria-label="Service">
         {items.map((it) => {
           const on = it.id === current;
           return (

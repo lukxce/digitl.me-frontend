@@ -51,7 +51,7 @@ export async function generateMetadata(props) {
   const slug = params.slug;
   const article = await tryFindArticle(slug);
   if (!article) {
-    return { title: "Tekst nije pronađen" };
+    return { title: "Article not found" };
   }
   const desc = describe(article);
   const canonicalPath = `/journal/${encodeURIComponent(article.slug)}`;
@@ -96,7 +96,7 @@ function jsonLd(article) {
         image: article.coverUrl ? [article.coverUrl] : undefined,
         datePublished: article.publishedAt ?? undefined,
         articleSection: categoryOf(article),
-        inLanguage: "sr-Latn-RS",
+        inLanguage: "en",
         author: article.author?.name
           ? { "@type": "Person", name: article.author.name }
           : { "@type": "Organization", name: "Digitl", url: SITE_URL },
@@ -105,8 +105,8 @@ function jsonLd(article) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { name: "Početna", item: `${SITE_URL}/` },
-          { name: "Blog", item: `${SITE_URL}/journal` },
+          { name: "Home", item: `${SITE_URL}/` },
+          { name: "Journal", item: `${SITE_URL}/journal` },
           { name: article.title, item: url },
         ].map((crumb, i) => ({
           "@type": "ListItem",

@@ -1,6 +1,6 @@
 /* Helpers shared by the projects listing and the case study page. */
 
-export const SITE_URL = "https://www.digitl.rs";
+export const SITE_URL = "https://www.digitl.me";
 
 /* ── images ───────────────────────────────────────────────────────────── */
 // Covers and screenshots are 3200x1800 PNGs on the Sanity CDN; nothing on
@@ -63,7 +63,7 @@ export function monthYear(iso) {
   if (!iso) return null;
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return null;
-  return d.toLocaleDateString("sr-Latn-RS", {
+  return d.toLocaleDateString("en-GB", {
     month: "long",
     year: "numeric",
     timeZone: "UTC",
@@ -71,24 +71,26 @@ export function monthYear(iso) {
 }
 
 /* ── numbers ──────────────────────────────────────────────────────────── */
-// Story numbers arrive as finished Serbian strings ("2.836", "7,1", "12+",
-// "1. mesec"). They are shown as given. A count-up runs only for the ones
-// that parse back to exactly the same string.
+// Story numbers arrive as finished strings in English form ("2,836", "7.1",
+// "12+", "Month 1"). They are shown as given. A count-up runs only for the
+// ones that parse back to exactly the same string. The helpers keep the names
+// they have on the Serbian site; on this one they read and print English
+// numbers.
 
-/** 2836.4 → "2.836,4": dot for thousands, comma for decimals. */
+/** 2836.4 → "2,836.4": comma for thousands, point for decimals. */
 export function formatSr(n, decimals = 0, grouped = true) {
   const [int, dec] = Math.abs(n).toFixed(decimals).split(".");
-  const head = grouped ? int.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : int;
-  return `${n < 0 ? "-" : ""}${head}${dec ? `,${dec}` : ""}`;
+  const head = grouped ? int.replace(/\B(?=(\d{3})+(?!\d))/g, ",") : int;
+  return `${n < 0 ? "-" : ""}${head}${dec ? `.${dec}` : ""}`;
 }
 
 export function parseSr(value) {
   const s = String(value ?? "").trim();
-  const m = s.match(/^(\d{1,3}(?:\.\d{3})+|\d+)(?:,(\d+))?([+%]?)$/);
+  const m = s.match(/^(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d+))?([+%]?)$/);
   if (!m) return null;
-  const grouped = m[1].includes(".");
+  const grouped = m[1].includes(",");
   const decimals = m[2]?.length ?? 0;
-  const num = Number(`${m[1].replaceAll(".", "")}${m[2] ? `.${m[2]}` : ""}`);
+  const num = Number(`${m[1].replaceAll(",", "")}${m[2] ? `.${m[2]}` : ""}`);
   const suffix = m[3] ?? "";
   if (!Number.isFinite(num)) return null;
   // "0123" or "12345" without separators would not come back the same
@@ -98,7 +100,7 @@ export function parseSr(value) {
 
 /* How wide a display value sets, in em (Manrope 800, measured per glyph and
    rounded up), so a row of big values can be sized to fit its narrowest
-   cell: "7" and "3. mesec" then share one size and neither overflows. */
+   cell: "7" and "Month 3" then share one size and neither overflows. */
 const NARROW = "ijlI.,:;!|'’/- ";
 const SLIM = 'frt1()„“"';
 const WIDE = "mMW%";
@@ -124,7 +126,7 @@ export function widestEm(values, tracking) {
   return Math.round(em * 100) / 100;
 }
 
-/** 82.7 → "82,7%", 64 → "64%". */
+/** 82.7 → "82.7%", 64 → "64%". */
 export function percentSr(value) {
   const v = Math.round(Number(value) * 10) / 10;
   return `${formatSr(v, Number.isInteger(v) ? 0 : 1, false)}%`;
@@ -132,7 +134,7 @@ export function percentSr(value) {
 
 /* ── the card a project shows on the listing ──────────────────────────── */
 // The client's own years in business is their history, not our result.
-const YEARS = /godin\w*\s+iskustva/i;
+const YEARS = /\byears?['’]?\s+(?:of\s+)?experience\b/i;
 
 export function cardOf(showcase, story) {
   const name = showcase.clientName || showcase.title;

@@ -54,7 +54,7 @@ function Logos({ clients }) {
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: EASE }}
     >
-      <span className={h.logosLabel}>Izabrali su Digitl</span>
+      <span className={h.logosLabel}>Trusted by</span>
       <div className={h.rail}>
         <ul className={h.track}>{[0, 1, 2, 3].map((copy) => row(copy))}</ul>
       </div>
@@ -73,38 +73,38 @@ export default function Hero({ clients, visual = null }) {
             className={`${h.status} ${b.fadeUp}`}
             style={{ animationDelay: "40ms" }}
           >
-            <span className={h.kind}>Full-Service marketing agencija</span>
+            <span className={h.kind}>Full-service marketing agency</span>
             <span className={h.slots}>
-              <span className={b.liveDot} />2 slobodna mesta
+              <span className={b.liveDot} />2 slots open
             </span>
           </p>
           <h1 className={`${b.display} ${h.title}`}>
-            <Line delay={100}>Marketing koji</Line>
+            <Line delay={100}>Where marketing</Line>
             <Line delay={170}>
-              donosi <span className={h.accent}>prave</span>
+              meets <span className={h.accent}>real</span>
             </Line>
             <Line delay={240}>
-              <span className={h.accent}>rezultate.</span>
+              <span className={h.accent}>business results.</span>
             </Line>
           </h1>
           <div className={b.fadeUp} style={{ animationDelay: "520ms" }}>
             <p className={h.lead}>
-              {/* the last two words stay together, so "mestu." never sits
+              {/* the last two words stay together, so "roof." never sits
                   alone on a line */}
               {
-                "Gradimo brendove koji se izdvajaju, sajtove koji prodaju i kampanje koje dovode kupce. Od pretrage i oglasa do društvenih mreža, sve što vaš biznis traži, na jednom\u00a0mestu."
+                "We build brands that stand out, convert harder, and scale faster. Everything your business needs, under one\u00a0roof."
               }
             </p>
             <div className={h.ctas}>
               <Btn variant="accent" onClick={() => book()}>
-                Zakaži razgovor
+                Get started
               </Btn>
               <Btn
                 variant="ghost"
                 arrow={false}
-                onClick={() => scrollTo("#rezultati")}
+                onClick={() => scrollTo("#work")}
               >
-                Naši projekti
+                Our work
               </Btn>
             </div>
           </div>

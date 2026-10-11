@@ -3,28 +3,28 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import b from "./base.module.css";
-import { FAQ } from "./content";
+import { CONTACT, FAQ } from "./content";
 import { Plus } from "./icons";
 import Quiz from "./Quiz";
 import x from "./sections.module.css";
 import { EASE, Head } from "./ui";
 
-/* ── Vaš plan: the three questions, right under the four steps ──────── */
+/* ── Your plan: the three questions, right under the four steps ─────── */
 export function PlanSection({ clients }) {
   return (
     <section className={`${b.glow} ${x.plan}`} data-section="Vaš plan">
       <div className={b.container}>
-        <span id="vas-plan" className={b.anchor} />
+        <span id="your-plan" className={b.anchor} />
         <div className={x.planGrid}>
           <div className={x.planHead}>
-            <span className={b.label}>Tri pitanja</span>
-            <h2>Odakle da krenete?</h2>
+            <span className={b.label}>Three questions</span>
+            <h2>Where should you start?</h2>
             <p>
-              Odgovorite na tri kratka pitanja i dobićete preporuku: šta vam je
-              od marketinga sada najpotrebnije i od čega je najpametnije da
-              krenete.
+              Answer three short questions and you'll get a recommendation: what
+              your marketing needs most right now, and where it makes most sense
+              to start.
             </p>
-            <small>Traje oko pola minuta.</small>
+            <small>Takes about half a minute.</small>
           </div>
           <Quiz clients={clients} />
         </div>
@@ -33,17 +33,17 @@ export function PlanSection({ clients }) {
   );
 }
 
-/* ── Pitanja ──────────────────────────────────────────────────────────── */
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
 export function Faq() {
   const [open, setOpen] = useState(0);
   return (
     <section className={b.section} data-section="Pitanja">
       <div className={`${b.container} ${x.faq}`}>
         <Head
-          id="pitanja"
-          label="Pitanja"
-          title="Imate još pitanja pre nego što krenemo?"
-          intro="Ako vašeg pitanja nema ovde, pišite na hello@digitl.rs."
+          id="faq"
+          label="FAQ"
+          title="Have more questions?"
+          intro={`We're happy to help. If yours isn't here, write to ${CONTACT.email}.`}
         />
         <ul className={x.faqList}>
           {FAQ.map((f, i) => {

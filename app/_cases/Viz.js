@@ -129,7 +129,7 @@ function Compare({ viz, board }) {
     (r) => r && (r.from != null || r.to != null),
   );
   if (!rows.length) return null;
-  // figures get big type; phrases ("Nije u rezultatima") get reading type
+  // figures get big type; phrases ("Not in the results") get reading type
   const words = rows.some(
     (r) => String(r.from ?? "").length > 7 || String(r.to ?? "").length > 7,
   );
@@ -148,14 +148,14 @@ function Compare({ viz, board }) {
             <span className={v.cLabel}>{r.label}</span>
             <span className={v.cVals}>
               <span className={v.from}>
-                <span className={b.srOnly}>pre: </span>
+                <span className={b.srOnly}>before: </span>
                 {r.from}
               </span>
               <span className={v.arrow} aria-hidden="true">
                 <ArrowRight size={15} />
               </span>
               <b className={v.to}>
-                <span className={b.srOnly}>posle: </span>
+                <span className={b.srOnly}>after: </span>
                 {r.to}
               </b>
             </span>
@@ -370,7 +370,7 @@ function Trend({ viz }) {
         role="group"
         // biome-ignore lint/a11y/noNoninteractiveTabindex: focusable so the arrow keys can walk the points
         tabIndex={0}
-        aria-label={`Grafikon: ${viz.title ?? viz.unit ?? "kretanje po periodima"}. Strelice levo i desno biraju tačku, sve vrednosti su u tabeli ispod.`}
+        aria-label={`Chart: ${viz.title ?? viz.unit ?? "change over time"}. The left and right arrow keys pick a point, and every value is in the table below.`}
         onPointerMove={pick}
         onPointerDown={pick}
         onPointerLeave={(e) => {
@@ -498,13 +498,13 @@ function Trend({ viz }) {
       <div className={b.srOnly}>
         <table>
           <caption>
-            {viz.title ?? "Kretanje po periodima"}
+            {viz.title ?? "Change over time"}
             {viz.unit ? `, ${viz.unit}` : ""}
           </caption>
           <thead>
             <tr>
               <th scope="col">Period</th>
-              <th scope="col">{viz.unit ?? "Vrednost"}</th>
+              <th scope="col">{viz.unit ?? "Value"}</th>
             </tr>
           </thead>
           <tbody>
@@ -525,7 +525,7 @@ function Trend({ viz }) {
 function Versus({ viz }) {
   const rows = (viz.rows ?? []).filter((r) => r?.label && r.to != null);
   if (!rows.length) return null;
-  const [was, is] = viz.heads ?? ["Pre", "Posle"];
+  const [was, is] = viz.heads ?? ["Before", "After"];
   return (
     <Frame viz={viz} kind="versus">
       <ul className={v.versus}>

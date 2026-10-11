@@ -44,7 +44,7 @@ export default function ProjectCard({
                 src={sized(p.cover, 1280)}
                 srcSet={srcSet(p.cover, [640, 960, 1280, 1600])}
                 sizes={SIZES[variant]}
-                alt={`Sajt koji smo napravili za ${p.name}`}
+                alt={`The website we built for ${p.name}`}
                 width="1600"
                 height="900"
                 loading={eager ? "eager" : "lazy"}
@@ -100,14 +100,14 @@ export default function ProjectCard({
 
           <div className={c.foot}>
             {p.services.length && !mini
-              ? <ul className={c.chips} aria-label="Šta smo radili">
+              ? <ul className={c.chips} aria-label="What we did">
                   {p.services.map((s) => (
                     <li key={s}>{s}</li>
                   ))}
                 </ul>
               : null}
             <span className={c.more} aria-hidden="true">
-              Pogledajte studiju <ArrowRight size={15} />
+              Read the case study <ArrowRight size={15} />
             </span>
           </div>
         </div>

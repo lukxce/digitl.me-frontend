@@ -3,6 +3,7 @@ import { createElement, Fragment } from "react";
 import {
   createHeadingQueue,
   extractContentHeadings,
+  isPortableTextHeading,
 } from "../../lib/blockHeadings.js";
 import { canOptimizeImage } from "../../lib/imageHosts.js";
 import styles from "./StrapiBlocksRenderer.module.css";
@@ -284,7 +285,9 @@ function renderBlockSequence(blocks, keyPrefix, headingQueue) {
               blockStyle === "h1" ? "h2" : "h2",
               {
                 key: `${keyPrefix}-${blockStyle}-${i}`,
-                id: headingQueue?.next(),
+                id: isPortableTextHeading(block)
+                  ? headingQueue?.next()
+                  : undefined,
                 className: styles.h2,
               },
               renderChildren(block.children, markDefs),
@@ -296,7 +299,9 @@ function renderBlockSequence(blocks, keyPrefix, headingQueue) {
           nodes.push(
             <h3
               key={`${keyPrefix}-h3-${i}`}
-              id={headingQueue?.next()}
+              id={
+                isPortableTextHeading(block) ? headingQueue?.next() : undefined
+              }
               className={styles.h3}
             >
               {renderChildren(block.children, markDefs)}
@@ -308,7 +313,9 @@ function renderBlockSequence(blocks, keyPrefix, headingQueue) {
           nodes.push(
             <h4
               key={`${keyPrefix}-h4-${i}`}
-              id={headingQueue?.next()}
+              id={
+                isPortableTextHeading(block) ? headingQueue?.next() : undefined
+              }
               className={styles.h4}
             >
               {renderChildren(block.children, markDefs)}
@@ -354,26 +361,6 @@ function renderBlockSequence(blocks, keyPrefix, headingQueue) {
 }
 
 /**
- * Extract headings from Portable Text for the outline/heading queue.
- * @param {unknown[]} blocks
- */
-function extractPortableTextHeadings(blocks) {
-  if (!Array.isArray(blocks)) return [];
-  return blocks
-    .filter(
-      (b) =>
-        b?._type === "block" &&
-        typeof b.style === "string" &&
-        b.style.startsWith("h"),
-    )
-    .map((b) => {
-      const text = (b.children ?? []).map((c) => c.text ?? "").join("");
-      const level = Number.parseInt(b.style.slice(1), 10) || 2;
-      return { text, level };
-    });
-}
-
-/**
  * Renders Sanity Portable Text blocks with identical styling to StrapiBlocksRenderer.
  * @param {{ blocks: unknown }} props
  */
@@ -398,8 +385,9 @@ export default function SanityBlocksRenderer({ blocks }) {
     return null;
   }
 
-  const headings = extractPortableTextHeadings(blocks);
-  const headingQueue = createHeadingQueue(headings);
+  // The same list the page's outline is built from, so every heading gets the
+  // id its outline link points to.
+  const headingQueue = createHeadingQueue(extractContentHeadings(blocks));
 
   return (
     <div className={styles.prose}>

@@ -5,157 +5,158 @@ import { useEffect, useRef, useState } from "react";
 import s from "./searchClimb.module.css";
 
 /* The hero's search card. An illustrative search: a kind of business and a
-   city, generic rivals, and "vasafirma.rs" climbing from sixth place to
+   city, generic rivals, and "yourbusiness.com" climbing from sixth place to
    first. Nothing here is a real result (all names are generic). The reader can type their own business and city and watch the same
-   climb. On phones the list shows four rows, so "vasafirma.rs" slides up
+   climb. On phones the list shows four rows, so "yourbusiness.com" slides up
    into view from below as it climbs. */
 
+/* Places the reader is likely to type, so the made-up titles can give them
+   a capital letter. Longer names come before the names they end with. */
 const CITIES = [
-  "sremska mitrovica",
-  "novi sad",
-  "novi pazar",
-  "beograd",
-  "niš",
-  "nis",
-  "kragujevac",
-  "subotica",
-  "zrenjanin",
-  "pančevo",
-  "čačak",
-  "kraljevo",
-  "smederevo",
-  "leskovac",
-  "valjevo",
-  "kruševac",
-  "vranje",
-  "šabac",
-  "užice",
-  "sombor",
-  "požarevac",
-  "pirot",
-  "zaječar",
-  "kikinda",
-  "jagodina",
-  "vršac",
-  "zemun",
+  "milton keynes",
+  "los angeles",
+  "new york",
   "london",
+  "manchester",
+  "birmingham",
+  "leeds",
+  "liverpool",
+  "bristol",
+  "sheffield",
+  "newcastle",
+  "nottingham",
+  "leicester",
+  "brighton",
+  "cardiff",
+  "edinburgh",
+  "glasgow",
+  "belfast",
+  "oxford",
+  "cambridge",
+  "york",
+  "dublin",
+  "chicago",
+  "toronto",
+  "sydney",
+  "melbourne",
+  "belgrade",
 ];
 
 const EXAMPLES = [
   {
-    q: "klima servis beograd",
-    key: /klim/,
+    q: "boiler repair london",
+    key: /boiler|heating/,
     rivals: [
       [
-        "majstor-plus.rs",
-        "Majstor Plus",
-        "Servis, čišćenje i punjenje klima uređaja. Pozovite za termin.",
+        "fixer-plus.co.uk",
+        "Fixer Plus",
+        "Boiler repairs, servicing and installation. Call to book a visit.",
       ],
       [
-        "servis24.rs",
-        "Servis24",
-        "Radimo sve marke uređaja. Pogledajte zone u kojima dolazimo.",
+        "callout-24.co.uk",
+        "Callout 24",
+        "We work on all boiler makes. See the areas we cover.",
       ],
       [
-        "brzi-servis.rs",
-        "Brzi Servis",
-        "Montaža i servis klima uređaja za stanove i lokale.",
+        "prompt-repairs.co.uk",
+        "Prompt Repairs",
+        "Boiler installation and servicing for homes and business premises.",
       ],
     ],
-    mine: "Dolazimo isti dan, sa cenom unapred. Pogledajte radove i utiske klijenata.",
+    mine: "Same-day visits, price up front. See our work and customer reviews.",
   },
   {
-    q: "stomatolog niš",
-    key: /stomat|zub|dent/,
+    q: "dentist leeds",
+    key: /\bdent|tooth|teeth/,
     rivals: [
       [
-        "dental-centar.rs",
-        "Dental Centar",
-        "Popravke, proteze i estetika zuba. Zakažite pregled telefonom.",
+        "dental-point.co.uk",
+        "Dental Point",
+        "Fillings, dentures and cosmetic dentistry. Book a check-up by phone.",
       ],
       [
-        "osmeh-studio.rs",
-        "Osmeh Studio",
-        "Ordinacija u centru grada. Radimo i subotom.",
+        "smile-workshop.co.uk",
+        "Smile Workshop",
+        "A practice in the city centre. Open on Saturdays too.",
       ],
       [
-        "porodicni-zubar.rs",
-        "Porodični Zubar",
-        "Preventiva, lečenje i izbeljivanje zuba za celu porodicu.",
+        "family-dentist.co.uk",
+        "Family Dentist",
+        "Check-ups, treatment and teeth whitening for the whole family.",
       ],
     ],
-    mine: "Cene unapred i termini i subotom. Upoznajte tim i zakažite pregled online.",
+    mine: "Prices up front, Saturday appointments. Meet the team and book online.",
   },
   {
-    q: "advokat novi sad",
-    key: /advok|pravn/,
+    q: "solicitor bristol",
+    key: /solicit|lawyer|legal|attorney|barrister|law firm/,
     rivals: [
       [
-        "pravni-savet.rs",
-        "Pravni Savet",
-        "Porodično, radno i privredno pravo. Prvi razgovor telefonom.",
+        "legal-help-desk.co.uk",
+        "Legal Help Desk",
+        "Family, employment and commercial law. First consultation by phone.",
       ],
       [
-        "advokati-online.rs",
-        "Advokati Online",
-        "Pronađite advokata po oblasti prava i gradu.",
+        "solicitors-online.co.uk",
+        "Solicitors Online",
+        "Find a solicitor by area of law and city.",
       ],
       [
-        "kancelarija-pravo.rs",
-        "Kancelarija Pravo",
-        "Zastupanje fizičkih i pravnih lica pred sudovima.",
+        "city-law-office.co.uk",
+        "City Law Office",
+        "Representing individuals and companies in court.",
       ],
     ],
-    mine: "Jasna cena prvog razgovora. Oblasti prava, tim i zakazivanje online.",
+    mine: "A clear price for a first consultation. Areas of law, team, online booking.",
   },
   {
-    q: "električar niš",
-    key: /elektri|struj/,
+    q: "electrician york",
+    key: /electri|wiring/,
     rivals: [
       [
-        "majstor-plus.rs",
-        "Majstor Plus",
-        "Električarske intervencije, razvodne table i instalacije.",
+        "fixer-plus.co.uk",
+        "Fixer Plus",
+        "Electrical call-outs, fuse boards and wiring.",
       ],
       [
-        "elektro-24.rs",
-        "Elektro 24",
-        "Hitne intervencije u toku dana. Pozovite za dolazak.",
+        "electro-24.co.uk",
+        "Electro 24",
+        "Emergency call-outs the same day. Call for a visit.",
       ],
       [
-        "brzi-servis.rs",
-        "Brzi Servis",
-        "Zamena instalacija, utičnica i rasvete u stanovima.",
+        "prompt-repairs.co.uk",
+        "Prompt Repairs",
+        "Rewiring, sockets and lighting for flats.",
       ],
     ],
-    mine: "Dolazimo isti dan, sa cenom unapred. Zakažite online ili pozovite.",
+    mine: "Same-day visits, price up front. Book online or call.",
   },
 ];
 
 const GENERIC = {
   rivals: [
     [
-      "pro-usluge.rs",
-      "Pro Usluge",
-      "Usluge za fizička i pravna lica. Pozovite i dogovorite termin.",
+      "services-pro.co.uk",
+      "Services Pro",
+      "Services for individuals and businesses. Call to arrange a time.",
     ],
     [
-      "top-izbor.rs",
-      "Top Izbor",
-      "Uporedite ponude iz svog grada na jednom mestu.",
+      "top-choice.co.uk",
+      "Top Choice",
+      "Compare offers from your city in one place.",
     ],
     [
-      "lokalni-vodic.rs",
-      "Lokalni Vodič",
-      "Firme iz vašeg kraja, sa kontakt podacima i radnim vremenom.",
+      "local-area-guide.co.uk",
+      "Local Area Guide",
+      "Businesses in your area, with contact details and opening hours.",
     ],
   ],
-  mine: "Cene, radovi i utisci klijenata na jednom mestu. Zakažite online.",
+  mine: "Prices, past work and client reviews in one place. Book online.",
 };
 
 const START = ["a", "b", "c", "d", "e", "v"];
 const FINAL = ["v", "a", "b", "c", "d", "e"];
-const STEPS = ["Brz sajt", "Google profil", "Sadržaj", "Recenzije", "Oglasi"];
+const STEPS = ["Fast site", "Google profile", "Content", "Reviews", "Ads"];
 const SLOTS = [1, 2, 3, 4, 5, 6];
 const STOP = Symbol("stop");
 
@@ -163,7 +164,7 @@ function capWords(text) {
   return text.replace(/(^|\s)(\S)/g, (_, sp, ch) => sp + ch.toUpperCase());
 }
 
-/* "klima servis beograd" -> "Klima servis Beograd" (cap = false keeps the
+/* "boiler repair london" -> "Boiler repair London" (cap = false keeps the
    first word lower case, for titles that put a brand in front). */
 function pretty(raw, cap) {
   let q = raw.trim().replace(/\s+/g, " ");
@@ -177,16 +178,19 @@ function pretty(raw, cap) {
   return cap ? q.charAt(0).toUpperCase() + q.slice(1) : q;
 }
 
-const PLAIN = { č: "c", ć: "c", š: "s", ž: "z", đ: "dj" };
+/* The path of a made-up address: plain letters only, so accents are
+   dropped first ("café" -> "cafe") whatever language the reader types in. */
 function slug(raw) {
   const out = raw
     .toLowerCase()
-    .replace(/[čćšžđ]/g, (m) => PLAIN[m])
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0111/g, "dj")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .slice(0, 26)
     .replace(/-+$/, "");
-  return out || "usluge";
+  return out || "services";
 }
 
 function matchSet(q) {
@@ -210,7 +214,7 @@ function build(q, set) {
     },
     b: {
       host: b[0],
-      path: "usluge",
+      path: "services",
       letter: b[1][0],
       tone: "spark",
       title: `${b[1]}: ${lower}`,
@@ -218,34 +222,34 @@ function build(q, set) {
     },
     c: {
       host: c[0],
-      path: "cenovnik",
+      path: "prices",
       letter: c[1][0],
       tone: "lime",
-      title: `${Q}, cene i termini`,
+      title: `${Q}, price list`,
       text: c[2],
     },
     d: {
-      host: "imenik-firmi.rs",
-      path: "pretraga",
-      letter: "I",
+      host: "business-listings.co.uk",
+      path: "search",
+      letter: "B",
       tone: "mist",
-      title: `${Q}: adrese i telefoni`,
-      text: "Spisak firmi sa adresama, telefonima i radnim vremenom.",
+      title: `${Q}: addresses and phone numbers`,
+      text: "A list of businesses with addresses, phone numbers and opening hours.",
     },
     e: {
-      host: "pitaj-komsiju.rs",
-      path: "teme",
-      letter: "P",
+      host: "ask-a-neighbour.co.uk",
+      path: "topics",
+      letter: "A",
       tone: "pale",
-      title: `„${lower}“: iskustva i preporuke`,
-      text: "Korisnici dele iskustva sa firmama iz svog kraja.",
+      title: `“${lower}”: reviews and recommendations`,
+      text: "People share their experiences of businesses in their area.",
     },
     v: {
-      host: "vasafirma.rs",
+      host: "yourbusiness.com",
       path,
-      letter: "V",
+      letter: "Y",
       tone: "mine",
-      title: `${Q} | Vaša firma`,
+      title: `${Q} | Your business`,
       text: set.mine,
       mine: true,
     },
@@ -486,17 +490,17 @@ export default function SearchClimb({ footer = null }) {
   let hint = (
     <>
       <Pointer />
-      <span className={s.long}>Probajte sa svojom delatnošću i gradom</span>
-      <span className={s.short}>Probajte svoju delatnost</span>
+      <span className={s.long}>Try it with your own business and city</span>
+      <span className={s.short}>Try your own business</span>
     </>
   );
   if (asked)
     hint = (
       <>
-        Rezultati za <b>„{query}“</b>
+        Results for <b>“{query}”</b>
       </>
     );
-  else if (user) hint = "Pritisnite Enter ili Pretraži";
+  else if (user) hint = "Press Enter or Search";
 
   return (
     <div className={s.stage} ref={root}>
@@ -507,7 +511,7 @@ export default function SearchClimb({ footer = null }) {
               <SearchIcon />
             </span>
             <label className={s.field}>
-              <span className={s.sr}>Delatnost i grad</span>
+              <span className={s.sr}>Business and city</span>
               <input
                 ref={inputRef}
                 className={s.input}
@@ -517,9 +521,7 @@ export default function SearchClimb({ footer = null }) {
                   type(e.target.value);
                 }}
                 onFocus={onFocus}
-                placeholder={
-                  user ? "Delatnost i grad, npr. frizer novi sad" : ""
-                }
+                placeholder={user ? "Business and city, e.g. barber leeds" : ""}
                 enterKeyHint="search"
                 autoComplete="off"
                 spellCheck={false}
@@ -531,7 +533,7 @@ export default function SearchClimb({ footer = null }) {
               </span>
             </label>
             <button type="submit" className={s.go}>
-              Pretraži
+              Search
             </button>
             <span className={s.load} data-on={phase === "loading"} />
           </form>
@@ -541,7 +543,7 @@ export default function SearchClimb({ footer = null }) {
               {hint}
             </span>
             <span className={s.rank} data-top={top && live}>
-              Vaš sajt
+              Your site
               <span className={s.rankNo}>
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.b
@@ -613,7 +615,9 @@ export default function SearchClimb({ footer = null }) {
                         <span className={s.url}>
                           <b>{it.host}</b>
                           <span className={s.path}>› {it.path}</span>
-                          {it.mine ? <em className={s.tag}>Vaš sajt</em> : null}
+                          {it.mine
+                            ? <em className={s.tag}>Your site</em>
+                            : null}
                         </span>
                         <span className={s.title}>{it.title}</span>
                         <span className={s.text}>{it.text}</span>

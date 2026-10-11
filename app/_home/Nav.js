@@ -11,23 +11,23 @@ import { ArrowRight, ArrowUpRight, Lock, Mail, Phone } from "./icons";
 import n from "./nav.module.css";
 import { Btn, EASE, useApp } from "./ui";
 
-// The same menu everywhere: Projekti and Blog are their own pages; the rest
+// The same menu everywhere: Projects and Journal are their own pages; the rest
 // are sections of the homepage (reached by gliding there, or by going home
 // first from an inner page). Every page ends with the contact form.
 export const LINKS = [
-  { href: "#usluge", label: "Usluge" },
-  { href: "#proces", label: "Kako radimo" },
-  { href: "/projects", label: "Projekti" },
-  { href: "/journal", label: "Blog" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "#services", label: "Services" },
+  { href: "#process", label: "How we work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/journal", label: "Journal" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export const INNER_LINKS = [
-  { href: "/#usluge", label: "Usluge" },
-  { href: "/#proces", label: "Kako radimo" },
-  { href: "/projects", label: "Projekti" },
-  { href: "/journal", label: "Blog" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "/#services", label: "Services" },
+  { href: "/#process", label: "How we work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/journal", label: "Journal" },
+  { href: "#contact", label: "Contact" },
 ];
 
 /** A link that glides when it points into this page and navigates otherwise. */
@@ -71,12 +71,12 @@ function Logo({ home, onGo }) {
     ? <a
         href="#top"
         className={n.logo}
-        aria-label="Digitl, na vrh"
+        aria-label="Digitl, back to top"
         onClick={(e) => onGo(e, "#top")}
       >
         {inner}
       </a>
-    : <Link href="/" className={n.logo} aria-label="Digitl, početna">
+    : <Link href="/" className={n.logo} aria-label="Digitl, home">
         {inner}
       </Link>;
 }
@@ -87,14 +87,14 @@ function Menu({ onClose, onBook, onGo, links }) {
     <motion.div
       className={n.sheet}
       role="dialog"
-      aria-label="Meni"
+      aria-label="Menu"
       initial={{ opacity: 0, y: -10, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: -10, scale: 0.97 }}
       transition={{ duration: 0.35, ease: EASE }}
     >
       <div className={n.sheetMain}>
-        <nav className={n.sheetLinks} aria-label="Stranica">
+        <nav className={n.sheetLinks} aria-label="Pages">
           {links.map((l, i) => (
             <motion.a
               key={l.href}
@@ -121,15 +121,15 @@ function Menu({ onClose, onBook, onGo, links }) {
             <Lock size={16} />
           </span>
           <span className={n.loginText}>
-            <b>Prijava za klijente</b>
-            <small>Izveštaji, odobrenja i zahtevi</small>
+            <b>Client login</b>
+            <small>Reports, approvals and requests</small>
           </span>
           <ArrowUpRight size={15} />
         </a>
       </div>
       <div className={n.sheetSide}>
         <span className={n.status}>
-          <i /> 2 slobodna mesta
+          <i /> 2 slots open
         </span>
         <a className={n.contact} href={`mailto:${CONTACT.email}`}>
           <span>
@@ -164,12 +164,12 @@ function Menu({ onClose, onBook, onGo, links }) {
             onBook();
           }}
         >
-          Zakaži razgovor
+          Get started
         </Btn>
         <span className={n.city}>
-          Beograd / London
-          <a href={CONTACT.en} hrefLang="en" lang="en">
-            English <ArrowUpRight size={12} />
+          Belgrade & London
+          <a href={CONTACT.sr} hrefLang="sr" lang="sr">
+            Srpski <ArrowUpRight size={12} />
           </a>
         </span>
       </div>
@@ -183,7 +183,7 @@ export default function Nav() {
   const router = useRouter();
   const links = home ? LINKS : INNER_LINKS;
   // In-page links glide instead of jumping (Lenis is off on phones). Links
-  // to another page, with or without a section ("/#usluge"), go through the
+  // to another page, with or without a section ("/#services"), go through the
   // router, so they never depend on the browser's own jump to a fragment;
   // the homepage scrolls to the section itself when it arrives (ui.js).
   const go = (e, href) => {
@@ -241,7 +241,7 @@ export default function Nav() {
         <i />
         <i />
       </span>
-      Meni
+      Menu
     </button>
   );
 
@@ -249,7 +249,7 @@ export default function Nav() {
     <>
       <header className={n.bar}>
         <Logo home={home} onGo={go} />
-        <nav className={n.links} aria-label="Glavna">
+        <nav className={n.links} aria-label="Main">
           {links.map((l) => (
             <NavLink key={l.href} href={l.href} onGo={go}>
               {l.label}
@@ -259,12 +259,12 @@ export default function Nav() {
         <div className={n.actions}>
           <a
             className={n.lang}
-            href={CONTACT.en}
-            hrefLang="en"
-            lang="en"
-            aria-label="English site"
+            href={CONTACT.sr}
+            hrefLang="sr"
+            lang="sr"
+            aria-label="Srpski sajt"
           >
-            EN
+            SR
           </a>
           <Btn
             variant="accent"
@@ -272,7 +272,7 @@ export default function Nav() {
             onClick={() => book()}
             className={n.cta}
           >
-            Zakaži razgovor
+            Get started
           </Btn>
           {menuBtn(n.menuBtn)}
         </div>
@@ -298,7 +298,7 @@ export default function Nav() {
               transition={{ duration: 0.45, ease: EASE }}
             >
               <Logo home={home} onGo={go} />
-              <nav className={n.pillLinks} aria-label="Brze veze">
+              <nav className={n.pillLinks} aria-label="Quick links">
                 {links.slice(0, 4).map((l) => (
                   <NavLink key={l.href} href={l.href} onGo={go}>
                     {l.label}
@@ -306,10 +306,10 @@ export default function Nav() {
                 ))}
               </nav>
               <span className={n.pillIcons}>
-                <a href={`tel:${CONTACT.tel}`} aria-label="Pozovite">
+                <a href={`tel:${CONTACT.tel}`} aria-label="Call">
                   <Phone size={15} />
                 </a>
-                <a href={`mailto:${CONTACT.email}`} aria-label="Pišite nam">
+                <a href={`mailto:${CONTACT.email}`} aria-label="Email us">
                   <Mail size={15} />
                 </a>
               </span>
@@ -320,7 +320,7 @@ export default function Nav() {
                 arrow={false}
                 onClick={() => book()}
               >
-                Zakaži
+                Start
               </Btn>
               <AnimatePresence>
                 {open

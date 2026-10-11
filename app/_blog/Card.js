@@ -6,7 +6,7 @@ import { img, imgSet } from "./util";
 
 /** One article as a tile: cover, category, title, two lines of the
     description, date and reading time. Used by the listing and by
-    "Još sa bloga" under a post. */
+    "More from the journal" under a post. */
 export default function Card({ a, as: Title = "h3" }) {
   return (
     <Link href={a.href} className={c.card}>
@@ -42,7 +42,7 @@ export default function Card({ a, as: Title = "h3" }) {
           : null}
         <p className={c.meta}>
           {a.date ? <time dateTime={a.iso ?? undefined}>{a.date}</time> : null}
-          {a.minutes ? <span>{a.minutes} min čitanja</span> : null}
+          {a.minutes ? <span>{a.minutes} min read</span> : null}
         </p>
       </div>
     </Link>

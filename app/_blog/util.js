@@ -4,20 +4,31 @@
 
 import { categoryOf } from "./categories";
 
-export const SITE_URL = "https://www.digitl.rs";
+export const SITE_URL = "https://www.digitl.me";
 
-const DATE = new Intl.DateTimeFormat("sr-Latn-RS", {
+const DATE = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
-  month: "long",
+  month: "short",
   year: "numeric",
   timeZone: "UTC",
 });
 
-/** "16. avgust 2026." */
+/** "16 Aug 2026" */
 export function formatDate(iso) {
   if (!iso) return "";
   const d = new Date(iso);
   return Number.isNaN(d.getTime()) ? "" : DATE.format(d);
+}
+
+/** A block's words: a Markdown body, or the spans of a Portable Text block
+    (the shape this site's CMS stores). */
+function blockText(x) {
+  if (typeof x?.body === "string") return x.body;
+  return Array.isArray(x?.children)
+    ? x.children
+        .map((c) => (typeof c?.text === "string" ? c.text : ""))
+        .join("")
+    : "";
 }
 
 /** Words in the rich-text bodies / 200, rounded, never under a minute. */
@@ -26,9 +37,7 @@ export function readingMinutes(blocks) {
     typeof blocks === "string"
       ? blocks
       : Array.isArray(blocks)
-        ? blocks
-            .map((x) => (typeof x?.body === "string" ? x.body : ""))
-            .join(" ")
+        ? blocks.map(blockText).join(" ")
         : "";
   const words = text.split(/\s+/).filter(Boolean).length;
   return words ? Math.max(1, Math.round(words / 200)) : null;
@@ -75,13 +84,9 @@ export function toCard(a) {
 }
 
 /* ── words ────────────────────────────────────────────────────────────── */
-/** 1 tekst, 2 teksta, 5 tekstova, 21 tekst. */
+/** 1 article, 2 articles. (The name is the Serbian original's.) */
 export function tekstova(n) {
-  const d = n % 10;
-  const h = n % 100;
-  if (d === 1 && h !== 11) return `${n} tekst`;
-  if (d >= 2 && d <= 4 && (h < 12 || h > 14)) return `${n} teksta`;
-  return `${n} tekstova`;
+  return `${n} ${n === 1 ? "article" : "articles"}`;
 }
 
 /** Lower case without diacritics, so "sta" finds "Šta" and "dj" finds "đ". */

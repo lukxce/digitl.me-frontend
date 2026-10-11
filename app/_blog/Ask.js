@@ -18,16 +18,16 @@ export default function Ask({ author, avatar }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={avatar} alt="" width={54} height={54} loading="lazy" />
         <p>
-          <span>Autor teksta</span>
+          <span>Written by</span>
           <b>{author}</b>
         </p>
       </div>
       <div className={s.askCopy}>
-        <h2>Imate pitanje o ovoj temi?</h2>
-        <p>Prvi razgovor je besplatan.</p>
+        <h2>Have a question about this topic?</h2>
+        <p>The first call is free.</p>
       </div>
       <Btn variant="accent" onClick={() => book()}>
-        Zakaži razgovor
+        Start a conversation
       </Btn>
     </Reveal>
   );

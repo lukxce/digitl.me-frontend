@@ -54,7 +54,7 @@ export default function Share({ url, title, className = "" }) {
   const u = encodeURIComponent(url);
   return (
     <div className={`${s.share} ${className}`}>
-      <p className={s.sideLabel}>Podelite tekst</p>
+      <p className={s.sideLabel}>Share this article</p>
       <div className={s.shareRow}>
         <button
           type="button"
@@ -63,14 +63,14 @@ export default function Share({ url, title, className = "" }) {
           onClick={copy}
         >
           {copied ? <Check size={16} strokeWidth={3} /> : <LinkIcon />}
-          <span aria-live="polite">{copied ? "Kopirano" : "Kopiraj link"}</span>
+          <span aria-live="polite">{copied ? "Link copied" : "Copy link"}</span>
         </button>
         <a
           className={s.shareBtn}
           href={`https://www.linkedin.com/sharing/share-offsite/?url=${u}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Podelite na LinkedIn-u"
+          aria-label="Share on LinkedIn"
         >
           <IconLinkedin />
         </a>
@@ -79,7 +79,7 @@ export default function Share({ url, title, className = "" }) {
           href={`https://x.com/intent/post?text=${encodeURIComponent(title)}&url=${u}`}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Podelite na X-u"
+          aria-label="Share on X"
         >
           <IconX />
         </a>

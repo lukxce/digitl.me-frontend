@@ -9,11 +9,11 @@ export default function CaseCta() {
   return (
     <Reveal className={s.cta}>
       <div>
-        <h2>Imate sličan problem?</h2>
-        <p>Prvi razgovor je besplatan i ne obavezuje ni na šta.</p>
+        <h2>Have a similar problem?</h2>
+        <p>The first call is free and commits you to nothing.</p>
       </div>
       <Btn variant="white" onClick={() => book()}>
-        Zakaži razgovor
+        Get started
       </Btn>
     </Reveal>
   );

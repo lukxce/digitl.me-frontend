@@ -34,34 +34,34 @@ import { Bridge, EASE, Head, useVisible } from "./ui";
 
 const STAGES = [
   {
-    name: "Primeti vas",
-    body: "Prvi put čuje za vas: na mrežama, u oglasu ili od nekog ko vas preporuči.",
-    who: ["Brend", "Društvene mreže"],
-    metric: "Doseg u pravoj publici",
+    name: "Notices you",
+    body: "They hear about you for the first time: on social, in an ad, or from someone who recommends you.",
+    who: ["Branding", "Social"],
+    metric: "Reach in the right audience",
   },
   {
-    name: "Traži",
-    body: "Kad mu zatreba, ukuca uslugu i grad. Tu morate biti među prvima, jer na drugu stranu skoro niko ne ide.",
-    who: ["SEO", "Plaćeno oglašavanje"],
-    metric: "Pozicija i cena po kliku",
+    name: "Searches",
+    body: "When they need it, they type in the service and the city. You have to be among the first results there, because almost nobody goes to page two.",
+    who: ["SEO", "Paid Advertising"],
+    metric: "Ranking and cost per click",
   },
   {
-    name: "Odlučuje",
-    body: "Dolazi na sajt. Brz sajt sa cenom i jasnim sledećim korakom pretvara posetu u upit.",
+    name: "Decides",
+    body: "They land on your site. A fast site with a price and a clear next step turns the visit into an enquiry.",
     who: ["Web"],
-    metric: "Stopa konverzije",
+    metric: "Conversion rate",
   },
   {
-    name: "Javlja se",
-    body: "Poziv, poruka ili porudžbina. Svaki upit se beleži, pa znamo tačno odakle je došao.",
-    who: ["Web", "Plaćeno oglašavanje"],
-    metric: "Cena po upitu",
+    name: "Gets in touch",
+    body: "A call, a message or an order. Every enquiry is recorded, so we know exactly where it came from.",
+    who: ["Web", "Paid Advertising"],
+    metric: "Cost per enquiry",
   },
   {
-    name: "Vraća se",
-    body: "Zadovoljan kupac se vraća i preporučuje vas dalje. Tako krug kreće ponovo, i svaki sledeći kupac košta manje.",
-    who: ["Društvene mreže", "Brend"],
-    metric: "Povratni kupci i preporuke",
+    name: "Comes back",
+    body: "A happy customer comes back and recommends you to others. That starts the loop again, and every next customer costs less.",
+    who: ["Social", "Branding"],
+    metric: "Returning customers and referrals",
   },
 ];
 const N = STAGES.length;
@@ -331,10 +331,10 @@ export default function Loop() {
         <div ref={ref} className={l.grid}>
           <div className={l.head}>
             <Head
-              id="put-kupca"
-              label="Put kupca"
-              title="Kako kupac dolazi do vas i zašto se vraća."
-              intro="Svaka usluga ima svoje mesto na tom putu. Mi vodimo ceo krug, pa svaki kupac dovodi sledećeg."
+              id="customer-path"
+              label="The customer's path"
+              title="How a customer finds you, and why they come back."
+              intro="Every service has its place on that path. We run the whole loop, so every customer brings the next one."
             />
           </div>
           {/* the wheel is dragged here; the numbers on it are the buttons */}
@@ -391,7 +391,7 @@ export default function Loop() {
             <div className={l.center}>
               <div key={active} className={l.centerIn}>
                 <span className={l.of}>
-                  Korak {active + 1} od {N}
+                  Step {active + 1} of {N}
                 </span>
                 <b>{cur.name}</b>
               </div>
@@ -408,7 +408,7 @@ export default function Loop() {
                     transition={{ duration: 0.4 }}
                     aria-hidden="true"
                   >
-                    <Rotate size={13} /> Zavrtite krug
+                    <Rotate size={13} /> Spin the wheel
                   </motion.span>}
             </AnimatePresence>
           </div>
@@ -418,7 +418,7 @@ export default function Loop() {
               <p>{cur.body}</p>
               <div className={l.facts}>
                 <span className={l.fact}>
-                  <span className={l.mini}>Ovde radi</span>
+                  <span className={l.mini}>At work here</span>
                   <span className={l.who}>
                     {cur.who.map((w) => (
                       <i key={w}>{w}</i>
@@ -426,7 +426,7 @@ export default function Loop() {
                   </span>
                 </span>
                 <span className={l.fact}>
-                  <span className={l.mini}>Merimo</span>
+                  <span className={l.mini}>We measure</span>
                   <b>{cur.metric}</b>
                 </span>
               </div>
@@ -435,9 +435,9 @@ export default function Loop() {
         </div>
 
         <Bridge
-          text="Vodimo ceo krug, od prvog pogleda do kupca koji se vraća. Razgovarajmo o vašem."
-          to="#kontakt"
-          label="Razgovarajmo"
+          text="We run the whole loop, from the first glance to the customer who comes back. Let's talk about yours."
+          to="#contact"
+          label="Start a conversation"
         />
       </div>
     </section>

@@ -23,7 +23,7 @@ const SOCIALS = [
   { label: "X", href: "https://x.com/digitl_rs", Icon: IconX },
 ];
 
-const TOPICS = [...SERVICES.map((s) => s.name), "Ceo marketing"];
+const TOPICS = [...SERVICES.map((s) => s.name), "The whole thing"];
 
 export default function Contact() {
   const { plan, topic } = useApp();
@@ -51,17 +51,17 @@ export default function Contact() {
   async function submit(e) {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError("Upišite mejl na koji možemo da odgovorimo.");
+      setError("Enter an email address we can reply to.");
       return;
     }
     setError("");
     setState("sending");
     const text = [
-      "Prvi razgovor (digitl.rs)",
-      `Interesuje ih: ${topics.length ? topics.join(", ") : "nije izabrano"}`,
-      site.trim() ? `Sajt: ${site.trim()}` : null,
-      plan ? `Plan sa sajta: ${plan.answers.join(" | ")}` : null,
-      note.trim() ? `Poruka: ${note.trim()}` : null,
+      "First conversation (digitl.me)",
+      `Interested in: ${topics.length ? topics.join(", ") : "nothing selected"}`,
+      site.trim() ? `Website: ${site.trim()}` : null,
+      plan ? `Plan from the site: ${plan.answers.join(" | ")}` : null,
+      note.trim() ? `Message: ${note.trim()}` : null,
     ]
       .filter(Boolean)
       .join("\n");
@@ -76,42 +76,42 @@ export default function Contact() {
     } catch {
       setState("idle");
       setError(
-        "Poruka nije poslata. Pokušajte ponovo za minut, ili pišite na hello@digitl.rs.",
+        `Unable to send your message right now. Please try again, or write to ${CONTACT.email}.`,
       );
     }
   }
 
   return (
     <section className={b.section} data-section="Kontakt">
-      <span id="kontakt" className={b.anchor} />
+      <span id="contact" className={b.anchor} />
       <div className={b.container}>
         <div className={c.panel}>
           <span className={c.glyph} aria-hidden="true" />
           <div className={c.copy}>
-            <span className={c.label}>Besplatan prvi razgovor</span>
-            <h2 className={c.title}>Napravimo brend koji se izdvaja.</h2>
+            <span className={c.label}>No obligation</span>
+            <h2 className={c.title}>Let's build a brand that stands out.</h2>
             <p className={c.text}>
-              U vremenu kada se pažnja meri sekundama, razliku prave brendovi
-              koji grade iskustva, ne samo sadržaj.
+              Fill out the form or reach out directly. We usually respond within
+              one business day.
             </p>
             <div className={c.tiles}>
               <a className={c.tile} href={`mailto:${CONTACT.email}`}>
                 <span>
-                  <b>Pišite nam</b>
+                  <b>Email us</b>
                   <em>{CONTACT.email}</em>
                 </span>
                 <Mail size={18} />
               </a>
               <a className={c.tile} href={`tel:${CONTACT.tel}`}>
                 <span>
-                  <b>Pozovite</b>
+                  <b>Call</b>
                   <em>{CONTACT.phone}</em>
                 </span>
                 <Phone size={18} />
               </a>
             </div>
             <div className={c.socials}>
-              <span>Pratite nas</span>
+              <span>Follow us</span>
               {SOCIALS.map(({ label, href, Icon }) => (
                 <a
                   key={label}
@@ -126,8 +126,8 @@ export default function Contact() {
             </div>
             {plan
               ? <p className={c.planNote}>
-                  <Check size={14} strokeWidth={3} /> Vaš plan iz tri pitanja
-                  ide uz poruku.
+                  <Check size={14} strokeWidth={3} /> Your plan from the three
+                  questions goes with the message.
                 </p>
               : null}
           </div>
@@ -146,9 +146,9 @@ export default function Contact() {
                     <span className={c.doneMark}>
                       <Check size={26} strokeWidth={3} />
                     </span>
-                    <h3>Poruka je stigla</h3>
+                    <h3>Message sent.</h3>
                     <p>
-                      Javljamo se na <b>{email.trim()}</b> da dogovorimo termin.
+                      We will reply to <b>{email.trim()}</b> to arrange a time.
                     </p>
                   </motion.div>
                 : <motion.form
@@ -159,7 +159,9 @@ export default function Contact() {
                     noValidate
                   >
                     <div className={c.group}>
-                      <span className={c.groupLabel}>Šta vas zanima</span>
+                      <span className={c.groupLabel}>
+                        What you're interested in
+                      </span>
                       <div className={c.chips}>
                         {TOPICS.map((t) => (
                           <button
@@ -179,11 +181,11 @@ export default function Contact() {
                     </div>
                     <div className={c.fields}>
                       <label className={c.field}>
-                        <span>Mejl</span>
+                        <span>Email</span>
                         <input
                           type="email"
                           autoComplete="email"
-                          placeholder="ime@firma.rs"
+                          placeholder="name@company.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
@@ -191,24 +193,24 @@ export default function Contact() {
                       </label>
                       <label className={c.field}>
                         <span>
-                          Sajt <em>(nije obavezno)</em>
+                          Website <em>(optional)</em>
                         </span>
                         <input
                           type="text"
                           inputMode="url"
                           autoComplete="url"
-                          placeholder="firma.rs"
+                          placeholder="company.com"
                           value={site}
                           onChange={(e) => setSite(e.target.value)}
                         />
                       </label>
                       <label className={`${c.field} ${c.wide}`}>
                         <span>
-                          Poruka <em>(nije obavezno)</em>
+                          Message <em>(optional)</em>
                         </span>
                         <textarea
                           rows={3}
-                          placeholder="Čime se bavite i šta biste voleli da se promeni?"
+                          placeholder="What do you do, and what would you like to change?"
                           value={note}
                           onChange={(e) => setNote(e.target.value)}
                         />
@@ -230,7 +232,7 @@ export default function Contact() {
                       disabled={state === "sending"}
                     >
                       <span>
-                        {state === "sending" ? "Šaljemo…" : "Pošalji poruku"}
+                        {state === "sending" ? "Sending…" : "Send message"}
                       </span>
                       <span className={b.arrow}>
                         <ArrowRight size={16} />
@@ -241,7 +243,8 @@ export default function Contact() {
                           {error}
                         </p>
                       : <p className={c.micro}>
-                          Odgovaramo lično. Slanje ne obavezuje ni na šta.
+                          We answer in person. Sending this commits you to
+                          nothing.
                         </p>}
                   </motion.form>}
             </AnimatePresence>

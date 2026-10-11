@@ -29,7 +29,7 @@ const hide = (s) =>
 const show = (s) =>
   s.replace(/[-]/g, (c) => MARKS[c.charCodeAt(0) - 0xe000] ?? "");
 
-const OURS = /^https?:\/\/(www\.)?digitl\.rs(\/|$)/i;
+const OURS = /^https?:\/\/(www\.)?digitl\.me(\/|$)/i;
 
 function spans(text, k) {
   const out = [];
@@ -128,7 +128,7 @@ function Node({ n, k }) {
     case "table":
       return (
         // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrolling region has to be reachable by keyboard
-        <section className={p.table} aria-label="Tabela" tabIndex={0}>
+        <section className={p.table} aria-label="Table" tabIndex={0}>
           <table>
             <thead>
               <tr>

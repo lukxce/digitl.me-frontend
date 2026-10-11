@@ -13,7 +13,7 @@ import Viz, { CountUp } from "./Viz";
 
 const TONES = ["blue", "mist", "lime"];
 const pad2 = (n) => String(n).padStart(2, "0");
-const isResult = (ch) => /^rezultat/i.test(ch.kicker ?? "");
+const isResult = (ch) => /^result/i.test(ch.kicker ?? "");
 
 /* ── top of the page ──────────────────────────────────────────────────── */
 function Hero({ showcase, headline, standfirst, meta, services }) {
@@ -26,7 +26,7 @@ function Hero({ showcase, headline, standfirst, meta, services }) {
     <header className={`${b.glow} ${s.hero}`}>
       <div className={b.container}>
         <Link href="/projects" className={`${s.back} ${b.fadeUp}`}>
-          <ArrowLeft size={15} /> Projekti
+          <ArrowLeft size={15} /> Projects
         </Link>
 
         <div className={`${s.client} ${b.fadeUp}`}>
@@ -54,11 +54,11 @@ function Hero({ showcase, headline, standfirst, meta, services }) {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Posetite sajt
+                  Visit the site
                 </Btn>
               : null}
             {services.length
-              ? <ul className={s.services} aria-label="Šta smo radili">
+              ? <ul className={s.services} aria-label="What we did">
                   {services.map((x) => (
                     <li key={x}>{x}</li>
                   ))}
@@ -88,7 +88,7 @@ function Hero({ showcase, headline, standfirst, meta, services }) {
                 src={sized(showcase.coverUrl, 1600)}
                 srcSet={srcSet(showcase.coverUrl, [800, 1200, 1600, 2400])}
                 sizes="(max-width: 1320px) 100vw, 1256px"
-                alt={`Sajt koji smo napravili za ${name}`}
+                alt={`The website we built for ${name}`}
                 width="1600"
                 height="900"
                 fetchPriority="high"
@@ -111,7 +111,7 @@ function Numbers({ numbers, source }) {
   const em = widestEm(numbers.map((n) => n.value));
   const wraps = em > 7;
   return (
-    <section className={s.numbers} aria-label="Projekat u brojevima">
+    <section className={s.numbers} aria-label="The project in numbers">
       <div className={b.container}>
         <ul
           className={s.numGrid}
@@ -293,7 +293,7 @@ function Next({ next }) {
         <Reveal className={s.next}>
           <div>
             <span className={b.label}>
-              {next.label ?? "Ograničenja i sledeći koraci"}
+              {next.label ?? "Limits and next steps"}
             </span>
             {next.title ? <h2>{next.title}</h2> : null}
           </div>
@@ -314,10 +314,10 @@ function Takeaways({ items }) {
     <section className={s.block}>
       <div className={b.container}>
         <Reveal as="span" className={b.label}>
-          Zaključak
+          Conclusion
         </Reveal>
         <Reveal as="h2" className={`${b.h2} ${s.blockTitle}`} i={1}>
-          Šta smo naučili.
+          What we learned.
         </Reveal>
         <ol className={s.lessons} data-n={Math.min(items.length, 4)}>
           {items.map((t, i) => (
@@ -341,14 +341,14 @@ function More({ projects }) {
         <div className={s.moreHead}>
           <div>
             <Reveal as="span" className={b.label}>
-              Projekti
+              Projects
             </Reveal>
             <Reveal as="h2" className={`${b.h2} ${s.blockTitle}`} i={1}>
-              Još projekata.
+              More projects.
             </Reveal>
           </div>
           <Link href="/projects" className={s.all}>
-            Svi projekti <ArrowUpRight size={15} />
+            All projects <ArrowUpRight size={15} />
           </Link>
         </div>
         <div className={s.moreGrid} data-n={projects.length}>
@@ -376,9 +376,9 @@ export default function Study({ showcase, story, more }) {
   const meta = story?.meta?.length
     ? story.meta
     : [
-        { label: "Klijent", value: name },
-        { label: "Delatnost", value: showcase.category },
-        { label: "Objavljeno", value: monthYear(showcase.publishedAt) },
+        { label: "Client", value: name },
+        { label: "Industry", value: showcase.category },
+        { label: "Published", value: monthYear(showcase.publishedAt) },
       ];
   const numbers = story?.numbers?.length
     ? story.numbers

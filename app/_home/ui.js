@@ -74,7 +74,7 @@ export function AppProvider({ children, home = true }) {
   };
 
   // Arriving on the homepage with a section in the address (a link like
-  // "/#usluge" from the blog or a case study, or a shared URL): go there
+  // "/#services" from the blog or a case study, or a shared URL): go there
   // ourselves instead of trusting the browser's jump, and correct once the
   // fonts and images above have settled. Any touch, wheel or key stops it.
   const lenisRef = useRef(lenis);
@@ -130,7 +130,7 @@ export function AppProvider({ children, home = true }) {
     topic,
     book: (t = null) => {
       if (t) setTopic(t);
-      scrollTo("#kontakt");
+      scrollTo("#contact");
     },
   };
   return <App.Provider value={value}>{children}</App.Provider>;
@@ -182,12 +182,12 @@ export function useTween(target, ms = 1100, run = true) {
 
 /* ── numbers ──────────────────────────────────────────────────────────── */
 const sr = (n, d = 0) =>
-  n.toLocaleString("sr-RS", {
+  n.toLocaleString("en-GB", {
     minimumFractionDigits: d,
     maximumFractionDigits: d,
   });
 
-/** A case-study metric ("3.157", "29.8K", "1. mesec"), rolled up on view. */
+/** A case-study metric ("3,157", "29.8K", "1 → 44"), rolled up on view. */
 export function Counter({ metric, run = true, ms = 1300 }) {
   const v = useTween(metric.num ?? 0, ms, run);
   if (metric.num == null) return <span className={b.tnum}>{metric.text}</span>;

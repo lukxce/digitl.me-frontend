@@ -9,10 +9,12 @@ import { EASE, Head } from "./ui";
 
 export const date = (iso) =>
   iso
-    ? new Date(iso).toLocaleDateString("sr-Latn-RS", {
+    ? new Date(iso).toLocaleDateString("en-GB", {
         day: "numeric",
-        month: "long",
+        month: "short",
         year: "numeric",
+        // the same day on the server and in every browser, as on /journal
+        timeZone: "UTC",
       })
     : "";
 
@@ -25,7 +27,7 @@ function Meta({ a }) {
         : null}
       {a.author ? <b>{a.author}</b> : null}
       <span>{date(a.publishedAt)}</span>
-      {a.minutes ? <span>{a.minutes} min čitanja</span> : null}
+      {a.minutes ? <span>{a.minutes} min read</span> : null}
     </span>
   );
 }
@@ -39,7 +41,7 @@ export function Newsletter({ id = "home-news" }) {
   async function submit(e) {
     e.preventDefault();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-      setError("Upišite ispravan mejl.");
+      setError("Enter a valid email address.");
       return;
     }
     setError("");
@@ -54,7 +56,7 @@ export function Newsletter({ id = "home-news" }) {
       setState("done");
     } catch {
       setState("idle");
-      setError("Prijava nije prošla. Pokušajte ponovo za minut.");
+      setError("Unable to subscribe right now. Please try again.");
     }
   }
 
@@ -62,10 +64,9 @@ export function Newsletter({ id = "home-news" }) {
     <div className={l.news}>
       <div className={l.newsCopy}>
         <span className={l.newsLabel}>Newsletter</span>
-        <h3>Budite u toku.</h3>
+        <h3>Stay in the loop.</h3>
         <p>
-          Trendovi, taktike i uvidi iz sveta marketinga koji vam pomažu da
-          rastete brže, jednom do dva puta mesečno, direktno u inbox.
+          Practical marketing tips, once or twice a month. Unsubscribe anytime.
         </p>
         <AnimatePresence mode="wait" initial={false}>
           {state === "done"
@@ -77,8 +78,7 @@ export function Newsletter({ id = "home-news" }) {
                 transition={{ duration: 0.4, ease: EASE }}
                 role="status"
               >
-                <Check size={16} strokeWidth={3} /> Prijavljeni ste. Prvi tekst
-                stiže uskoro.
+                <Check size={16} strokeWidth={3} /> Thanks for subscribing.
               </motion.p>
             : <motion.form
                 key="form"
@@ -88,13 +88,13 @@ export function Newsletter({ id = "home-news" }) {
                 noValidate
               >
                 <label className={b.srOnly} htmlFor={id}>
-                  Mejl
+                  Email
                 </label>
                 <input
                   id={id}
                   type="email"
                   autoComplete="email"
-                  placeholder="vas@mejl.rs"
+                  placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -109,7 +109,7 @@ export function Newsletter({ id = "home-news" }) {
                   aria-hidden="true"
                 />
                 <button type="submit" disabled={state === "sending"}>
-                  {state === "sending" ? "Šaljem…" : "Prijavite se"}
+                  {state === "sending" ? "Sending…" : "Subscribe"}
                   <ArrowRight size={16} />
                 </button>
               </motion.form>}
@@ -134,13 +134,13 @@ export default function Blog({ articles }) {
       <div className={b.container}>
         <div className={l.top}>
           <Head
-            id="blog"
-            label="Najnoviji tekstovi"
-            title="Blog."
-            intro="Praktični uvidi o marketingu, rastu i izgradnji brendova koji se izdvajaju."
+            id="journal"
+            label="Latest articles"
+            title="Journal."
+            intro="Practical thinking on marketing, growth, and building brands that move numbers."
           />
           <a className={l.all} href="/journal">
-            Svi tekstovi <ArrowUpRight size={15} />
+            All articles <ArrowUpRight size={15} />
           </a>
         </div>
 
@@ -159,7 +159,7 @@ export default function Blog({ articles }) {
                 ? // eslint-disable-next-line @next/next/no-img-element
                   <img src={lead.cover} alt="" loading="lazy" />
                 : null}
-              <span className={l.new}>Najnovije</span>
+              <span className={l.new}>Latest</span>
             </span>
             <span className={l.leadBody}>
               <Meta a={lead} />
@@ -168,7 +168,7 @@ export default function Blog({ articles }) {
                 ? <span className={l.excerpt}>{lead.description}</span>
                 : null}
               <span className={l.read}>
-                Pročitajte tekst <ArrowRight size={15} />
+                Read the article <ArrowRight size={15} />
               </span>
             </span>
           </motion.a>
@@ -176,7 +176,7 @@ export default function Blog({ articles }) {
           {/* the next ones as a reading list */}
           {more.length
             ? <div className={l.list}>
-                <span className={l.listLabel}>Još sa bloga</span>
+                <span className={l.listLabel}>More from the journal</span>
                 {more.map((a, i) => (
                   <motion.a
                     key={a.slug}
@@ -194,9 +194,7 @@ export default function Blog({ articles }) {
                     <span className={l.itemBody}>
                       <span className={l.itemMeta}>
                         <span>{date(a.publishedAt)}</span>
-                        {a.minutes
-                          ? <span>{a.minutes} min čitanja</span>
-                          : null}
+                        {a.minutes ? <span>{a.minutes} min read</span> : null}
                       </span>
                       <b className={l.itemTitle}>{a.title}</b>
                       {a.description

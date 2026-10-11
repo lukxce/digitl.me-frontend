@@ -90,7 +90,7 @@ function Lightbox({ items, index, setIndex, onClose }) {
       className={g.overlay}
       role="dialog"
       aria-modal="true"
-      aria-label={many ? `Slika ${index + 1} od ${count}` : "Uvećana slika"}
+      aria-label={many ? `Image ${index + 1} of ${count}` : "Enlarged image"}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -110,7 +110,7 @@ function Lightbox({ items, index, setIndex, onClose }) {
           type="button"
           className={g.round}
           onClick={onClose}
-          aria-label="Zatvorite"
+          aria-label="Close"
         >
           <X size={18} />
         </button>
@@ -146,7 +146,7 @@ function Lightbox({ items, index, setIndex, onClose }) {
               type="button"
               className={g.round}
               onClick={() => setIndex((i) => (i - 1 + count) % count)}
-              aria-label="Prethodna slika"
+              aria-label="Previous image"
             >
               <ArrowLeft size={18} />
             </button>
@@ -154,7 +154,7 @@ function Lightbox({ items, index, setIndex, onClose }) {
               type="button"
               className={g.round}
               onClick={() => setIndex((i) => (i + 1) % count)}
-              aria-label="Sledeća slika"
+              aria-label="Next image"
             >
               <ArrowRight size={18} />
             </button>
@@ -202,7 +202,7 @@ export default function Gallery({ items }) {
                 type="button"
                 className={g.frame}
                 onClick={() => setOpen(i)}
-                aria-label={`Uvećajte sliku: ${m.alt || m.caption || `slika ${i + 1}`}`}
+                aria-label={`Enlarge image: ${m.alt || m.caption || `image ${i + 1}`}`}
                 style={{ aspectRatio: `${size.width} / ${size.height}` }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}

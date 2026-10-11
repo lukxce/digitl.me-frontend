@@ -49,13 +49,13 @@ function useJump() {
   };
 }
 
-/** "U ovom tekstu" beside the article: follows the reader down the page. */
+/** "In this article" beside the article: follows the reader down the page. */
 export default function Toc({ items }) {
   const current = useCurrent(items);
   const jump = useJump();
   return (
-    <nav className={s.toc} aria-label="U ovom tekstu">
-      <p className={s.sideLabel}>U ovom tekstu</p>
+    <nav className={s.toc} aria-label="In this article">
+      <p className={s.sideLabel}>In this article</p>
       <ol>
         {items.map((it) => (
           <li key={it.id}>
@@ -86,13 +86,13 @@ export function TocFold({ items }) {
   const [open, setOpen] = useState(false);
   const jump = useJump();
   return (
-    <nav className={s.fold} aria-label="U ovom tekstu">
+    <nav className={s.fold} aria-label="In this article">
       <button
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
-        <span>U ovom tekstu</span>
+        <span>In this article</span>
         <i>{items.length}</i>
         <span className={s.foldIcon} data-open={open ? "true" : undefined}>
           <Plus size={16} />

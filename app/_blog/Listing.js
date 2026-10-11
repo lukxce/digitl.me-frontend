@@ -37,7 +37,7 @@ function Lead({ a }) {
       </div>
       <div className={l.leadBody}>
         <p className={l.tags}>
-          <span className={l.new}>Najnovije</span>
+          <span className={l.new}>Latest</span>
           {a.category ? <span className={l.tag}>{a.category}</span> : null}
         </p>
         <h2 className={l.leadTitle}>
@@ -55,10 +55,10 @@ function Lead({ a }) {
             : null}
           {a.author ? <b>{a.author}</b> : null}
           {a.date ? <time dateTime={a.iso ?? undefined}>{a.date}</time> : null}
-          {a.minutes ? <span>{a.minutes} min čitanja</span> : null}
+          {a.minutes ? <span>{a.minutes} min read</span> : null}
         </p>
         <span className={l.read}>
-          Pročitajte tekst <ArrowRight size={15} />
+          Read the article <ArrowRight size={15} />
         </span>
       </div>
     </Link>
@@ -100,12 +100,12 @@ export default function Listing({ articles, categories }) {
               className={`${b.label} ${b.fadeUp}`}
               style={{ animationDelay: "40ms" }}
             >
-              Najnoviji tekstovi
+              Latest articles
             </p>
             <h1 className={`${b.display} ${l.title}`}>
               <span className={b.lineMask}>
                 <span className={b.lineUp} style={{ animationDelay: "100ms" }}>
-                  Blog.
+                  The Digitl Journal.
                 </span>
               </span>
             </h1>
@@ -113,15 +113,15 @@ export default function Listing({ articles, categories }) {
               className={`${b.intro} ${b.fadeUp}`}
               style={{ animationDelay: "240ms" }}
             >
-              Praktični uvidi o marketingu, rastu i izgradnji brendova koji se
-              izdvajaju.
+              Articles on marketing, growth, and building brands that stand out.
             </p>
           </div>
 
           {lead
             ? <Lead a={lead} />
             : <p className={l.empty}>
-                Tekstovi trenutno nisu dostupni. Pokušajte ponovo za minut.
+                Articles aren't available right now. Please try again in a
+                minute.
               </p>}
 
           {/* wide screens: the newsletter right under the newest article;
@@ -136,7 +136,7 @@ export default function Listing({ articles, categories }) {
         ? <section className={l.more} data-section="Još sa bloga">
             <div className={b.container}>
               <div className={l.moreTop}>
-                <Words text="Još sa bloga." className={b.h2} />
+                <Words text="More from the journal." className={b.h2} />
                 {/* biome-ignore lint/a11y/useSemanticElements: <search> is too new for the browsers this site supports */}
                 <form
                   className={l.search}
@@ -145,7 +145,7 @@ export default function Listing({ articles, categories }) {
                 >
                   <Search size={18} />
                   <label className={b.srOnly} htmlFor="blog-search">
-                    Pretražite tekstove po naslovu
+                    Search articles by title
                   </label>
                   <input
                     id="blog-search"
@@ -153,7 +153,7 @@ export default function Listing({ articles, categories }) {
                     inputMode="search"
                     enterKeyHint="search"
                     autoComplete="off"
-                    placeholder="Pretražite tekstove"
+                    placeholder="Search articles"
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
                   />
@@ -161,7 +161,7 @@ export default function Listing({ articles, categories }) {
                     ? <button
                         type="button"
                         className={l.clear}
-                        aria-label="Obriši pretragu"
+                        aria-label="Clear search"
                         onClick={() => setQ("")}
                       >
                         <X size={15} />
@@ -176,7 +176,7 @@ export default function Listing({ articles, categories }) {
                     <div
                       className={l.chips}
                       role="group"
-                      aria-label="Kategorije"
+                      aria-label="Categories"
                     >
                       <button
                         type="button"
@@ -184,7 +184,7 @@ export default function Listing({ articles, categories }) {
                         aria-pressed={!cat}
                         onClick={() => setCat(null)}
                       >
-                        Sve
+                        All
                       </button>
                       {categories.map((c) => (
                         <button
@@ -255,11 +255,11 @@ export default function Listing({ articles, categories }) {
                 : <div className={l.none}>
                     <p>
                       {needle
-                        ? `Nema tekstova sa „${q.trim()}” ${cat ? "u ovoj kategoriji" : "u naslovu"}.`
-                        : "Nema tekstova u ovoj kategoriji."}
+                        ? `${cat ? "Nothing in this category" : "Nothing"} matches “${q.trim()}”.`
+                        : "No articles in this category."}
                     </p>
                     <button type="button" onClick={reset}>
-                      Prikaži sve tekstove
+                      Show all articles
                     </button>
                     <div className={l.newsInline}>
                       <Newsletter id="blog-news" />

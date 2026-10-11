@@ -9,21 +9,21 @@ import v from "./voices.module.css";
    so nothing here can pass for a real testimonial. */
 const QUOTES = [
   {
-    text: "Ovde ide najjači citat klijenta: šta se promenilo u poslu posle saradnje, u dve ili tri rečenice, njegovim rečima.",
-    name: "Ime i prezime",
-    role: "Vlasnik, naziv firme",
+    text: "The strongest client quote goes here: what changed in their business after working with us, in two or three sentences, in their words.",
+    name: "Name Surname",
+    role: "Owner, company name",
     tone: ["#2a29ff", "#9ef34a"],
   },
   {
-    text: "Kraći citat: šta im je bilo najvažnije u saradnji.",
-    name: "Ime i prezime",
-    role: "Pozicija, naziv firme",
+    text: "A shorter quote: what mattered most to them in working with us.",
+    name: "Name Surname",
+    role: "Role, company name",
     tone: ["#ff8078", "#ffc9a8"],
   },
   {
-    text: "Kraći citat: jedan konkretan rezultat koji su primetili.",
-    name: "Ime i prezime",
-    role: "Pozicija, naziv firme",
+    text: "A shorter quote: one concrete result they noticed.",
+    name: "Name Surname",
+    role: "Role, company name",
     tone: ["#0b0b16", "#5d5cff"],
   },
 ];
@@ -73,10 +73,10 @@ export default function Voices() {
     >
       <div className={b.container}>
         <Head
-          id="utisci"
-          label="Utisci"
-          title="Kako izgleda raditi sa nama."
-          intro="Preporuke klijenata koji marketing shvataju ozbiljno."
+          id="clients"
+          label="Clients"
+          title="Trusted by our clients."
+          intro="What it's like to work with us."
         />
         <div className={v.grid}>
           <Reveal as="figure" className={v.main}>
@@ -92,7 +92,7 @@ export default function Voices() {
             <blockquote className={v.mainText}>{main.text}</blockquote>
             <div className={v.mainFoot}>
               <Person q={main} dark />
-              <span className={v.pending}>Čeka pravi citat</span>
+              <span className={v.pending}>Waiting for a real quote</span>
             </div>
           </Reveal>
           {rest.map((q, i) => (
@@ -101,7 +101,7 @@ export default function Voices() {
               <blockquote className={v.smallText}>{q.text}</blockquote>
               <div className={v.smallFoot}>
                 <Person q={q} />
-                <span className={v.pending}>Čeka pravi citat</span>
+                <span className={v.pending}>Waiting for a real quote</span>
               </div>
             </Reveal>
           ))}

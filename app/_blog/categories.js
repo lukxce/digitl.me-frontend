@@ -3,12 +3,18 @@
    words. The first rule that matches decides, so the order matters. */
 
 const RULES = [
-  ["Brend", /rebrend|brend|logo|identitet/],
-  ["E-trgovina", /e-trgovin|prodavnic|korp|plaćanj|e-novac|kupovin|webshop/],
-  ["Oglašavanje", /oglas|google ads|meta |kampanj|budžet|cpa|roas|klik/],
-  ["SEO", /seo|pretrag|rangir/],
-  ["Društvene mreže", /instagram|tiktok|linkedin|društven/],
-  ["Web", /sajt|brzin|web/],
+  ["Brand", /rebrand|\bbrand|\blogo|identity/],
+  [
+    "E-commerce",
+    /e-?commerce|\bshop|\bstores?\b|\bcart\b|checkout|payment|e-money|webshop/,
+  ],
+  [
+    "Advertising",
+    /\bads?\b|advertis|\bmeta\b(?! (?:tag|title|description))|campaign|budget|\bbid(?:s|ding)?\b|\bcpa\b|\broas\b|\bclicks?\b/,
+  ],
+  ["SEO", /\bseo\b|\bsearch|\brank/],
+  ["Social media", /instagram|tiktok|linkedin|\bsocial\b/],
+  ["Web", /\bweb(?:sites?)?\b|\bsites?\b|speed/],
 ];
 const OTHER = "Marketing";
 
@@ -30,5 +36,5 @@ export function countCategories(articles) {
     counts.set(a.category, (counts.get(a.category) ?? 0) + 1);
   return [...counts]
     .map(([name, count]) => ({ name, count }))
-    .sort((x, y) => y.count - x.count || x.name.localeCompare(y.name, "sr"));
+    .sort((x, y) => y.count - x.count || x.name.localeCompare(y.name, "en"));
 }

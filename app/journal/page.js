@@ -8,9 +8,9 @@ import Shell from "../_home/Shell";
 export const revalidate = 60;
 
 export const metadata = {
-  title: "Blog",
+  title: "Journal",
   description:
-    "Digitl Blog: članci o marketingu, rastu i izgradnji brendova koji se izdvajaju.",
+    "The Digitl Journal: articles on marketing, growth, and building brands that stand out.",
   alternates: { canonical: "/journal" },
 };
 

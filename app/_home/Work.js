@@ -3,11 +3,9 @@
 import { motion } from "motion/react";
 import { useRef } from "react";
 import b from "./base.module.css";
-import { ArrowUpRight, Check, X } from "./icons";
+import { ArrowUpRight } from "./icons";
 import { Bridge, Counter, EASE, Head, Roll, useApp, useVisible } from "./ui";
 import w from "./work.module.css";
-
-const find = (clients, re) => clients.find((c) => re.test(c.name));
 
 function CardTop({ c, dark = false, closest = false }) {
   return (
@@ -19,7 +17,7 @@ function CardTop({ c, dark = false, closest = false }) {
           </span>
         : null}
       <span className={w.cat}>{c.category}</span>
-      {closest ? <span className={w.closest}>Najsličnije vama</span> : null}
+      {closest ? <span className={w.closest}>Closest to you</span> : null}
       <span className={w.go}>
         <ArrowUpRight size={17} />
       </span>
@@ -32,14 +30,17 @@ function Shot({ c }) {
   return (
     <span className={w.shot}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={c.cover} alt={`Sajt za ${c.name}`} loading="lazy" />
+      <img src={c.cover} alt={`${c.name} website`} loading="lazy" />
     </span>
   );
 }
 
 function Stats({ metrics, run, dark = false }) {
   return (
-    <span className={`${w.stats} ${dark ? w.statsDark : ""}`}>
+    <span
+      className={`${w.stats} ${dark ? w.statsDark : ""}`}
+      data-n={metrics.length}
+    >
       {metrics.map((m) => (
         <span key={m.label}>
           <b>
@@ -52,246 +53,91 @@ function Stats({ metrics, run, dark = false }) {
   );
 }
 
-/* ElektroMil: from referrals only to the site as the top source */
-function Elektro({ c, closest }) {
-  const ref = useRef(null);
-  const run = useVisible(ref, 0.35);
-  const lesson = c.takeaways?.[0]?.title;
-  const steps = [
-    ["Pre", "Samo preporuke"],
-    ["1. mesec", "Prvi upiti sa pretrage"],
-    ["3. mesec", "Najveći izvor upita"],
-  ];
+/* ── a project from the CMS ───────────────────────────────────────────────
+   Everything on the card is the project's own data: name, category, cover,
+   the first lesson and the metrics. A metric written as a before and an
+   after ("1 → 44") is drawn as tiles; the others stay plain numbers. */
+
+/** "1 → 44" → [1, 44]; anything else → null. */
+function span(metric) {
+  const m = String(metric.value).match(/^(\d+)\s*(?:→|->)\s*(\d+)$/);
+  return m ? [Number(m[1]), Number(m[2])] : null;
+}
+
+// Past this many the sheet is drawn to scale and the number carries the rest.
+const MAX_TILES = 48;
+
+/** What was there in ink, what was added in blue (or, for a number that went
+    down, what is left in blue and what went as an outline). */
+function Growth({ metric, run }) {
+  const [from, to] = span(metric);
+  const big = Math.max(from, to);
+  const small = Math.min(from, to);
+  const scale = big > MAX_TILES ? MAX_TILES / big : 1;
+  const total = Math.round(big * scale);
+  const kept = small > 0 ? Math.max(1, Math.round(small * scale)) : 0;
+  const tiles = Array.from({ length: total }, (_, i) => ({
+    id: `tile-${i}`,
+    kind: i < kept ? "kept" : to >= from ? "new" : "gone",
+    delay: i < kept ? 0 : 0.25 + (i - kept) * 0.03,
+  }));
+  // even rows of up to twelve, so the last one is not left ragged
+  const rows = Math.max(1, Math.ceil(total / 12));
+  const cols = Math.max(8, Math.ceil(total / rows));
   return (
-    <a
-      ref={ref}
-      href={c.href}
-      className={`${w.card} ${w.tBlue} ${closest ? w.isClosest : ""}`}
-    >
-      <CardTop c={c} closest={closest} />
-      <Shot c={c} />
-      <span className={w.name}>{c.name}</span>
-      <span className={w.sub}>
-        Električar iz Niša. Deset godina posla samo na preporuci, nula prisustva
-        na internetu.
+    <span className={w.growth}>
+      <span className={w.growthNum}>
+        <b>{metric.value}</b>
+        <em>{metric.label}</em>
       </span>
-      <span className={w.timeline}>
-        <motion.i
-          className={w.tlLine}
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: run ? 1 : 0 }}
-          transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
-        />
-        {steps.map(([k, v], i) => (
-          <motion.span
-            key={k}
-            className={w.tlStep}
-            data-last={i === steps.length - 1 ? "true" : undefined}
-            initial={{ opacity: 0, y: 14 }}
-            animate={run ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3 + i * 0.45, duration: 0.55, ease: EASE }}
+      {total > 0
+        ? <span
+            className={w.tiles}
+            style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+            aria-hidden="true"
           >
-            <i />
-            <b>{k}</b>
-            <em>{v}</em>
-          </motion.span>
-        ))}
-      </span>
-      {lesson ? <span className={w.lesson}>„{lesson}“</span> : null}
-      <span className={w.didLight}>
-        {["Sajt od nule", "Lokalni SEO", "Pretrage sa kupovnom namerom"].map(
-          (d) => (
-            <i key={d}>{d}</i>
-          ),
-        )}
-      </span>
-    </a>
+            {tiles.map((t) => (
+              <motion.i
+                key={t.id}
+                data-kind={t.kind}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={run ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: t.delay, duration: 0.4, ease: EASE }}
+              />
+            ))}
+          </span>
+        : null}
+    </span>
   );
 }
 
-/* Moler Niš: six services, six pages */
-const MOLER = [
-  "Krečenje",
-  "Gletovanje",
-  "Fasada",
-  "Dekorativni premazi",
-  "Tapete",
-  "Sanacija vlage",
-];
-function Moler({ c, closest }) {
-  const ref = useRef(null);
-  const run = useVisible(ref, 0.35);
-  return (
-    <a
-      ref={ref}
-      href={c.href}
-      className={`${w.card} ${w.tMist} ${closest ? w.isClosest : ""}`}
-    >
-      <CardTop c={c} closest={closest} />
-      <Shot c={c} />
-      <span className={w.name}>{c.name}</span>
-      <span className={w.sub}>
-        Jedanaest godina rada i nijedan red na internetu. Šest usluga su šest
-        pretraga, pa je svaka dobila svoju stranicu.
-      </span>
-      <span className={w.pages}>
-        {MOLER.map((p, i) => (
-          <motion.span
-            key={p}
-            className={w.page}
-            initial={{ opacity: 0, y: 12, scale: 0.96 }}
-            animate={run ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ delay: 0.2 + i * 0.12, duration: 0.5, ease: EASE }}
-          >
-            <i />
-            <s />
-            <s />
-            <b>{p}</b>
-          </motion.span>
-        ))}
-      </span>
-      <Stats metrics={c.metrics} run={run} />
-    </a>
-  );
-}
+const TONES = [w.tBlue, w.tMist, w.tLime];
 
-/* ThermiQ: from invisible in search to a steady stream of visits.
-   Numbers from Search Console, 5 Jul to 3 Oct 2026 (the same window as the
-   case study at /projects/thermiq): 2.836 clicks, 51.773 impressions, average
-   position 7,1 in the last 28 days, 3.157 indexed pages. The little chart is
-   the real series: clicks per full week, 6 Jul to 21 Sep (80 → 341). */
-const VISITS_PATH =
-  "M0.0,76.4 L23.6,77.9 L47.3,63.5 L70.9,61.0 L94.5,45.4 L118.2,40.0 L141.8,35.9 L165.5,25.1 L189.1,37.3 L212.7,33.2 L236.4,12.2 L260.0,12.6";
-const VISITS_AREA = `${VISITS_PATH} L260,100 L0,100 Z`;
-const DID = [
-  "Novi identitet",
-  "Sajt za hiljade proizvoda",
-  "SEO na nivou šablona",
-  "Kalkulator toplotne pumpe",
-];
-
-function Thermiq({ c, closest }) {
+function Project({ c, tone, closest, solo }) {
   const ref = useRef(null);
   const run = useVisible(ref, 0.3);
-  const visits = { num: 2836, decimals: 0, thousands: true, suffix: "" };
-  const small = [
-    ["51.773", "prikaza u pretrazi"],
-    ["3.157", "stranica u Google-u"],
-    ["7,1", "prosečna pozicija"],
-  ];
+  const lesson = c.takeaways?.[0]?.title;
+  const grown = c.metrics.find((m) => span(m));
+  const rest = c.metrics.filter((m) => m !== grown);
   return (
     <a
       ref={ref}
       href={c.href}
-      className={`${w.card} ${w.dark} ${closest ? w.isClosest : ""}`}
-    >
-      <CardTop c={c} dark closest={closest} />
-      <Shot c={c} />
-      <span className={w.nameBig}>{c.name}</span>
-      <span className={w.subDark}>
-        Od praktično nevidljivog u pretrazi do stalnog toka poseta, za tri
-        meseca.
-      </span>
-
-      <span className={w.hero}>
-        <span className={w.heroNum}>
-          <b>
-            <Counter metric={visits} run={run} ms={1800} />
-          </b>
-          <em>poseta iz Google pretrage za tri meseca</em>
-        </span>
-        <svg
-          className={w.spark}
-          viewBox="0 0 260 100"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <motion.path
-            d={VISITS_AREA}
-            className={w.sparkArea}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: run ? 1 : 0 }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.6 }}
-          />
-          <motion.path
-            d={VISITS_PATH}
-            className={w.sparkVisits}
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: run ? 1 : 0 }}
-            transition={{ duration: 1.6, ease: EASE, delay: 0.2 }}
-          />
-        </svg>
-      </span>
-      <span className={w.sparkLegend}>
-        <span>
-          <i data-k="visits" /> posete iz pretrage po nedeljama, jul do
-          septembar
-        </span>
-      </span>
-
-      <span className={w.smallStats}>
-        {small.map(([v, k]) => (
-          <span key={k}>
-            <b>{v}</b>
-            <em>{k}</em>
-          </span>
-        ))}
-      </span>
-
-      <span className={w.did}>
-        {DID.map((d) => (
-          <i key={d}>{d}</i>
-        ))}
-      </span>
-    </a>
-  );
-}
-
-/* Servis Klime Niš: the price is on the page, not "na upit" */
-function Klima({ c, closest }) {
-  const ref = useRef(null);
-  const run = useVisible(ref, 0.35);
-  return (
-    <a
-      ref={ref}
-      href={c.href}
-      className={`${w.card} ${w.tLime} ${closest ? w.isClosest : ""}`}
+      className={`${w.card} ${tone} ${solo ? w.solo : ""} ${closest ? w.isClosest : ""}`}
     >
       <CardTop c={c} closest={closest} />
       <Shot c={c} />
-      <span className={w.name}>{c.name}</span>
-      <span className={w.sub}>
-        Kod konkurencije cena ostaje tajna dok serviser ne dođe. Ovde stoji na
-        svakoj stranici usluge.
-      </span>
-      <span className={w.prices}>
-        {["Servis klime", "Montaža", "Popravka", "Dijagnostika"].map((s, i) => (
-          <span key={s} className={w.priceRow}>
-            <span>{s}</span>
-            <span className={w.swap}>
-              <motion.em
-                initial={{ opacity: 1 }}
-                animate={{ opacity: run ? 0 : 1 }}
-                transition={{ delay: 0.4 + i * 0.25, duration: 0.3 }}
-              >
-                <X size={11} strokeWidth={3} /> cena na upit
-              </motion.em>
-              <motion.b
-                initial={{ opacity: 0, y: 6 }}
-                animate={run ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  delay: 0.55 + i * 0.25,
-                  duration: 0.4,
-                  ease: EASE,
-                }}
-              >
-                <Check size={11} strokeWidth={3} /> cena na sajtu
-              </motion.b>
+      <span className={w.story}>
+        <span className={w.name}>{c.name}</span>
+        {lesson
+          ? <span className={w.learned}>
+              <em>Learned on the work</em>
+              <span className={w.lesson}>{lesson}</span>
             </span>
-          </span>
-        ))}
+          : null}
+        {grown ? <Growth metric={grown} run={run} /> : null}
+        {rest.length ? <Stats metrics={rest} run={run} /> : null}
       </span>
-      <Stats metrics={c.metrics} run={run} />
     </a>
   );
 }
@@ -304,69 +150,67 @@ function AllCases({ clients }) {
       <span className={w.allNum}>
         <Roll value={run ? 50 : 0} ms={1600} suffix="+" />
       </span>
-      <span className={w.allText}>
-        uspešnih saradnji, od majstora iz Niša do distributera sa hiljadama
-        proizvoda.
-      </span>
-      <span className={w.allSites}>
-        {clients.slice(0, 4).map((c) => (
-          <span key={c.slug} className={w.allSite}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={c.cover} alt="" loading="lazy" />
-            <b>{c.name}</b>
+      <span className={w.allText}>companies we've helped grow.</span>
+      {/* with a single project its site is already the card beside this */}
+      {clients.length > 1
+        ? <span className={w.allSites}>
+            {clients.slice(0, 4).map((c) => (
+              <span key={c.slug} className={w.allSite}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.cover} alt="" loading="lazy" />
+                <b>{c.name}</b>
+              </span>
+            ))}
           </span>
-        ))}
-      </span>
+        : null}
       <span className={w.allBtn}>
-        Pogledajte sve projekte <ArrowUpRight size={16} />
+        View all projects <ArrowUpRight size={16} />
       </span>
     </a>
   );
 }
 
-// Two cases on the page. The plan's closest match takes the first slot.
-const CARDS = [
-  { re: /elektro/i, C: Elektro },
-  { re: /thermiq/i, C: Thermiq },
-  { re: /moler/i, C: Moler },
-  { re: /klim/i, C: Klima },
-];
-
 export default function Work({ clients }) {
   const { plan } = useApp();
-  const available = CARDS.map((x) => ({ ...x, c: find(clients, x.re) })).filter(
-    (x) => x.c,
-  );
-  const match = available.find((x) => x.c.slug === plan?.match);
-  const picks = match
-    ? [match, ...available.filter((x) => x !== match)].slice(0, 2)
-    : available.slice(0, 2);
+  // Up to two projects on the page. The plan's closest match takes the
+  // first slot; a single project gets the whole row to itself.
+  const match = clients.find((c) => c.slug === plan?.match);
+  const picks = (
+    match ? [match, ...clients.filter((c) => c !== match)] : clients
+  ).slice(0, 2);
+  const solo = picks.length === 1;
 
   return (
     <section className={`${b.section} ${w.section}`} data-section="Rezultati">
       <div className={b.container}>
         <Head
-          id="rezultati"
-          label="Projekti"
-          title="Odabrani projekti."
+          id="work"
+          label="Projects"
+          title="Work that speaks for itself."
           intro={
-            match
-              ? "Primeri saradnji i rezultata koje smo ostvarili sa klijentima. Prvi je projekat najsličniji vašem."
-              : "Primeri saradnji i rezultata koje smo ostvarili sa klijentima."
+            match && !solo
+              ? "From strategy to execution, here's what that looks like in practice. The first project is the one closest to yours."
+              : "From strategy to execution, here's what that looks like in practice."
           }
         />
-        <div className={w.grid}>
-          {picks.map(({ C, c }) => (
-            <C key={c.slug} c={c} closest={plan?.match === c.slug} />
+        <div className={`${w.grid} ${solo ? w.gridSolo : ""}`}>
+          {picks.map((c) => (
+            <Project
+              key={c.slug}
+              c={c}
+              tone={TONES[clients.indexOf(c) % TONES.length]}
+              closest={plan?.match === c.slug}
+              solo={solo}
+            />
           ))}
           <AllCases clients={clients} />
         </div>
       </div>
       <div className={b.container}>
         <Bridge
-          text="Brojevi su jedno. Evo šta kažu ljudi sa kojima radimo."
-          to="#utisci"
-          label="Utisci klijenata"
+          text="Numbers are one thing. Here's what the people we work with say."
+          to="#clients"
+          label="What clients say"
         />
       </div>
     </section>

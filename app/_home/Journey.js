@@ -7,7 +7,7 @@ import { Check } from "./icons";
 import j from "./journey.module.css";
 import { EASE, Roll, useVisible } from "./ui";
 
-/* The old homepage's "4 · Kako radimo", kept small. On wide screens all four
+/* The old homepage's "4 · How we work", kept small. On wide screens all four
    cards sit on one rail and the light moves step to step (hover takes over).
    On phones the same cards swipe sideways, the next one peeking in, with a
    numbered stepper above that follows the swipe and can be tapped. */
@@ -16,28 +16,32 @@ const DWELL = 3800;
 
 const STEPS = [
   {
-    name: "Razumevanje",
-    body: "Analiziramo biznis, ciljeve i dosadašnje brojeve da vidimo šta radi, a šta ne.",
+    name: "Discovery & Audit",
+    body: "We analyse the business, goals, and numbers to see what's working and what isn't.",
     get: [
-      "Audit sajta, oglasa i profila",
-      "Pregled konkurencije",
-      "Šta radi, a šta ne",
+      "Audit of your site, ads and profiles",
+      "A look at your competitors",
+      "What's working and what isn't",
     ],
   },
   {
-    name: "Planiranje",
-    body: "Postavljamo prioritete, kanale i jasan plan rasta.",
-    get: ["Prioriteti po redu", "Kanali i budžet", "Broj koji pratimo"],
+    name: "Strategy & Direction",
+    body: "We set priorities, channel mix, and a clear growth plan.",
+    get: ["Priorities, in order", "Channels and budget", "The number we track"],
   },
   {
-    name: "Lansiranje",
-    body: "Pokrećemo, testiramo i skaliramo ono što zarađuje.",
-    get: ["Sajt i kampanje uživo", "Praćenje poziva i formi", "Prvi upiti"],
+    name: "Execution & Optimization",
+    body: "We launch, test, and scale what earns its budget.",
+    get: [
+      "Site and campaigns live",
+      "Call and form tracking",
+      "First enquiries",
+    ],
   },
   {
-    name: "Optimizacija",
-    body: "Jasni izveštaji i konkretne odluke o sledećem koraku.",
-    get: ["Mesečni izveštaj", "Šta gasimo, a šta pojačavamo", "Sledeći korak"],
+    name: "Reporting & Growth",
+    body: "Clear reporting and concrete decisions on the next move.",
+    get: ["Monthly report", "What we stop and what we scale", "The next move"],
   },
 ];
 const N = STEPS.length;
@@ -86,27 +90,27 @@ export default function Journey() {
   return (
     <section className={`${b.section} ${j.section}`} data-section="Kako radimo">
       <div ref={ref} className={b.container}>
-        <span id="proces" className={b.anchor} />
+        <span id="process" className={b.anchor} />
         <div className={j.head}>
           <span className={j.four} aria-hidden="true">
             <Roll value={visible ? 4 : 0} ms={1400} />
           </span>
           <div className={j.headText}>
-            <span className={b.label}>Kako radimo</span>
+            <span className={b.label}>How we work</span>
             <p>
-              <b>Jedan proces</b>
+              <b>One connected process</b>
               {/* a string, not JSX text: with an entity in it the server and
                   the browser trimmed the leading space differently */}
               {
-                " od prvog razgovora do mesečnog izveštaja. U\u00a0svakom koraku "
+                " that keeps strategy, execution and results moving in the same direction, "
               }
-              <b>znate šta radimo i šta je sledeće.</b>
+              <b>start to finish.</b>
             </p>
           </div>
         </div>
 
         {/* phones: the stepper that drives the swipe */}
-        <div className={j.stepper} role="tablist" aria-label="Koraci">
+        <div className={j.stepper} role="tablist" aria-label="Steps">
           <span className={j.stepperRail} aria-hidden="true">
             <motion.i
               initial={false}
@@ -166,7 +170,7 @@ export default function Journey() {
                   <div className={j.card}>
                     <h3>{s.name}</h3>
                     <p>{s.body}</p>
-                    <ul className={j.get} aria-label="Šta dobijate">
+                    <ul className={j.get} aria-label="What you get">
                       {s.get.map((g, k) => (
                         <motion.li
                           key={g}

@@ -9,99 +9,99 @@ import {
 import { useEffect, useRef, useState } from "react";
 import s from "./socialCard.module.css";
 
-/* The hero's social card. A week of posts for "vasafirma": the plan drops
+/* The hero's social card. A week of posts for "yourbusiness": the plan drops
    into the days, the content gets shot, then each day's post goes out, the
    likes and comments come in, and a message arrives, gets an answer and
-   turns into an enquiry. Then the next day. The reader can press "Objavi"
+   turns into an enquiry. Then the next day. The reader can press "Publish"
    to publish the next post now, and double-tap a post to like it. Everything
    is illustrative: generic names, modest numbers. */
 
-const DAYS = ["Pon", "Uto", "Sre", "Čet", "Pet", "Sub", "Ned"];
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const TYPE = { reel: "Reel", post: "Post", story: "Story" };
 
 const POSTS = [
   {
     day: 0,
     time: "18:00",
-    title: "Pre i posle",
+    title: "Makeover",
     type: "reel",
     art: "pre",
     likes: 64,
-    caption: "Pre i posle: isti prostor, dva dana kasnije.",
-    comment: ["milan.k", "Razlika je ogromna!"],
+    caption: "Before and after: same room, two days later.",
+    comment: ["james.k", "What a difference."],
     dm: {
-      who: "Jelena M.",
-      ini: "JM",
+      who: "Helen M.",
+      ini: "HM",
       tone: "spark",
-      text: "Koliko košta montaža?",
+      text: "How much is installation?",
       upit: true,
     },
   },
   {
     day: 1,
     time: "12:00",
-    title: "Saveti",
+    title: "Tips",
     type: "post",
     art: "saveti",
     likes: 41,
-    caption: "Tri saveta pre nego što pozovete majstora.",
-    comment: ["sanja_d", "Korisno, hvala!"],
+    caption: "Three tips before you call a tradesperson.",
+    comment: ["sarah_d", "Useful, thank you."],
     dm: {
-      who: "Marko S.",
+      who: "Mark S.",
       ini: "MS",
       tone: "mist",
-      text: "Hvala na savetima, baš korisno.",
+      text: "Thanks, really useful tips.",
       upit: false,
     },
   },
   {
     day: 3,
     time: "09:30",
-    title: "Iza kulisa",
+    title: "Backstage",
     type: "story",
     art: "kulise",
     likes: 37,
-    caption: "Iza kulisa: jutro pre prvog termina.",
-    comment: ["petar.j", "Svaka čast ekipi."],
+    caption: "Backstage: the morning before the first job.",
+    comment: ["peter.j", "Hats off to the team."],
     dm: {
-      who: "Ana P.",
+      who: "Anna P.",
       ini: "AP",
       tone: "lime",
-      text: "Da li radite subotom?",
+      text: "Do you work Saturdays?",
       upit: true,
     },
   },
   {
     day: 4,
     time: "17:00",
-    title: "Recenzija",
+    title: "Review",
     type: "post",
     art: "recenzija",
     likes: 48,
-    caption: "„Brzo, čisto i tačno po dogovoru.“",
-    comment: ["tamara.v", "Potvrđujem, isto iskustvo."],
+    caption: "“Quick, clean, just as agreed.”",
+    comment: ["emma.v", "Agreed, same experience here."],
     dm: {
-      who: "Nikola D.",
+      who: "Nick D.",
       ini: "ND",
       tone: "ink",
-      text: "Možete li sutra?",
+      text: "Can you come tomorrow?",
       upit: true,
     },
   },
   {
     day: 5,
     time: "11:00",
-    title: "Ponuda",
+    title: "Offer",
     type: "reel",
     art: "ponuda",
     likes: 57,
-    caption: "Ponuda: -10% na prvi termin, do kraja meseca.",
-    comment: ["dragan_m", "Važi li i za firme?"],
+    caption: "Offer: 10% off your first booking this month.",
+    comment: ["daniel_m", "Is it for businesses too?"],
     dm: {
-      who: "Ivana R.",
+      who: "Isla R.",
       ini: "IR",
       tone: "accent",
-      text: "Imate li slobodan termin u petak?",
+      text: "Any free slots on Friday?",
       upit: true,
     },
   },
@@ -128,20 +128,20 @@ const STOP = Symbol("stop");
 const SEED = [
   {
     key: "s1",
-    who: "Stefan J.",
+    who: "Stephen J.",
     ini: "SJ",
     tone: "pale",
-    text: "Hvala, vidimo se u utorak.",
+    text: "Thanks, see you on Tuesday.",
     upit: false,
     t: N,
     old: true,
   },
   {
     key: "s2",
-    who: "Milica T.",
+    who: "Mia T.",
     ini: "MT",
     tone: "mist",
-    text: "Super, hvala na brzom odgovoru!",
+    text: "Thanks for the quick reply.",
     upit: false,
     t: N,
     old: true,
@@ -178,16 +178,12 @@ const commentsAt = (t) => (t >= T_COMMENT) + (t >= 11) + (t >= 17);
 const gainAt = (t) => (t >= 6) + (t >= 12) + (t >= 18);
 
 function fmt(n) {
-  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// 1 pratilac, 2 pratioca, 5 pratilaca (and 21, 22, 25 ...)
+// 1 follower, 2 followers
 function pratioci(n) {
-  const a = n % 10;
-  const b = n % 100;
-  if (a === 1 && b !== 11) return "pratilac";
-  if (a >= 2 && a <= 4 && (b < 12 || b > 14)) return "pratioca";
-  return "pratilaca";
+  return n === 1 ? "follower" : "followers";
 }
 
 function derive(w) {
@@ -404,10 +400,10 @@ function Art({ kind }) {
           </svg>
         </i>
         <em className={s.lbl} data-side="l">
-          Pre
+          Before
         </em>
         <em className={s.lbl} data-side="r">
-          Posle
+          After
         </em>
       </span>
     );
@@ -626,7 +622,7 @@ export default function SocialCard({ footer = null }) {
     [],
   );
 
-  // "Objavi": the next post goes out now (a new week once all five are out)
+  // "Publish": the next post goes out now (a new week once all five are out)
   const publishNow = () => {
     userRef.current = true;
     setUser(true);
@@ -689,31 +685,31 @@ export default function SocialCard({ footer = null }) {
   const storyLive = pub && POSTS[w.cur].type === "story";
   const unread = d.inbox.slice(0, 3).filter((x) => x.t < T_REPLY).length;
 
-  let next = { k: "Sledeća objava", v: "nova nedelja" };
+  let next = { k: "Next post", v: "new week" };
   if (w.phase === "plan" || w.phase === "shoot")
-    next = { k: "Nova nedelja", v: "plan i snimanje" };
+    next = { k: "New week", v: "plan and shoot" };
   else if (nextIdx >= 0)
     next = {
-      k: "Sledeća objava",
+      k: "Next post",
       v: `${DAYS[POSTS[nextIdx].day]} ${POSTS[nextIdx].time}`,
     };
 
   let hint = (
     <>
       <Pointer />
-      <span className={s.long}>Kliknite Objavi ili dvaput na objavu</span>
-      <span className={s.short}>Tapnite Objavi</span>
+      <span className={s.long}>Click Publish, or double-click a post</span>
+      <span className={s.short}>Tap Publish</span>
     </>
   );
-  if (user && done && w.cur >= 0) hint = "Cela nedelja je objavljena";
+  if (user && done && w.cur >= 0) hint = "Whole week published";
   else if (user && w.cur >= 0)
     hint = (
       <span className={s.said}>
-        Objavljeno: <b>{POSTS[w.cur].title}</b>
-        <span className={s.long}>, još {left} u planu</span>
+        Published: <b>{POSTS[w.cur].title}</b>
+        <span className={s.long}>, {left} more planned</span>
       </span>
     );
-  else if (user) hint = "Nova nedelja, planiranje…";
+  else if (user) hint = "New week, planning…";
 
   return (
     <MotionConfig reducedMotion="user">
@@ -723,10 +719,10 @@ export default function SocialCard({ footer = null }) {
             {/* ── account + publish ───────────────────────────────── */}
             <div className={s.bar}>
               <span className={s.avaRing} data-story={storyLive}>
-                <span className={s.ava}>V</span>
+                <span className={s.ava}>Y</span>
               </span>
               <span className={s.who}>
-                <b>@vasafirma</b>
+                <b>@yourbusiness</b>
                 <span className={s.fans}>
                   <span className={s.fansNo}>
                     <Roll value={fmt(d.followers)} dy={17} />
@@ -739,7 +735,7 @@ export default function SocialCard({ footer = null }) {
                 <b>{next.v}</b>
               </span>
               <button type="button" className={s.go} onClick={publishNow}>
-                {user && done ? "Nova nedelja" : "Objavi"}
+                {user && done ? "New week" : "Publish"}
               </button>
             </div>
 
@@ -749,7 +745,7 @@ export default function SocialCard({ footer = null }) {
                 {hint}
               </span>
               <span className={s.leads} data-done={done} data-hot={hot}>
-                Upiti iz poruka
+                DM enquiries
                 <span className={s.leadsNo}>
                   <Roll value={d.upiti} />
                 </span>
@@ -762,7 +758,7 @@ export default function SocialCard({ footer = null }) {
               style={{ "--d": pub ? POSTS[w.cur].day : 0 }}
             >
               <span className={s.ring} data-on={pub} aria-hidden />
-              <ol className={s.days} aria-label="Plan objava za ovu nedelju">
+              <ol className={s.days} aria-label="This week's posting plan">
                 {DAYS.map((day, k) => {
                   const i = BY_DAY[k];
                   const p = i >= 0 ? POSTS[i] : null;
@@ -829,7 +825,7 @@ export default function SocialCard({ footer = null }) {
                         data-free={!p || undefined}
                       >
                         {p ? <TypeIcon type={p.type} /> : null}
-                        {p ? p.title : "Slobodno"}
+                        {p ? p.title : "Free"}
                       </span>
                     </li>
                   );
@@ -851,9 +847,9 @@ export default function SocialCard({ footer = null }) {
                         transition={{ duration: 0.45, ease: EASE }}
                       >
                         <header className={s.postHead}>
-                          <span className={s.postAva}>V</span>
+                          <span className={s.postAva}>Y</span>
                           <span className={s.postWho}>
-                            <b className={s.postName}>vasafirma</b>
+                            <b className={s.postName}>yourbusiness</b>
                             <b className={s.postTitle}>{P.title}</b>
                             <span>
                               {TYPE[P.type]} · {DAYS[P.day]} {P.time}
@@ -866,18 +862,18 @@ export default function SocialCard({ footer = null }) {
                             {post.t < T_LIVE
                               ? <>
                                   <i className={s.spin} />
-                                  <span className={s.word}>Objavljuje se</span>
+                                  <span className={s.word}>Publishing</span>
                                 </>
                               : <>
                                   <Check size={10} />
-                                  <span className={s.word}>Objavljeno</span>
+                                  <span className={s.word}>Published</span>
                                 </>}
                           </span>
                         </header>
                         <div
                           className={s.shot}
                           onPointerUp={onTap}
-                          title="Dvaput kliknite da vam se svidi"
+                          title="Double-click to like"
                         >
                           <Art kind={P.art} />
                           <span className={s.shotType}>
@@ -914,7 +910,7 @@ export default function SocialCard({ footer = null }) {
                             className={s.likeBtn}
                             data-on={isLiked}
                             aria-pressed={isLiked}
-                            aria-label="Sviđa mi se"
+                            aria-label="Like"
                             onClick={toggleLike}
                           >
                             <motion.span
@@ -939,7 +935,7 @@ export default function SocialCard({ footer = null }) {
                           </span>
                         </div>
                         <p className={s.caption}>
-                          <b>vasafirma</b> {P.caption}
+                          <b>yourbusiness</b> {P.caption}
                         </p>
                         <p
                           className={s.comment}
@@ -955,7 +951,7 @@ export default function SocialCard({ footer = null }) {
               <div className={s.inbox}>
                 <div className={s.inHead}>
                   <span className={s.inTitle}>
-                    Poruke
+                    Messages
                     <AnimatePresence initial={false}>
                       {unread > 0
                         ? <motion.em
@@ -971,7 +967,7 @@ export default function SocialCard({ footer = null }) {
                   </span>
                   <span className={s.speed}>
                     <Clock />
-                    odgovor za ~5 min
+                    reply in ~5 min
                   </span>
                 </div>
                 <ul className={s.dms}>
@@ -1006,16 +1002,16 @@ export default function SocialCard({ footer = null }) {
                                 <b>{m.who}</b>
                                 <span className={s.dmMeta}>
                                   {m.old
-                                    ? "juče"
+                                    ? "yesterday"
                                     : fresh
                                       ? <>
                                           <i className={s.dot} />
-                                          sada
+                                          now
                                         </>
                                       : <>
                                           <Check size={10} />
                                           <span className={s.word}>
-                                            odgovoreno
+                                            replied
                                           </span>
                                         </>}
                                 </span>
@@ -1031,7 +1027,7 @@ export default function SocialCard({ footer = null }) {
                                       exit={{ scale: 0.6, opacity: 0 }}
                                       transition={POP}
                                     >
-                                      Upit
+                                      Enquiry
                                     </motion.em>
                                   : null}
                               </AnimatePresence>

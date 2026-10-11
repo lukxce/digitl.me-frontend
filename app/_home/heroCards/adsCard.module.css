@@ -969,7 +969,8 @@
 @media (max-width: 640px) {
   .stage {
     --row: 54px;
-    --stats: 74px;
+    /* wide enough for a two-digit count and the word "enquiries" */
+    --stats: 80px;
   }
   .list {
     max-height: calc(3 * var(--row) + 2 * var(--gap));

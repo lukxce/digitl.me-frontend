@@ -30,7 +30,7 @@ const OPENING_MAX = 160;
 
 /** A blog post: the promise and the cover up top as on the homepage, the
     key messages, then the text in a reading column with its contents and
-    share actions alongside. `more` are cards for "Još sa bloga". */
+    share actions alongside. `more` are cards for "More from the journal". */
 export default async function Article({ article, more }) {
   const url = `${SITE_URL}/journal/${encodeURIComponent(article.slug)}`;
   const { blocks } = article;
@@ -60,7 +60,13 @@ export default async function Article({ article, more }) {
     opening = parsed.nodes[0].text;
     parsed.nodes = parsed.nodes.slice(1);
   }
-  const toc = parsed ? parsed.toc : extractContentHeadings(blocks);
+  // Portable Text articles list their main headings; the trailing colon some
+  // of them carry is dropped, as it is for Markdown ones.
+  const toc = parsed
+    ? parsed.toc
+    : extractContentHeadings(blocks)
+        .filter((h) => (h.level ?? 2) <= 2)
+        .map((h) => ({ id: h.id, label: h.label.replace(/:$/, "") }));
   const showToc = hasBody && toc.length > 1;
 
   const standfirst =
@@ -89,12 +95,12 @@ export default async function Article({ article, more }) {
               <Link
                 href="/journal"
                 className={`${s.back} ${b.fadeUp}`}
-                aria-label="Nazad na blog"
+                aria-label="Back to the journal"
               >
                 <span>
                   <ArrowLeft size={14} />
                 </span>
-                Blog
+                Journal
               </Link>
               <h1
                 className={`${s.title} ${b.fadeUp}`}
@@ -131,7 +137,7 @@ export default async function Article({ article, more }) {
                     {date
                       ? <time dateTime={article.publishedAt}>{date}</time>
                       : null}
-                    {minutes ? <i>{minutes} min čitanja</i> : null}
+                    {minutes ? <i>{minutes} min read</i> : null}
                   </span>
                 </p>
               </div>
@@ -162,10 +168,10 @@ export default async function Article({ article, more }) {
         </header>
 
         {keys.length
-          ? <section className={b.container} aria-labelledby="kljucne-poruke">
+          ? <section className={b.container} aria-labelledby="key-takeaways">
               <Reveal className={s.keys}>
-                <h2 id="kljucne-poruke" className={s.keysLabel}>
-                  Ključne poruke
+                <h2 id="key-takeaways" className={s.keysLabel}>
+                  Key takeaways
                 </h2>
                 <ol className={s.keysGrid}>
                   {keys.map((k, i) => (
@@ -195,13 +201,15 @@ export default async function Article({ article, more }) {
           <div className={s.layout}>
             <div className={s.main}>
               {showToc ? <TocFold items={toc} /> : null}
-              <div id="tekst">
+              <div id="article">
                 {hasBody
                   ? <Prose
                       nodes={parsed?.nodes}
                       blocks={parsed ? undefined : blocks}
                     />
-                  : <p className={s.nothing}>Ovaj tekst još nema sadržaj.</p>}
+                  : <p className={s.nothing}>
+                      This article has no content yet.
+                    </p>}
               </div>
               <Share url={url} title={article.title} className={s.shareEnd} />
               <Ask author={author} avatar={avatar} />
@@ -220,9 +228,9 @@ export default async function Article({ article, more }) {
           {more.length
             ? <>
                 <div className={s.moreTop}>
-                  <Head label="Blog" title="Još sa bloga." />
+                  <Head label="Journal" title="More from the journal." />
                   <Link className={s.all} href="/journal">
-                    Svi tekstovi <ArrowUpRight size={15} />
+                    All articles <ArrowUpRight size={15} />
                   </Link>
                 </div>
                 <ul className={s.moreGrid}>

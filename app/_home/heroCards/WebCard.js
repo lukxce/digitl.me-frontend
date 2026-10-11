@@ -5,97 +5,97 @@ import { useEffect, useRef, useState } from "react";
 import s from "./webCard.module.css";
 
 /* The hero's web card. A slow old site (a spinner, a page that jumps as it
-   loads, 4,8 s) is rebuilt block by block into a fast one: structure, copy,
+   loads, 4.8 s) is rebuilt block by block into a fast one: structure, copy,
    a contact form, then the speed score climbs to 100 and a visitor sends an
-   enquiry. Everything is generic ("Vaša firma", "vasafirma.rs"); the reader
-   can type their own company name and watch the same rebuild. On phones the
-   browser is shorter and the site shows its phone layout (no form, no
-   reviews), so the visitor taps "Pozovite" instead. */
+   enquiry. Everything is generic ("Your business", "yourbusiness.com"); the
+   reader can type their own company name and watch the same rebuild. On
+   phones the browser is shorter and the site shows its phone layout (no
+   form, no reviews), so the visitor taps "Call us" instead. */
 
-const NAME = "Vaša firma";
+const NAME = "Your business";
 
 const SETS = [
   {
     key: null,
-    kicker: "Usluge za dom i firmu",
-    line: "brzo, uredno, sa cenom unapred",
-    sub: "Dolazimo isti dan. Cene i radovi su na sajtu.",
+    kicker: "For home and business",
+    line: "fast, tidy, priced upfront",
+    sub: "Same-day visits. Prices and work online.",
     tiles: [
-      ["Usluge", "Šta radimo"],
-      ["Cenovnik", "Cene unapred"],
-      ["Radovi", "Pre i posle"],
+      ["Services", "What we do"],
+      ["Pricing", "Prices upfront"],
+      ["Our work", "Before & after"],
     ],
     tone: "blue",
   },
   {
-    key: /klim|frigo|grej|toplot|termo/,
-    kicker: "Klima servis",
-    line: "montaža i servis, sa cenom unapred",
-    sub: "Dolazimo isti dan, u celom gradu.",
+    key: /air ?con|\ba\/?c\b|hvac|cooling|\bheat|boiler|therm/,
+    kicker: "Air conditioning",
+    line: "fitting and repairs, priced upfront",
+    sub: "Same-day visits, anywhere in the city.",
     tiles: [
-      ["Montaža", "Za stan i lokal"],
-      ["Servis", "Isti dan"],
-      ["Čišćenje", "I dezinfekcija"],
+      ["Fitting", "Home or shop"],
+      ["Repairs", "Same day"],
+      ["Cleaning", "And sanitising"],
     ],
     tone: "blue",
   },
   {
-    key: /zub|dent|stomat|osmeh|ordinac/,
-    kicker: "Stomatološka ordinacija",
-    line: "pregled bez čekanja, cena unapred",
-    sub: "Termini i subotom. Zakažite online.",
+    key: /\bdent|tooth|teeth|smile|orthodon/,
+    kicker: "Dental practice",
+    line: "seen on time, priced upfront",
+    sub: "Open Saturdays too. Book online.",
     tiles: [
-      ["Pregled", "Bez čekanja"],
-      ["Popravke", "Bez bola"],
-      ["Estetika", "Beljenje zuba"],
+      ["Exams", "No waiting"],
+      ["Fillings", "Pain-free"],
+      ["Cosmetic", "Whitening"],
     ],
     tone: "lime",
   },
   {
-    key: /advok|pravn|kancelar/,
-    kicker: "Advokatska kancelarija",
-    line: "jasan savet i jasna cena",
-    sub: "Prvi razgovor zakazujete online.",
+    key: /\blaw\b|lawyer|legal|solicit|attorney|barrist/,
+    kicker: "Law firm",
+    line: "clear advice and a clear price",
+    sub: "Book your first consultation online.",
     tiles: [
-      ["Savet", "Prvi razgovor"],
-      ["Ugovori", "Izrada i provera"],
-      ["Zastupanje", "Pred sudom"],
+      ["Advice", "First meeting"],
+      ["Contracts", "Draft & review"],
+      ["Disputes", "In court"],
     ],
     tone: "ink",
   },
   {
-    key: /frizer|salon|lepot|kozmet|nokt|beauty|spa\b/,
-    kicker: "Salon lepote",
-    line: "termin online, bez čekanja",
-    sub: "Slobodni termini su uvek na sajtu.",
+    key: /\bhair|barber|salon|beaut|cosmet|\bnails?\b|\bspa\b/,
+    kicker: "Beauty salon",
+    line: "book online, no waiting",
+    sub: "Open slots are always on the site.",
     tiles: [
-      ["Šišanje", "Za nju i njega"],
-      ["Farbanje", "Sa savetom"],
-      ["Nega", "Kosa i koža"],
+      ["Haircuts", "For her & him"],
+      ["Colour", "With advice"],
+      ["Care", "Hair and skin"],
     ],
     tone: "coral",
   },
   {
-    key: /restoran|pica|pizz|kafe|kafan|pekar|hrana|ketering|bistro|poslast/,
-    kicker: "Hrana i dostava",
-    line: "sveže svaki dan, dostava do vrata",
-    sub: "Meni i cene su na sajtu. Naručite online.",
+    key: /restaurant|pizz|caf[eé]|coffee|bakery|food|\bcater|bistro|grill|takeaway|\bdeli\b/,
+    kicker: "Food and delivery",
+    line: "fresh every day, to your door",
+    sub: "See the menu and prices. Order online.",
     tiles: [
-      ["Meni", "Sa cenama"],
-      ["Dostava", "Do vrata"],
-      ["Proslave", "Po dogovoru"],
+      ["Menu", "With prices"],
+      ["Delivery", "To your door"],
+      ["Parties", "On request"],
     ],
     tone: "coral",
   },
   {
-    key: /elektr|struj|instal/,
-    kicker: "Električar",
-    line: "dolazak isti dan, cena unapred",
-    sub: "Hitne intervencije i u toku vikenda.",
+    key: /electr|wiring|rewir/,
+    kicker: "Electrician",
+    line: "same-day visits, priced upfront",
+    sub: "Emergency call-outs at weekends too.",
     tiles: [
-      ["Intervencije", "Isti dan"],
-      ["Instalacije", "Stan i lokal"],
-      ["Rasveta", "Unutra i spolja"],
+      ["Call-outs", "Same day"],
+      ["Wiring", "Home or shop"],
+      ["Lighting", "Inside and out"],
     ],
     tone: "lime",
   },
@@ -103,12 +103,12 @@ const SETS = [
 // the examples the card runs through by itself
 const AUTO = [0, 1, 2, 3];
 
-const STEPS = ["Struktura", "Tekstovi", "Forma", "Brzina", "Praćenje"];
+const STEPS = ["Structure", "Copy", "Form", "Speed", "Tracking"];
 const STOP = Symbol("stop");
 const SPRING = { type: "spring", stiffness: 320, damping: 28, mass: 0.9 };
 const POP = { type: "spring", stiffness: 420, damping: 20 };
 const EASE = [0.16, 1, 0.3, 1];
-// load times in tenths of a second: the old site 4,8 s, the new one 0,9 s
+// load times in tenths of a second: the old site 4.8 s, the new one 0.9 s
 const SLOW = 48;
 const FAST = 9;
 const START_SCORE = 31;
@@ -117,14 +117,16 @@ const SCORES = Array.from({ length: 18 }, (_, i) =>
   Math.round(START_SCORE + (100 - START_SCORE) * (1 - (1 - (i + 1) / 18) ** 3)),
 );
 
-const PLAIN = { č: "c", ć: "c", š: "s", ž: "z", đ: "dj" };
+// "Café Rosé & Co" -> "caferoseco.com": accents off, letters and digits only
 function domainOf(name) {
   const out = name
     .toLowerCase()
-    .replace(/[čćšžđ]/g, (m) => PLAIN[m])
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0111/g, "dj")
     .replace(/[^a-z0-9]+/g, "")
     .slice(0, 22);
-  return `${out || "vasafirma"}.rs`;
+  return `${out || "yourbusiness"}.com`;
 }
 
 function clean(raw) {
@@ -138,7 +140,7 @@ function pickSet(name) {
 }
 
 function secs(v) {
-  return `${Math.floor(v / 10)},${v % 10} s`;
+  return `${Math.floor(v / 10)}.${v % 10} s`;
 }
 
 /* ── icons ─────────────────────────────────────────────────────────── */
@@ -516,7 +518,7 @@ export default function WebCard({ footer = null }) {
       setTimeout(check, ms);
     });
 
-  // where the visitor clicks: the form's button, or "Pozovite" when the
+  // where the visitor clicks: the form's button, or "Call us" when the
   // site shows its phone layout (no form)
   const aim = () => {
     const page = pageRef.current;
@@ -569,7 +571,7 @@ export default function WebCard({ footer = null }) {
     setSite("old");
 
     // the old site: a spinner, then blocks that pop in and push the page
-    // around, 4,8 s in all
+    // around, 4.8 s in all
     const every = quick ? 2 : 1;
     const marks = quick
       ? { 4: 1, 12: 2, 22: 3, 32: 4 }
@@ -716,19 +718,19 @@ export default function WebCard({ footer = null }) {
   let hint = (
     <>
       <Pointer />
-      <span className={s.long}>Upišite ime svoje firme</span>
-      <span className={s.short}>Upišite ime firme</span>
+      <span className={s.long}>Type your company name</span>
+      <span className={s.short}>Type a company name</span>
     </>
   );
   if (asked)
     hint = (
       <>
-        Sajt za <b>„{name}“</b>
+        Site for <b>“{name}”</b>
       </>
     );
-  else if (user) hint = "Pritisnite Enter ili Napravi";
+  else if (user) hint = "Press Enter or Build";
 
-  const letter = name.charAt(0).toUpperCase() || "V";
+  const letter = name.charAt(0).toUpperCase() || "Y";
 
   return (
     <div className={s.stage} ref={root}>
@@ -739,7 +741,7 @@ export default function WebCard({ footer = null }) {
               <StoreIcon />
             </span>
             <label className={s.field}>
-              <span className={s.sr}>Ime firme</span>
+              <span className={s.sr}>Company name</span>
               <input
                 ref={inputRef}
                 className={s.input}
@@ -749,7 +751,7 @@ export default function WebCard({ footer = null }) {
                   type(e.target.value);
                 }}
                 onFocus={onFocus}
-                placeholder="Ime vaše firme"
+                placeholder="Your company name"
                 enterKeyHint="go"
                 autoComplete="off"
                 spellCheck={false}
@@ -757,7 +759,7 @@ export default function WebCard({ footer = null }) {
               />
             </label>
             <button type="submit" className={s.go}>
-              Napravi
+              Build
             </button>
           </form>
 
@@ -766,7 +768,7 @@ export default function WebCard({ footer = null }) {
               {hint}
             </span>
             <fieldset className={s.views}>
-              <legend className={s.sr}>Prikaz sajta</legend>
+              <legend className={s.sr}>Site view</legend>
               <button
                 type="button"
                 aria-pressed={view === "desktop"}
@@ -779,11 +781,11 @@ export default function WebCard({ footer = null }) {
               <button
                 type="button"
                 aria-pressed={view === "phone"}
-                title="Telefon"
+                title="Phone"
                 onClick={() => setView("phone")}
               >
                 <Mobile />
-                <span className={s.sr}>Telefon</span>
+                <span className={s.sr}>Phone</span>
               </button>
             </fieldset>
             <span className={s.speed} data-tone={tone}>
@@ -798,7 +800,7 @@ export default function WebCard({ footer = null }) {
                   style={{ strokeDashoffset: 100 - (score ?? 0) }}
                 />
               </svg>
-              Brzina
+              Speed
               <span className={s.speedNo}>
                 <b>{score ?? "…"}</b>
               </span>
@@ -817,11 +819,7 @@ export default function WebCard({ footer = null }) {
                   <Lock />
                   <span className={s.host}>{domainOf(name)}</span>
                 </span>
-                <span
-                  className={s.time}
-                  data-s={load.s}
-                  title="Vreme učitavanja"
-                >
+                <span className={s.time} data-s={load.s} title="Load time">
                   {load.s === "run" || load.s === "build"
                     ? <i className={s.mini} />
                     : null}
@@ -857,22 +855,21 @@ export default function WebCard({ footer = null }) {
                         <div className={s.old}>
                           {old >= 4
                             ? <div className={s.oBanner}>
-                                Dobrodošli na naš sajt!
+                                Welcome to our website
                               </div>
                             : null}
                           {old >= 1
                             ? <div className={s.oHead}>
                                 <b>{name}</b>
                                 <span>
-                                  <u>Početna</u> | <u>O nama</u> |{" "}
-                                  <u>Kontakt</u>
+                                  <u>Home</u> | <u>About us</u> | <u>Contact</u>
                                 </span>
                               </div>
                             : null}
                           {old >= 3
                             ? <div className={s.oImg}>
                                 <Broken />
-                                <span>slika_01.jpg</span>
+                                <span>image_01.jpg</span>
                               </div>
                             : null}
                           {old >= 2
@@ -885,7 +882,7 @@ export default function WebCard({ footer = null }) {
                             : null}
                           {old >= 2
                             ? <div className={s.oFoot}>
-                                Kontakt: <u>info@{domainOf(name)}</u>
+                                Contact: <u>info@{domainOf(name)}</u>
                               </div>
                             : null}
                         </div>
@@ -914,11 +911,11 @@ export default function WebCard({ footer = null }) {
                             <span className={s.logo}>{letter}</span>
                             <b className={s.nName}>{name}</b>
                             <span className={s.nav}>
-                              <i>Usluge</i>
-                              <i>Cene</i>
-                              <i>Radovi</i>
+                              <i>Services</i>
+                              <i>Prices</i>
+                              <i>Work</i>
                             </span>
-                            <span className={s.navBtn}>Kontakt</span>
+                            <span className={s.navBtn}>Contact</span>
                           </motion.div>
 
                           <motion.div
@@ -957,9 +954,9 @@ export default function WebCard({ footer = null }) {
                                   {hit === "cta"
                                     ? <Check size={11} />
                                     : <Call />}
-                                  Pozovite
+                                  Call us
                                 </span>
-                                <span className={s.ghostBtn}>Cenovnik</span>
+                                <span className={s.ghostBtn}>Price list</span>
                               </span>
                             </span>
                             <span className={s.art}>
@@ -971,7 +968,7 @@ export default function WebCard({ footer = null }) {
                               </span>
                               <span className={s.rate}>
                                 <Star />
-                                4,9
+                                4.9
                               </span>
                             </span>
                           </motion.div>
@@ -1026,15 +1023,15 @@ export default function WebCard({ footer = null }) {
                                     <Star />
                                     <Star />
                                   </span>
-                                  <b>4,9</b>
-                                  <span className={s.count}>38 ocena</span>
+                                  <b>4.9</b>
+                                  <span className={s.count}>38 reviews</span>
                                   <span className={s.faces}>
                                     <i data-c="a">M</i>
                                     <i data-c="b">J</i>
                                     <i data-c="c">S</i>
                                   </span>
                                   <span className={s.quote}>
-                                    „Brzo, uredno i tačno po dogovoru.“
+                                    “Fast, tidy and exactly as agreed.”
                                   </span>
                                 </motion.div>
                               : null}
@@ -1053,14 +1050,14 @@ export default function WebCard({ footer = null }) {
                                   animate={{ opacity: 1, x: 0, scale: 1 }}
                                   transition={{ ...SPRING, delay: 0.14 }}
                                 >
-                                  <b className={s.fTitle}>Zatražite ponudu</b>
+                                  <b className={s.fTitle}>Request a quote</b>
                                   <span className={s.fNote}>
-                                    Odgovor za 15 minuta
+                                    Reply in 15 minutes
                                   </span>
-                                  <span className={s.fld}>Ime i prezime</span>
-                                  <span className={s.fld}>Telefon</span>
+                                  <span className={s.fld}>Full name</span>
+                                  <span className={s.fld}>Phone</span>
                                   <span className={s.fld} data-tall>
-                                    Šta vam treba?
+                                    What do you need?
                                   </span>
                                   <span
                                     ref={sendRef}
@@ -1070,9 +1067,9 @@ export default function WebCard({ footer = null }) {
                                     {hit === "send"
                                       ? <>
                                           <Check size={11} />
-                                          Poslato
+                                          Sent
                                         </>
-                                      : "Pošalji upit"}
+                                      : "Send enquiry"}
                                   </span>
                                 </motion.div>
                               : null}
@@ -1099,8 +1096,8 @@ export default function WebCard({ footer = null }) {
                           <Mail />
                         </span>
                         <span className={s.toastBody}>
-                          <b>Novi upit</b>
-                          <small>Sa sajta, upravo sada</small>
+                          <b>New enquiry</b>
+                          <small>From the site, just now</small>
                         </span>
                       </motion.div>
                     : null}

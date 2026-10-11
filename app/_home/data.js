@@ -2,16 +2,16 @@ import { sanityClient } from "../../lib/sanity/client.js";
 
 /* Homepage data from Sanity: client case studies and the latest articles. */
 
-/** "3.157" / "29.8K" / "1. mesec" → parts a counter can roll. */
+/** "3,157" / "29.8K" / "1 → 44" → parts a counter can roll. */
 function parseMetric(value) {
   const m = String(value).match(/^(\d+(?:[.,]\d+)?)(.*)$/);
   if (!m) return { text: String(value) };
   const raw = m[1];
   const rest = m[2];
-  // Serbian thousands separator: a dot followed by exactly three digits.
-  if (/^\d{1,3}(\.\d{3})+$/.test(raw)) {
+  // English thousands separator: a comma followed by exactly three digits.
+  if (/^\d{1,3}(,\d{3})+$/.test(raw)) {
     return {
-      num: Number(raw.replaceAll(".", "")),
+      num: Number(raw.replaceAll(",", "")),
       decimals: 0,
       thousands: true,
       suffix: rest,
@@ -43,7 +43,7 @@ export async function getClients() {
         const metrics = (r.metrics ?? [])
           .filter((m) => m?.title && m?.subtitle)
           // The client's own years in business is their history, not our result.
-          .filter((m) => !/godin\w*\s+iskustva/i.test(m.subtitle))
+          .filter((m) => !/years?\s+(of\s+)?experience/i.test(m.subtitle))
           .slice(0, 3)
           .map((m) => ({
             value: m.title,
@@ -68,7 +68,9 @@ export async function getClients() {
   }
 }
 
-/** The four latest articles, with cover, author and reading time. */
+/** The four latest articles, with cover, author and reading time. A block's
+    words are its Markdown body or, as this site's CMS stores them, the
+    spans of a Portable Text block (the journal pages count the same way). */
 export async function getArticles() {
   try {
     const rows = await sanityClient.fetch(
@@ -76,7 +78,7 @@ export async function getArticles() {
         title, "slug": slug, publishedAt, description,
         "cover": cover.asset->url,
         "author": author.name, "avatar": author.avatar.asset->url,
-        "body": blocks[].body
+        "body": blocks[]{"s": coalesce(body, array::join(children[].text, ""))}.s
       }`,
     );
     return rows

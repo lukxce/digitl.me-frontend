@@ -21,7 +21,7 @@ const SERIF =
 const LOOKS = [
   {
     id: "terakota",
-    name: "Terakota i sunce",
+    name: "Terracotta and sun",
     P: "#c2543a",
     D: "#2c1712",
     A: "#f2b64a",
@@ -35,7 +35,7 @@ const LOOKS = [
   },
   {
     id: "petrolej",
-    name: "Petrolej i led",
+    name: "Teal and ice",
     P: "#0e6a75",
     D: "#0a2b30",
     A: "#8fdfe2",
@@ -49,7 +49,7 @@ const LOOKS = [
   },
   {
     id: "menta",
-    name: "Menta i koral",
+    name: "Mint and coral",
     P: "#23936f",
     D: "#10362b",
     A: "#ff9178",
@@ -63,7 +63,7 @@ const LOOKS = [
   },
   {
     id: "mastilo",
-    name: "Mastilo i mesing",
+    name: "Ink and brass",
     P: "#1e2a4c",
     D: "#0d1326",
     A: "#c9a35f",
@@ -73,31 +73,31 @@ const LOOKS = [
     LS: "-0.005em",
     cs: "none",
     per: 0.56,
-    type: ["Antikva", "SemiBold"],
+    type: ["Serif", "SemiBold"],
   },
 ];
 
-const LINE = ["Posao koji", "ostavlja utisak."];
+const LINE = ["Work people", "remember."];
 
 const EXAMPLES = [
-  { name: "Vaša firma", look: 0, shape: "squircle", line: LINE },
+  { name: "Your business", look: 0, shape: "squircle", line: LINE },
   {
-    name: "Klima Lab",
+    name: "Aircon Lab",
     look: 1,
     shape: "drop",
-    line: ["Sveže leto,", "bez čekanja."],
+    line: ["Cool summers,", "no waiting."],
   },
   {
-    name: "Zubni centar Osmeh",
+    name: "Smile Dental Centre",
     look: 2,
     shape: "leaf",
-    line: ["Pregled", "bez straha."],
+    line: ["Check-ups", "without fear."],
   },
   {
-    name: "Pravo i partneri",
+    name: "Law and Partners",
     look: 3,
     shape: "arch",
-    line: ["Jasan savet,", "siguran korak."],
+    line: ["Clear advice,", "a sure step."],
   },
 ];
 
@@ -114,21 +114,23 @@ const PICK = ["squircle", "drop", "leaf", "arch"];
 /* where the letter sits, optically, inside each shape */
 const LETTER_Y = { squircle: 52, drop: 52, leaf: 52, arch: 60, circle: 52 };
 
-const APPS = ["Sajt", "Vizitka", "Objave", "Tabla", "Kesa", "Šolja"];
+const APPS = ["Website", "Business card", "Posts", "Shop sign", "Bag", "Mug"];
 const PHONE_APPS = 4;
 const SWATCHES = ["P", "D", "A", "L"];
 const STOP = Symbol("stop");
 const EASE = [0.16, 1, 0.3, 1];
 const NEUTRAL_PER = 0.6;
 
-const PLAIN = { č: "c", ć: "c", š: "s", ž: "z", đ: "dj" };
+// "Café Rosé & Co" -> "caferoseco": accents off, letters and digits only
 function slug(raw) {
   const out = raw
     .toLowerCase()
-    .replace(/[čćšžđ]/g, (m) => PLAIN[m])
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0111/g, "dj")
     .replace(/[^a-z0-9]+/g, "")
     .slice(0, 24);
-  return out || "vasafirma";
+  return out || "yourbusiness";
 }
 
 function clean(raw) {
@@ -137,7 +139,7 @@ function clean(raw) {
 
 function initial(name) {
   const m = name.match(/[\p{L}\p{N}]/u);
-  return m ? m[0] : "V";
+  return m ? m[0] : "Y";
 }
 
 /* a typed name gets a shape from its first letter, so the mark stays put
@@ -245,7 +247,7 @@ function Web({ b }) {
         anchor="middle"
         className={s.ui}
       >
-        {`${b.slug}.rs`}
+        {`${b.slug}.com`}
       </Fit>
       <rect x="18" y="57" width="364" height="1" className={s.fM} />
 
@@ -272,7 +274,7 @@ function Web({ b }) {
         dominantBaseline="central"
         className={s.cta}
       >
-        Kontakt
+        Contact
       </text>
 
       <Fit
@@ -375,7 +377,7 @@ function Posts({ b }) {
         dominantBaseline="central"
         className={`${s.bh} ${s.fL}`}
       >
-        Zakažite
+        Book
       </text>
       <text
         x="21"
@@ -871,7 +873,7 @@ export default function BrandCard({ footer = null }) {
   const colored = started(2);
   const fonted = started(3);
   const rules = started(5);
-  const full = clean(name) || "Vaša firma";
+  const full = clean(name) || "Your business";
   const letter = initial(full);
   const brand = (on) => ({
     on,
@@ -888,27 +890,27 @@ export default function BrandCard({ footer = null }) {
   let hint = (
     <>
       <Pointer />
-      <span className={s.long}>Upišite ime svoje firme</span>
-      <span className={s.short}>Upišite ime</span>
+      <span className={s.long}>Type your company name</span>
+      <span className={s.short}>Type a name</span>
     </>
   );
   if (hintMode === "done")
     hint = (
       <>
-        Brend za <b>„{shown}“</b>
+        Brand for <b>“{shown}”</b>
       </>
     );
   else if (hintMode === "look")
     hint = (
       <>
-        <span className={s.long}>Paleta:</span> <b>{L.name}</b>
+        <span className={s.long}>Palette:</span> <b>{L.name}</b>
       </>
     );
   else if (user)
     hint = (
       <>
-        <span className={s.long}>Pritisnite Enter ili Primeni</span>
-        <span className={s.short}>Enter ili Primeni</span>
+        <span className={s.long}>Press Enter or Apply</span>
+        <span className={s.short}>Enter or Apply</span>
       </>
     );
 
@@ -933,14 +935,14 @@ export default function BrandCard({ footer = null }) {
               <Pen />
             </span>
             <label className={s.field}>
-              <span className={s.sr}>Ime firme</span>
+              <span className={s.sr}>Company name</span>
               <input
                 ref={inputRef}
                 className={s.input}
                 value={typed}
                 onChange={onChange}
                 onFocus={onFocus}
-                placeholder={user ? "Ime firme, npr. Studio Lipa" : ""}
+                placeholder={user ? "Name, e.g. Studio Oak" : ""}
                 enterKeyHint="done"
                 autoComplete="off"
                 spellCheck={false}
@@ -956,7 +958,7 @@ export default function BrandCard({ footer = null }) {
               className={s.go}
               data-press={phase === "press"}
             >
-              Primeni
+              Apply
             </button>
           </form>
 
@@ -966,13 +968,13 @@ export default function BrandCard({ footer = null }) {
             </span>
             <span className={s.side}>
               <fieldset className={s.dots}>
-                <legend className={s.sr}>Paleta</legend>
+                <legend className={s.sr}>Palette</legend>
                 {LOOKS.map((it, i) => (
                   <button
                     key={it.id}
                     type="button"
                     className={s.dot}
-                    aria-label={`Paleta: ${it.name}`}
+                    aria-label={`Palette: ${it.name}`}
                     aria-pressed={look === i}
                     onClick={() => pickLook(i)}
                     style={{ "--c1": it.P, "--c2": it.A }}
@@ -984,7 +986,7 @@ export default function BrandCard({ footer = null }) {
                 data-full={applied === APPS.length}
                 data-full-phone={phoneApplied === PHONE_APPS}
               >
-                Primene
+                Applied
                 <span className={s.countNo}>
                   <span className={s.wide}>
                     <Roll value={`${applied}/${APPS.length}`} />
@@ -1064,7 +1066,7 @@ export default function BrandCard({ footer = null }) {
               <div className={s.type}>
                 <span className={s.aa}>Aa</span>
                 <span className={s.typeMeta}>
-                  <b>{fonted ? L.type[0] : "Pismo"}</b>
+                  <b>{fonted ? L.type[0] : "Typeface"}</b>
                   <i>{fonted ? L.type[1] : "…"}</i>
                 </span>
               </div>

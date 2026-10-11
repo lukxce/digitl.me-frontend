@@ -18,10 +18,10 @@ import { EASE } from "./ui";
 
 export const CARDS = [
   { id: "seo", name: "SEO", Card: SearchClimb },
-  { id: "ads", name: "Oglasi", Card: AdsCard },
-  { id: "social", name: "Mreže", Card: SocialCard },
-  { id: "web", name: "Sajt", Card: WebCard },
-  { id: "brand", name: "Brend", Card: BrandCard },
+  { id: "ads", name: "Ads", Card: AdsCard },
+  { id: "social", name: "Social", Card: SocialCard },
+  { id: "web", name: "Web", Card: WebCard },
+  { id: "brand", name: "Brand", Card: BrandCard },
 ];
 
 export default function HeroShowcase() {

@@ -10,12 +10,12 @@ import { Bridge, EASE, Head, useApp } from "./ui";
 
 /* ── one small looping scene per service, drawn in CSS ─────────────────── */
 /* ads: clicks from Google and Meta travel into an enquiry inbox */
-const INBOX = ["Upit sa Google-a", "Poruka sa Instagrama", "Upit sa Google-a"];
+const INBOX = ["From Google", "From Instagram", "From Google"];
 function ArtAds() {
   return (
     <span className={s.artAds}>
       <span className={s.src} data-src="g">
-        <i>G</i> Pretraga
+        <i>G</i> Search
       </span>
       <span className={s.src} data-src="m">
         <i>M</i> Meta
@@ -27,7 +27,7 @@ function ArtAds() {
       <i className={`${s.dot} ${s.dotG}`} />
       <i className={`${s.dot} ${s.dotM}`} />
       <span className={s.inbox}>
-        <em>Novi upiti</em>
+        <em>New enquiries</em>
         {INBOX.map((t, k) => (
           <span
             key={k}
@@ -47,7 +47,7 @@ function ArtSeo() {
   return (
     <span className={s.artSeo}>
       <span className={s.searchBar}>
-        <Search size={11} strokeWidth={2.6} /> pretraga vaših kupaca
+        <Search size={11} strokeWidth={2.6} /> what your customers search
       </span>
       <span className={s.results}>
         {[0, 1, 2].map((k) => (
@@ -59,7 +59,7 @@ function ArtSeo() {
         <span className={`${s.result} ${s.resultYou}`}>
           <i />
           <span />
-          <em>vi</em>
+          <em>you</em>
         </span>
       </span>
     </span>
@@ -78,7 +78,7 @@ function ArtWeb() {
             <i />
           </span>
           <span className={s.url}>
-            vasafirma.rs
+            yourcompany.com
             <i className={s.urlLoad} />
           </span>
         </span>
@@ -92,7 +92,7 @@ function ArtWeb() {
             <span className={s.pText}>
               <i />
               <i />
-              <b>Naručite</b>
+              <b>Order</b>
             </span>
             <span className={s.pImg} />
           </span>
@@ -164,12 +164,12 @@ function Card({ x, i, rank, wide, onAsk }) {
             data-tone={x.id}
             onClick={() => setFlipped(true)}
             tabIndex={flipped ? -1 : 0}
-            aria-label={`${x.title}. Okrenite za detalje.`}
+            aria-label={`${x.title}. Turn over for the details.`}
           >
             <span className={s.frontTop}>
               <span className={s.no}>0{i + 1}</span>
               {rank >= 0
-                ? <span className={s.badge}>Za vas #{rank + 1}</span>
+                ? <span className={s.badge}>For you #{rank + 1}</span>
                 : null}
             </span>
             <span className={s.art}>
@@ -180,7 +180,7 @@ function Card({ x, i, rank, wide, onAsk }) {
               <em>{x.body}</em>
             </span>
             <span className={s.hint}>
-              <Rotate size={13} /> Okrenite
+              <Rotate size={13} /> Turn over
             </span>
           </button>
 
@@ -198,7 +198,7 @@ function Card({ x, i, rank, wide, onAsk }) {
                 onClick={() => setFlipped(false)}
                 tabIndex={flipped ? 0 : -1}
               >
-                <Rotate size={13} /> Nazad
+                <Rotate size={13} /> Back
               </button>
             </div>
             <div className={s.backBody}>
@@ -218,7 +218,7 @@ function Card({ x, i, rank, wide, onAsk }) {
                 onClick={() => onAsk(x.name)}
                 tabIndex={flipped ? 0 : -1}
               >
-                Razgovarajmo <ArrowRight size={14} />
+                Start a conversation <ArrowRight size={14} />
               </button>
             </div>
           </div>
@@ -238,15 +238,15 @@ export default function Services() {
       <div className={b.container}>
         <div className={s.top}>
           <Head
-            id="usluge"
-            label="Usluge"
-            title="Naše usluge."
-            intro="Kompletan marketing kao jedan sistem, ne meni nepovezanih usluga. Okrenite karticu za detalje."
+            id="services"
+            label="Services"
+            title="What we do."
+            intro="The full marketing function, handled as one system, not a menu of disconnected services. Turn a card over for the details."
           />
           {plan
             ? <p className={s.planNote}>
-                Poređano po vašem planu. <b>Prve dve</b> su mesto odakle bismo
-                krenuli.
+                Ordered by your plan. <b>The first two</b> are where we would
+                start.
               </p>
             : null}
         </div>
@@ -263,9 +263,9 @@ export default function Services() {
           ))}
         </ul>
         <Bridge
-          text="To je šta radimo. Evo kako to izgleda kad radimo za vas."
-          to="#proces"
-          label="Kako radimo"
+          text="That's what we do. Here's how it looks when we do it for you."
+          to="#process"
+          label="How we work"
         />
       </div>
     </section>

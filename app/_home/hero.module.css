@@ -69,9 +69,11 @@
     display: none;
   }
 }
+/* "Where marketing" is a longer first line than the Serbian one; at 68px it
+   had under 2px to spare in its column, so the cap here is 64px. */
 .title {
   margin-top: 24px !important;
-  font-size: clamp(42px, 4.3vw, 68px);
+  font-size: clamp(42px, 4.3vw, 64px);
 }
 @media (max-width: 1040px) {
   .title {

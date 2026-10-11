@@ -5,7 +5,7 @@ import b from "../_home/base.module.css";
 import { useApp } from "../_home/ui";
 import s from "./study.module.css";
 
-/** "U ovoj studiji": a list that stays beside the chapters on a wide
+/** "In this case study": a list that stays beside the chapters on a wide
     screen, a strip of chips under the menu on a narrow one. Both mark the
     chapter being read and scroll to the one that is picked. */
 export default function ChapterNav({ items }) {
@@ -82,8 +82,8 @@ export default function ChapterNav({ items }) {
 
   return (
     <>
-      <nav ref={list} className={s.toc} aria-label="U ovoj studiji">
-        <span className={b.label}>U ovoj studiji</span>
+      <nav ref={list} className={s.toc} aria-label="In this case study">
+        <span className={b.label}>In this case study</span>
         <ol>
           {items.map((it) => (
             <li key={it.id}>
@@ -100,7 +100,7 @@ export default function ChapterNav({ items }) {
         </ol>
       </nav>
 
-      <nav className={s.strip} aria-label="Poglavlja">
+      <nav className={s.strip} aria-label="Chapters">
         <div ref={strip} className={s.stripRail}>
           {items.map((it) => (
             <a

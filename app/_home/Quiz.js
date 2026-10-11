@@ -60,8 +60,8 @@ export default function Quiz({ clients }) {
           <div className={q.top}>
             <span className={q.label}>
               {done
-                ? "Vaš plan je spreman"
-                : `Pitanje ${step + 1} od ${QUIZ.length}`}
+                ? "Your plan is ready"
+                : `Question ${step + 1} of ${QUIZ.length}`}
             </span>
             <span className={q.progress} aria-hidden="true">
               {QUIZ.map((x, i) => (
@@ -118,11 +118,9 @@ export default function Quiz({ clients }) {
                           className={q.back}
                           onClick={() => setStep(step - 1)}
                         >
-                          <ArrowLeft size={14} /> Nazad
+                          <ArrowLeft size={14} /> Back
                         </button>
-                      : <span className={q.hint}>
-                          Bez mejla i bez prijave.
-                        </span>}
+                      : <span className={q.hint}>No email, no sign-up.</span>}
                   </div>
                 </motion.div>
               : <motion.div
@@ -134,27 +132,23 @@ export default function Quiz({ clients }) {
                 >
                   <p className={q.gap}>{plan.gap}</p>
                   <p className={q.gapSub}>
-                    Krenuli bismo od{" "}
-                    <b>
-                      {SERVICES.find(
-                        (s) => s.id === plan.top[0],
-                      ).name.toLowerCase()}
-                    </b>
-                    , a usluge ispod su poređane po vašim odgovorima.
+                    We would start with{" "}
+                    <b>{SERVICES.find((s) => s.id === plan.top[0]).name}</b>,
+                    and the services are now ordered by your answers.
                   </p>
                   <div className={q.actions}>
                     <Btn variant="accent" size="sm" onClick={() => book()}>
-                      Pošaljite nam ovaj plan
+                      Send us this plan
                     </Btn>
                     <button
                       type="button"
                       className={q.again}
-                      onClick={() => scrollTo("#usluge")}
+                      onClick={() => scrollTo("#services")}
                     >
-                      Pogledajte usluge
+                      See the services
                     </button>
                     <button type="button" className={q.again} onClick={restart}>
-                      <Rotate size={13} /> Ispočetka
+                      <Rotate size={13} /> Start over
                     </button>
                   </div>
                 </motion.div>}
@@ -168,22 +162,22 @@ export default function Quiz({ clients }) {
                 <p>{plan.gap}</p>
                 <div className={q.mActions}>
                   <Btn variant="accent" size="sm" onClick={() => book()}>
-                    Pošaljite nam plan
+                    Send us the plan
                   </Btn>
                   <button type="button" className={q.again} onClick={restart}>
-                    <Rotate size={13} /> Ispočetka
+                    <Rotate size={13} /> Start over
                   </button>
                 </div>
               </div>
             : null}
           <div className={q.liveHead}>
-            <span>Vaš plan</span>
+            <span>Your plan</span>
             <em>
               {done
-                ? "Gotov"
+                ? "Ready"
                 : started
-                  ? "Slaže se dok odgovarate"
-                  : "Odgovorite i gledajte"}
+                  ? "Builds as you answer"
+                  : "Answer and watch"}
             </em>
           </div>
           <ul className={q.bars}>
@@ -230,7 +224,7 @@ export default function Quiz({ clients }) {
                     <img src={match.cover} alt="" />
                   </span>
                   <span className={q.matchText}>
-                    <em>Najsličniji projekat</em>
+                    <em>Closest project</em>
                     <b>{match.name}</b>
                     {metric
                       ? <span>
@@ -250,8 +244,8 @@ export default function Quiz({ clients }) {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                 >
-                  Posle prvog odgovora ovde se pojavi projekat najsličniji
-                  vašem.
+                  After your first answer, the project closest to yours appears
+                  here.
                 </motion.p>}
           </AnimatePresence>
         </div>

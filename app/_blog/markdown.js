@@ -96,8 +96,8 @@ function parseMarkdown(md, ctx) {
       const level = Math.min(4, Math.max(2, heading[1].length));
       const label = plain(heading[2]);
       // an id that is also a valid CSS selector, and not taken yet
-      const base = slug(label) || "odeljak";
-      const root = /^\d/.test(base) ? `deo-${base}` : base;
+      const base = slug(label) || "section";
+      const root = /^\d/.test(base) ? `part-${base}` : base;
       let id = root;
       for (let n = 2; ctx.ids.has(id); n++) id = `${root}-${n}`;
       ctx.ids.add(id);
@@ -121,7 +121,7 @@ function parseMarkdown(md, ctx) {
       out.push(
         picture(
           src,
-          real ? alt.trim() : `Ilustracija: ${ctx.section ?? ctx.title}`,
+          real ? alt.trim() : `Illustration: ${ctx.section ?? ctx.title}`,
           title,
         ),
       );
@@ -264,7 +264,7 @@ function media(file, caption, ctx) {
     null;
   const alt =
     (typeof f.alternativeText === "string" && f.alternativeText.trim()) ||
-    `Ilustracija: ${cap ?? ctx.section ?? ctx.title}`;
+    `Illustration: ${cap ?? ctx.section ?? ctx.title}`;
   const size =
     Number(f.width) > 0 && Number(f.height) > 0
       ? { width: Number(f.width), height: Number(f.height) }
@@ -291,7 +291,7 @@ export function parseBlocks(blocks, title) {
   const ctx = {
     title,
     section: null,
-    ids: new Set(["top", "kontakt", "tekst", "kljucne-poruke", "home-news"]),
+    ids: new Set(["top", "contact", "article", "key-takeaways", "home-news"]),
   };
   const nodes = [];
 

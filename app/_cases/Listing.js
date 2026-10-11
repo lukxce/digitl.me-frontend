@@ -19,18 +19,18 @@ export default function Listing({ projects }) {
     <>
       <section className={`${b.glow} ${l.hero}`}>
         <div className={b.container}>
-          <span className={`${b.label} ${b.fadeUp}`}>Projekti</span>
+          <span className={`${b.label} ${b.fadeUp}`}>Projects</span>
           <h1 className={`${b.display} ${l.title}`}>
             <span className={b.lineMask}>
-              <span className={b.lineUp}>Naš rad.</span>
+              <span className={b.lineUp}>Our work.</span>
             </span>
           </h1>
           <p className={`${b.intro} ${b.fadeUp} ${l.intro}`}>
-            Izbor projekata koje smo realizovali za klijente iz različitih
-            industrija.
+            A selection of projects we've built for clients across different
+            industries.
           </p>
           {projects.length > 1
-            ? <ul className={`${l.index} ${b.fadeUp}`} aria-label="Klijenti">
+            ? <ul className={`${l.index} ${b.fadeUp}`} aria-label="Clients">
                 {projects.map((p) => (
                   <li key={p.slug}>
                     <Link href={p.href}>
@@ -52,7 +52,7 @@ export default function Listing({ projects }) {
         </div>
       </section>
 
-      <section className={l.list} aria-label="Studije slučaja">
+      <section className={l.list} aria-label="Case studies">
         <div className={b.container}>
           {lead
             ? <div className={l.grid}>
@@ -79,7 +79,8 @@ export default function Listing({ projects }) {
                   : null}
               </div>
             : <p className={l.empty}>
-                Projekti trenutno nisu dostupni. Pokušajte ponovo za koji minut.
+                Projects aren't available right now. Please try again in a few
+                minutes.
               </p>}
         </div>
       </section>

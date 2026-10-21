@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import b from "./base.module.css";
 import { Check } from "./icons";
 import j from "./journey.module.css";
+import { Chat, Hub, Report, Wait } from "./Minis";
 import { EASE, Roll, useVisible } from "./ui";
 
 /* The old homepage's "4 · How we work", kept small. On wide screens all four
@@ -45,6 +46,9 @@ const STEPS = [
   },
 ];
 const N = STEPS.length;
+// each step shows itself working: the first talk, the plan in time, every
+// channel live, the monthly report
+const ART = [Chat, Wait, Hub, Report];
 
 export default function Journey() {
   const ref = useRef(null);
@@ -52,6 +56,11 @@ export default function Journey() {
   const visible = useVisible(ref, 0.3);
   const [step, setStep] = useState(0);
   const [hover, setHover] = useState(false);
+  // a step's little interface plays again each time the step comes on
+  const [plays, setPlays] = useState(() => STEPS.map(() => 0));
+  useEffect(() => {
+    setPlays((p) => p.map((v, k) => (k === step ? v + 1 : v)));
+  }, [step]);
   const [wide, setWide] = useState(true);
 
   useEffect(() => {
@@ -170,6 +179,12 @@ export default function Journey() {
                   <div className={j.card}>
                     <h3>{s.name}</h3>
                     <p>{s.body}</p>
+                    <div className={j.art} aria-hidden="true">
+                      {(() => {
+                        const Art = ART[i];
+                        return <Art key={plays[i]} run={visible} dark={on} />;
+                      })()}
+                    </div>
                     <ul className={j.get} aria-label="What you get">
                       {s.get.map((g, k) => (
                         <motion.li

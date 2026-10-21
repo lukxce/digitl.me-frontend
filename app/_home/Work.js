@@ -142,16 +142,17 @@ function Project({ c, tone, closest, front }) {
   );
 }
 
-function AllCases({ clients, front }) {
+/** Beside the deck: how many there are in all, and the way to them. */
+function AllCases({ clients }) {
   const ref = useRef(null);
-  const run = useVisible(ref, 0.4) && front;
+  const run = useVisible(ref, 0.4);
   return (
-    <a
-      ref={ref}
-      href="/projects"
-      className={`${w.card} ${w.ink} ${clients.length > 1 ? "" : w.inkSolo}`}
-    >
-      {/* with a single project its site is already the card before this */}
+    <a ref={ref} href="/projects" className={`${w.card} ${w.ink}`}>
+      <span className={w.allNum}>
+        <Roll value={run ? 50 : 0} ms={1600} suffix="+" />
+      </span>
+      <span className={w.allText}>companies we've helped grow.</span>
+      {/* with a single project its site is already the card beside this */}
       {clients.length > 1
         ? <span className={w.allSites}>
             {clients.slice(0, 4).map((c) => (
@@ -163,14 +164,8 @@ function AllCases({ clients, front }) {
             ))}
           </span>
         : null}
-      <span className={w.body}>
-        <span className={w.allNum}>
-          <Roll value={run ? 50 : 0} ms={1600} suffix="+" />
-        </span>
-        <span className={w.allText}>companies we've helped grow.</span>
-        <span className={w.allBtn}>
-          View all projects <ArrowUpRight size={16} />
-        </span>
+      <span className={w.allBtn}>
+        View all projects <ArrowUpRight size={16} />
       </span>
     </a>
   );
@@ -257,25 +252,18 @@ export default function Work({ clients }) {
   const ordered = match
     ? [match, ...clients.filter((c) => c !== match)]
     : clients;
-  const slides = [
-    ...ordered.map((c) => ({
-      key: c.slug,
-      name: c.name,
-      render: (front) => (
-        <Project
-          c={c}
-          tone={TONES[clients.indexOf(c) % TONES.length]}
-          closest={plan?.match === c.slug}
-          front={front}
-        />
-      ),
-    })),
-    {
-      key: "all",
-      name: "All projects",
-      render: (front) => <AllCases clients={clients} front={front} />,
-    },
-  ];
+  const slides = ordered.map((c) => ({
+    key: c.slug,
+    name: c.name,
+    render: (front) => (
+      <Project
+        c={c}
+        tone={TONES[clients.indexOf(c) % TONES.length]}
+        closest={plan?.match === c.slug}
+        front={front}
+      />
+    ),
+  }));
   const n = slides.length;
   // where the deck is, and where it was before the last move
   const [pos, setPos] = useState({ active: 0, prev: 0 });
@@ -317,53 +305,59 @@ export default function Work({ clients }) {
                 : "From strategy to execution, here's what that looks like in practice."
             }
           />
-          <div className={w.controls}>
-            <a className={w.allLink} href="/projects">
-              All projects <ArrowUpRight size={15} />
-            </a>
-            <span className={w.count} aria-live="polite">
-              {pad(active + 1)} <i>/ {pad(n)}</i>
-            </span>
-            <button
-              type="button"
-              className={w.arrow}
-              onClick={() => go(-1)}
-              aria-label="Previous project"
-            >
-              <ChevronUp size={18} />
-            </button>
-            <button
-              type="button"
-              className={w.arrow}
-              onClick={() => go(1)}
-              aria-label="Next project"
-            >
-              <ChevronDown size={18} />
-            </button>
-          </div>
+          {n > 1
+            ? <div className={w.controls}>
+                <span className={w.count} aria-live="polite">
+                  {pad(active + 1)} <i>/ {pad(n)}</i>
+                </span>
+                <button
+                  type="button"
+                  className={w.arrow}
+                  onClick={() => go(-1)}
+                  aria-label="Previous project"
+                >
+                  <ChevronUp size={18} />
+                </button>
+                <button
+                  type="button"
+                  className={w.arrow}
+                  onClick={() => go(1)}
+                  aria-label="Next project"
+                >
+                  <ChevronDown size={18} />
+                </button>
+              </div>
+            : null}
         </div>
 
-        <div
-          className={w.deck}
-          onPointerDown={down}
-          onPointerUp={up}
-          onPointerCancel={() => {
-            touch.current = null;
-          }}
-        >
-          {slides.map((s, i) => (
-            <Slot
-              key={s.key}
-              k={(i - active + n) % n}
-              was={(i - prev + n) % n}
-              n={n}
-              peek={peek}
-              name={s.name}
-              onShow={() => show(i)}
-            >
-              {s.render(i === active)}
-            </Slot>
-          ))}
+        {/* the projects change on the left; all of them are a click away
+            on the right */}
+        <div className={w.stage}>
+          <div
+            className={w.deck}
+            onPointerDown={down}
+            onPointerUp={up}
+            onPointerCancel={() => {
+              touch.current = null;
+            }}
+          >
+            {slides.map((s, i) => (
+              <Slot
+                key={s.key}
+                k={(i - active + n) % n}
+                was={(i - prev + n) % n}
+                n={n}
+                peek={peek}
+                name={s.name}
+                onShow={() => show(i)}
+              >
+                {s.render(i === active)}
+              </Slot>
+            ))}
+          </div>
+          <div className={w.side}>
+            <AllCases clients={clients} />
+          </div>
         </div>
       </div>
       <div className={b.container}>

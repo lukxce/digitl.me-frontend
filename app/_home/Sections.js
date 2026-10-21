@@ -7,7 +7,7 @@ import { CONTACT, FAQ } from "./content";
 import { Plus } from "./icons";
 import Quiz from "./Quiz";
 import x from "./sections.module.css";
-import { EASE, Head } from "./ui";
+import { Btn, EASE, Head, useApp } from "./ui";
 
 /* ── Your plan: the three questions, right under the four steps ─────── */
 export function PlanSection({ clients }) {
@@ -36,15 +36,21 @@ export function PlanSection({ clients }) {
 /* ── FAQ ──────────────────────────────────────────────────────────────── */
 export function Faq() {
   const [open, setOpen] = useState(0);
+  const { openBooking } = useApp();
   return (
     <section className={b.section} data-section="Pitanja">
       <div className={`${b.container} ${x.faq}`}>
-        <Head
-          id="faq"
-          label="FAQ"
-          title="Have more questions?"
-          intro={`We're happy to help. If yours isn't here, write to ${CONTACT.email}.`}
-        />
+        <div className={x.faqSide}>
+          <Head
+            id="faq"
+            label="FAQ"
+            title="Have more questions?"
+            intro={`We're happy to help. If yours isn't here, write to ${CONTACT.email}.`}
+          />
+          <Btn variant="accent" size="sm" onClick={() => openBooking()}>
+            Book a call
+          </Btn>
+        </div>
         <ul className={x.faqList}>
           {FAQ.map((f, i) => {
             const on = open === i;

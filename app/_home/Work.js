@@ -292,7 +292,7 @@ export default function Work({ clients }) {
   };
 
   return (
-    <section className={`${b.section} ${w.section}`} data-section="Rezultati">
+    <section className={`${b.section} ${w.section}`} data-section="Work">
       <div className={b.container}>
         <div className={w.top}>
           <Head

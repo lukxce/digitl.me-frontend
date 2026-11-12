@@ -26,7 +26,7 @@ const SOCIALS = [
 const TOPICS = [...SERVICES.map((s) => s.name), "The whole thing"];
 
 export default function Contact() {
-  const { plan, topic } = useApp();
+  const { plan, topic, audit } = useApp();
   const [topics, setTopics] = useState([]);
   const [email, setEmail] = useState("");
   const [site, setSite] = useState("");
@@ -42,6 +42,10 @@ export default function Contact() {
     if (plan)
       setTopics(plan.top.map((id) => SERVICES.find((s) => s.id === id).name));
   }, [plan]);
+  // a checked site fills the address in, unless one is already typed
+  useEffect(() => {
+    if (audit?.host) setSite((v) => v || audit.host);
+  }, [audit?.host]);
 
   const toggle = (t) =>
     setTopics((arr) =>
@@ -61,6 +65,11 @@ export default function Contact() {
       `Interested in: ${topics.length ? topics.join(", ") : "nothing selected"}`,
       site.trim() ? `Website: ${site.trim()}` : null,
       plan ? `Plan from the site: ${plan.answers.join(" | ")}` : null,
+      audit?.scores
+        ? `Site check (${audit.host}): speed ${audit.scores.performance}, SEO ${audit.scores.seo}, LCP ${audit.metrics?.lcp?.display ?? "?"}`
+        : audit?.host
+          ? `Site check (${audit.host}) failed: ${audit.error}`
+          : null,
       note.trim() ? `Message: ${note.trim()}` : null,
     ]
       .filter(Boolean)
@@ -82,7 +91,7 @@ export default function Contact() {
   }
 
   return (
-    <section className={b.section} data-section="Kontakt">
+    <section className={b.section} data-section="Contact">
       <span id="contact" className={b.anchor} />
       <div className={b.container}>
         <div className={c.panel}>

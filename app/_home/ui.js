@@ -7,6 +7,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
 } from "react";
@@ -56,6 +57,9 @@ export function AppProvider({ children, home = true }) {
   const lenis = useLenis();
   const [plan, setPlan] = useState(null);
   const [topic, setTopic] = useState(null);
+  // the last site check: its address and scores go into the contact form
+  const [audit, setAudit] = useState(null);
+  const [focusAudit, setFocusAudit] = useState(0);
   // the booking dialog: null when closed, { topic } when open
   const [booking, setBooking] = useState(null);
 
@@ -130,6 +134,13 @@ export function AppProvider({ children, home = true }) {
     setPlan,
     scrollTo,
     topic,
+    audit,
+    setAudit,
+    focusAudit,
+    openAudit: () => {
+      scrollTo("#site-check");
+      setFocusAudit((n) => n + 1);
+    },
     book: (t = null) => {
       if (t) setTopic(t);
       scrollTo("#contact");
@@ -158,19 +169,31 @@ export function useVisible(ref, amount = 0.35) {
   return v;
 }
 
-/** Rolls from the previous value to `target` instead of jumping. */
+const useIsoLayout =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
+/** Rolls from the previous value to `target` instead of jumping. The server
+    and the first paint show the real number, so a crawler or a link preview
+    never reads "0"; in the browser it parks at 0 (before paint) and rolls
+    up once `run` turns on. */
 export function useTween(target, ms = 1100, run = true) {
-  const [v, setV] = useState(0);
-  const from = useRef(0);
+  const [v, setV] = useState(target);
+  const from = useRef(null);
+  useIsoLayout(() => {
+    if (from.current !== null) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    from.current = 0;
+    setV(0);
+  }, []);
   useEffect(() => {
-    if (!run) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       from.current = target;
       setV(target);
       return;
     }
+    if (!run) return;
     let raf = 0;
-    const a = from.current;
+    const a = from.current ?? 0;
     const t0 = performance.now();
     const step = (t) => {
       const p = Math.min(1, (t - t0) / ms);
@@ -332,8 +355,9 @@ export function Head({ label, title, intro, id, center = false }) {
 }
 
 /** The line that closes a section and hands over to the next one. */
-export function Bridge({ text, to, label }) {
-  const { scrollTo } = useApp();
+// `to` glides to a section below; `book` opens the booking dialog instead
+export function Bridge({ text, to, label, book = false }) {
+  const { scrollTo, openBooking } = useApp();
   return (
     <Reveal className={b.bridge}>
       <span className={b.bridgeLine} aria-hidden="true" />
@@ -341,7 +365,7 @@ export function Bridge({ text, to, label }) {
       <button
         type="button"
         className={b.bridgeBtn}
-        onClick={() => scrollTo(to)}
+        onClick={() => (book ? openBooking() : scrollTo(to))}
       >
         {label}
         <span className={b.bridgeArrow}>

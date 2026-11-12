@@ -3,13 +3,16 @@
 // English in brackets (SEO keeps its full name). The back: `lead` is what
 // we do, `includes` the services inside it (three, four for SEO; each one a
 // thing a client can order, never a feature or a tactic), `fact` what we
-// measure.
+// measure. `page` is the service's own page under /services.
 
 export const SERVICES = [
   {
     id: "ads",
-    title: "Paid Advertising (Search & Social)",
-    name: "Paid Advertising",
+    footer: "Paid advertising",
+    sub: "Google Ads, Facebook and Instagram",
+    page: "/services/paid-advertising",
+    title: "Paid advertising (search & social)",
+    name: "Paid advertising",
     body: "Campaigns on Google and social, built and scaled to drive sales, not just clicks.",
     lead: "We set up the campaigns, track every enquiry and move the budget to where it brings sales.",
     includes: [
@@ -21,7 +24,9 @@ export const SERVICES = [
   },
   {
     id: "seo",
-    title: "Search Engine Optimization (SEO)",
+    footer: "SEO",
+    page: "/services/seo",
+    title: "Search engine optimisation (SEO)",
     name: "SEO",
     body: "Be first where your customers search, on Google and in AI search.",
     lead: "We put the site and its content in order, so customers find you just when they are looking for what you offer.",
@@ -35,7 +40,9 @@ export const SERVICES = [
   },
   {
     id: "web",
-    title: "Website Design & Development",
+    footer: "Web design",
+    page: "/services/web-design",
+    title: "Website design & development",
     name: "Web",
     body: "Fast sites built to convert, turning the traffic you pay for into customers.",
     lead: "We design and build a site that loads fast and leads the visitor to an enquiry or a purchase.",
@@ -48,7 +55,9 @@ export const SERVICES = [
   },
   {
     id: "social",
-    title: "Social Content & Presence",
+    footer: "Social media management",
+    page: "/services/social-media-management",
+    title: "Social content & presence",
     name: "Social",
     body: "On-brand social that feeds your other channels, not an island of its own.",
     lead: "We plan, design and publish the content, so your brand looks the same on social as on your site and in your ads.",
@@ -61,7 +70,11 @@ export const SERVICES = [
   },
   {
     id: "brand",
-    title: "Branding & Visual Identity",
+    footer: "Branding and identity",
+    // the menu's second line, where the title would only repeat the name
+    sub: "Logo, visual identity, brand book",
+    page: "/services/branding",
+    title: "Branding & visual identity",
     name: "Branding",
     body: "The positioning and visual system underneath it all, so you read as one brand.",
     lead: "We define what your brand says and how it looks, then apply it to the site, social and ads.",
@@ -71,6 +84,27 @@ export const SERVICES = [
       "Brand book and post templates",
     ],
     fact: ["Result", "The same look everywhere"],
+  },
+];
+
+/* Every service page under /services: the five above, then AI and
+   automation, which has a page (and a place in the menu, the footer and
+   the hub) but no card among the homepage's five. */
+export const SERVICE_PAGES = [
+  ...SERVICES,
+  {
+    id: "ai",
+    footer: "AI and automation",
+    sub: "Quotes, pricing, search, CRM",
+    page: "/services/ai-automation",
+    title: "AI and automation",
+    name: "AI",
+    body: "Automations and AI tools that take over the tasks you repeat: quotes, prices, product data and enquiries.",
+    includes: [
+      "Automatic quotes and pricing",
+      "Product search and product data",
+      "CRM and connecting your systems",
+    ],
   },
 ];
 
@@ -182,19 +216,19 @@ export function makePlan(answers) {
 
 export const STEPS = [
   [
-    "Discovery & Audit",
+    "Discovery & audit",
     "We analyse the business, goals, and numbers to see what's working and what isn't.",
   ],
   [
-    "Strategy & Direction",
+    "Strategy & direction",
     "We set priorities, channel mix, and a clear growth plan.",
   ],
   [
-    "Execution & Optimization",
+    "Execution & optimisation",
     "We launch, test, and scale what earns its budget.",
   ],
   [
-    "Reporting & Growth",
+    "Reporting & growth",
     "Clear reporting and concrete decisions on the next move.",
   ],
 ];
@@ -211,24 +245,24 @@ export const NEVER = [
 
 export const FAQ = [
   {
-    q: "What types of businesses do you work with?",
-    a: "From local companies to established brands, across any industry where clear marketing and real results matter.",
-  },
-  {
     q: "How long does it take to start?",
     a: "Usually 1 to 2 weeks from the first call, depending on scope and capacity.",
+  },
+  {
+    q: "What if we're not sure exactly what we need?",
+    a: "That's what the first call is for. We look at the numbers and tell you what comes first and what can wait.",
   },
   {
     q: "Ongoing marketing or one-time projects?",
     a: "Both, but we do our best work as an ongoing partner running the whole function.",
   },
   {
-    q: "Do you offer contracts or long-term commitments?",
-    a: "Flexible partnerships with a short initial commitment. We'd rather earn the renewal than lock you in.",
+    q: "How do we stay in touch while we work together?",
+    a: "Directly and regularly. You work with the people who make the decisions, not an account manager.",
   },
   {
-    q: "What services do you offer?",
-    a: "Paid, web, SEO, social, and branding, run together as one system, not sold as separate line items.",
+    q: "What types of businesses do you work with?",
+    a: "From local companies to established brands, across any industry where clear marketing and real results matter.",
   },
 ];
 
@@ -241,3 +275,8 @@ export const CONTACT = {
   // the Serbian site
   sr: "https://www.digitl.rs",
 };
+
+/* How the hero's service cards are drawn (Luka's pick, 11 Nov 2026): the
+   "fine" and "lift" rules at the end of each card's stylesheet. Set on the
+   page root by HomeV5 and Shell. */
+export const CARD_SKIN = "fine lift";

@@ -6,6 +6,7 @@ import b from "./base.module.css";
 import { SERVICES } from "./content";
 import { ArrowRight, Rotate, Search } from "./icons";
 import s from "./services.module.css";
+import { SCENES } from "./StickerScenes";
 import { Bridge, EASE, Head, useApp } from "./ui";
 
 /* ── one small looping scene per service, drawn in CSS ─────────────────── */
@@ -144,7 +145,7 @@ const ART = {
   brand: ArtBrand,
 };
 
-function Card({ x, i, rank, wide, onAsk }) {
+function Card({ x, i, rank, wide, onAsk, look }) {
   const [flipped, setFlipped] = useState(false);
   const Art = ART[x.id];
   return (
@@ -173,7 +174,11 @@ function Card({ x, i, rank, wide, onAsk }) {
                 : null}
             </span>
             <span className={s.art}>
-              <Art />
+              {(() => {
+                // /v2: the same story, drawn as stickers
+                const Scene = look === "v2" ? SCENES[x.id] : Art;
+                return <Scene />;
+              })()}
             </span>
             <span className={s.frontText}>
               <b>{x.title}</b>
@@ -212,14 +217,23 @@ function Card({ x, i, rank, wide, onAsk }) {
                 <em>{x.fact[0]}</em>
                 <b>{x.fact[1]}</b>
               </p>
-              <button
-                type="button"
-                className={s.ask}
-                onClick={() => onAsk(x.name)}
-                tabIndex={flipped ? 0 : -1}
-              >
-                Start a conversation <ArrowRight size={14} />
-              </button>
+              <div className={s.actions}>
+                <button
+                  type="button"
+                  className={s.ask}
+                  onClick={() => onAsk(x.name)}
+                  tabIndex={flipped ? 0 : -1}
+                >
+                  Start a conversation <ArrowRight size={14} />
+                </button>
+                <a
+                  className={s.more}
+                  href={x.page}
+                  tabIndex={flipped ? 0 : -1}
+                >
+                  More about this service
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -228,13 +242,13 @@ function Card({ x, i, rank, wide, onAsk }) {
   );
 }
 
-export default function Services() {
+export default function Services({ look }) {
   const { plan, book } = useApp();
   const order = plan ? plan.ranked : SERVICES.map((x) => x.id);
   const list = order.map((id) => SERVICES.find((x) => x.id === id));
 
   return (
-    <section className={b.section} data-section="Usluge">
+    <section className={b.section} data-section="Services">
       <div className={b.container}>
         <div className={s.top}>
           <Head
@@ -259,6 +273,7 @@ export default function Services() {
               rank={plan ? plan.top.indexOf(x.id) : -1}
               wide={i < 2}
               onAsk={book}
+              look={look}
             />
           ))}
         </ul>

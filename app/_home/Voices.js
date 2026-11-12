@@ -69,7 +69,7 @@ export default function Voices() {
   return (
     <section
       className={`${b.section} ${b.glow} ${v.section}`}
-      data-section="Utisci"
+      data-section="Clients"
     >
       <div className={b.container}>
         <Head

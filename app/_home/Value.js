@@ -287,7 +287,7 @@ export default function Value() {
   return (
     <section
       className={`${b.section} ${v.section}`}
-      data-section="Šta dobijate"
+      data-section="What you get"
     >
       <div className={b.container}>
         <Head

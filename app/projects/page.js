@@ -8,7 +8,7 @@ import Shell from "../_home/Shell";
 export const revalidate = 60;
 
 export const metadata = {
-  title: "Projects",
+  title: { absolute: "Projects and case studies | Digitl" },
   description:
     "A selection of projects we've built for clients across different industries.",
   alternates: { canonical: "/projects" },

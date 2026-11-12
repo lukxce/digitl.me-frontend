@@ -50,10 +50,14 @@
   .grid {
     display: flex;
     gap: 10px;
+    /* sideways only: overflow-x alone turns the other axis to auto too,
+       so the lift and the flip let the row scroll up and cut the cards */
     overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     margin: clamp(28px, 6vw, 40px) -16px 0;
-    padding: 0 16px 8px;
+    padding: 6px 16px 8px;
     scrollbar-width: none;
   }
   .grid::-webkit-scrollbar {
@@ -121,9 +125,11 @@
 .flip[data-flipped="true"] .back {
   visibility: visible;
 }
-.front:hover {
-  box-shadow: var(--lift);
-  transform: translateY(-3px);
+@media (hover: hover) {
+  .front:hover {
+    box-shadow: var(--lift);
+    transform: translateY(-3px);
+  }
 }
 /* both sides of a card wear the same colour */
 .front,
@@ -326,10 +332,32 @@
 .fact b {
   font-weight: 800;
 }
-.ask {
+.actions {
   grid-area: ask;
   align-self: end;
-  justify-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+/* the link to the service's own page: an outline pill beside "Razgovarajmo" */
+.more {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, currentColor 38%, transparent);
+  font-size: 14px;
+  font-weight: 700;
+  transition:
+    box-shadow 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+.more:hover {
+  transform: translateY(-1px);
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+.ask {
   display: inline-flex;
   align-items: center;
   gap: 6px;

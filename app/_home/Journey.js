@@ -97,12 +97,12 @@ export default function Journey() {
   };
 
   return (
-    <section className={`${b.section} ${j.section}`} data-section="Kako radimo">
+    <section className={`${b.section} ${j.section}`} data-section="How we work">
       <div ref={ref} className={b.container}>
         <span id="process" className={b.anchor} />
         <div className={j.head}>
           <span className={j.four} aria-hidden="true">
-            <Roll value={visible ? 4 : 0} ms={1400} />
+            <Roll value={4} run={visible} ms={1400} />
           </span>
           <div className={j.headText}>
             <span className={b.label}>How we work</span>

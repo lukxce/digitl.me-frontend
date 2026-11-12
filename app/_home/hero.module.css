@@ -2,6 +2,15 @@
   position: relative;
   overflow: hidden;
   padding-top: clamp(112px, 13vh, 150px);
+  isolation: isolate;
+  background: #fff;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(
       60% 50% at 80% 70%,
@@ -13,6 +22,22 @@
       color-mix(in oklab, var(--accent) 12%, transparent),
       transparent 70%
     ), linear-gradient(180deg, #fff 0%, var(--accent-soft) 100%);
+  /* the brand light melts into the white below: no straight edge where
+     the hero ends */
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 56%,
+    rgb(0 0 0 / 0.5) 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 56%,
+    rgb(0 0 0 / 0.5) 78%,
+    transparent 100%
+  );
 }
 /* the promise on the left, the search climbing to #1 on the right */
 .top {
@@ -69,11 +94,24 @@
     display: none;
   }
 }
-/* "Where marketing" is a longer first line than the Serbian one; at 68px it
-   had under 2px to spare in its column, so the cap here is 64px. */
 .title {
   margin-top: 24px !important;
-  font-size: clamp(42px, 4.3vw, 64px);
+  font-size: clamp(42px, 4.3vw, 68px);
+}
+/* headline lines: readable on the first paint, then they settle a little */
+.line {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .line {
+    animation: settle 0.9s var(--ease) both;
+  }
+}
+@keyframes settle {
+  from {
+    transform: translateY(0.24em);
+    opacity: 0.55;
+  }
 }
 @media (max-width: 1040px) {
   .title {

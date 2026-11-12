@@ -1,7 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useState } from "react";
+import Audit from "./Audit";
 import b from "./base.module.css";
 import { CONTACT, FAQ } from "./content";
 import { Plus } from "./icons";
@@ -10,9 +11,30 @@ import x from "./sections.module.css";
 import { Btn, EASE, Head, useApp } from "./ui";
 
 /* ── Your plan: the three questions, right under the four steps ─────── */
+/* ── Site check: Google's own phone test, live, right before the form;
+   the address and the scores travel into the form below ──────────────── */
+export function Check() {
+  return (
+    <section className={`${b.glow} ${x.check}`} data-section="Site check">
+      <div className={b.container}>
+        <span id="site-check" className={b.anchor} />
+        <div className={x.checkHead}>
+          <span className={b.label}>Free check</span>
+          <h2>Start with your own site.</h2>
+          <p>
+            The same test Google uses to score sites on a phone. Your score
+            and the first fixes in about twenty seconds, no sign-up.
+          </p>
+        </div>
+        <Audit />
+      </div>
+    </section>
+  );
+}
+
 export function PlanSection({ clients }) {
   return (
-    <section className={`${b.glow} ${x.plan}`} data-section="Vaš plan">
+    <section className={`${b.glow} ${x.plan}`} data-section="Your plan">
       <div className={b.container}>
         <span id="your-plan" className={b.anchor} />
         <div className={x.planGrid}>
@@ -38,7 +60,7 @@ export function Faq() {
   const [open, setOpen] = useState(0);
   const { openBooking } = useApp();
   return (
-    <section className={b.section} data-section="Pitanja">
+    <section className={b.section} data-section="FAQ">
       <div className={`${b.container} ${x.faq}`}>
         <div className={x.faqSide}>
           <Head
@@ -67,20 +89,22 @@ export function Faq() {
                     <Plus size={16} strokeWidth={2.4} />
                   </i>
                 </button>
-                <AnimatePresence initial={false}>
-                  {on
-                    ? <motion.div
-                        id={`faq-${i}`}
-                        className={x.answer}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: EASE }}
-                      >
-                        <p>{f.a}</p>
-                      </motion.div>
-                    : null}
-                </AnimatePresence>
+                {/* Every answer is in the page (search engines and AI
+                    answers read them); a closed one is only folded. */}
+                <motion.div
+                  id={`faq-${i}`}
+                  className={x.answer}
+                  initial={false}
+                  animate={
+                    on
+                      ? { height: "auto", opacity: 1 }
+                      : { height: 0, opacity: 0 }
+                  }
+                  transition={{ duration: 0.4, ease: EASE }}
+                  aria-hidden={!on}
+                >
+                  <p>{f.a}</p>
+                </motion.div>
               </li>
             );
           })}

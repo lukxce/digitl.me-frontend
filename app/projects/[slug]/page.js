@@ -65,21 +65,25 @@ export async function generateMetadata(props) {
     ? sized(showcase.coverUrl, 1200, 82, "jpg")
     : null;
 
+  // "Pando Cleaning Solutions: case study, cleaning services | Digitl"
+  const name = showcase.clientName || showcase.title;
+  const cat = showcase.category ? `, ${showcase.category.toLowerCase()}` : "";
+  const fullTitle = `${name}: case study${cat} | Digitl`;
   return {
-    title: showcase.title,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: canonicalPath },
     openGraph: {
       type: "article",
       url: canonicalPath,
-      title: showcase.title,
+      title: fullTitle,
       description,
       publishedTime: showcase.publishedAt ?? undefined,
       images: image ? [{ url: image, alt: showcase.title }] : undefined,
     },
     twitter: {
       card: image ? "summary_large_image" : "summary",
-      title: showcase.title,
+      title: fullTitle,
       description,
       images: image ? [image] : undefined,
     },

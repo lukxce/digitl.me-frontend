@@ -1472,3 +1472,260 @@
     animation: none;
   }
 }
+
+/* ── the hero cards' accents (any skin) ─────────────────────────────
+   The card as it is, with no outlines on the interface (Luka found ink
+   outlines retro). The newest enquiry in the inbox is the steps' blue
+   card with its dot grain and a lime "Upit" (an older enquiry goes back
+   to white and keeps its label); the enquiry count sits on lime, the
+   day going out wears a small blue label, "Objavljeno" is flat lime
+   (blue while it publishes), monograms wear flat brand colours. The post
+   pictures are untouched. The sticker is HeroShowcase's. */
+/* the enquiry count on lime */
+:global([data-skin]) .leads {
+  background: var(--mist);
+  color: var(--ink-2);
+}
+:global([data-skin]) .leads[data-hot="true"],
+:global([data-skin]) .leads[data-done="true"] {
+  background: var(--secondary-soft);
+}
+:global([data-skin]) .leads .leadsNo {
+  background: var(--secondary);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--secondary) 35%, transparent);
+}
+/* the day going out: a small flat blue label over its frame */
+:global([data-skin]) .dayName {
+  justify-self: center;
+  padding: 0 7px;
+  border-radius: 999px;
+  transition:
+    color 0.35s var(--ease),
+    background-color 0.35s var(--ease),
+    rotate 0.35s var(--ease),
+    translate 0.35s var(--ease);
+}
+:global([data-skin]) .day[data-today="true"] .dayName {
+  background: var(--accent);
+  color: #fff;
+}
+/* "Objavljeno" flat lime, "Objavljuje se" flat blue */
+:global([data-skin]) .state {
+  background: var(--secondary);
+  color: var(--ink);
+}
+:global([data-skin]) .state[data-live] {
+  background: var(--accent);
+  color: #fff;
+}
+:global([data-skin]) .spin {
+  border-color: rgb(255 255 255 / 0.35);
+  border-top-color: #fff;
+}
+/* monograms in flat brand fills */
+:global([data-skin]) .dmAva[data-tone="spark"] {
+  background: var(--spark);
+  color: #fff;
+  box-shadow: none;
+}
+:global([data-skin]) .dmAva[data-tone="lime"] {
+  background: var(--secondary);
+  color: var(--ink);
+  box-shadow: none;
+}
+:global([data-skin]) .dmAva[data-tone="accent"] {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: none;
+}
+:global([data-skin]) .dmTop b,
+:global([data-skin]) .dmText,
+:global([data-skin]) .dmMeta,
+:global([data-skin]) .dmMeta svg {
+  transition: color 0.4s var(--ease);
+}
+/* the newest enquiry: the steps' blue card (only the first row with an
+   "Upit", so the inbox never holds two blue cards) */
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead] {
+  background-color: var(--accent);
+  background-image: radial-gradient(
+    rgb(255 255 255 / 0.14) 1px,
+    transparent 1.4px
+  );
+  background-size: 12px 12px;
+  box-shadow: 0 18px 34px -16px
+    color-mix(in oklab, var(--accent) 70%, transparent);
+}
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead]
+  .dmTop
+  b {
+  color: #fff;
+}
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead]
+  .dmText {
+  color: rgb(255 255 255 / 0.8);
+}
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead]
+  .dmMeta {
+  color: rgb(255 255 255 / 0.7);
+}
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead]
+  .dmMeta
+  svg {
+  color: var(--secondary);
+}
+:global([data-skin])
+  .dmSlot:not(.dmSlot:has(> .dm[data-lead]) ~ .dmSlot)
+  > .dm[data-lead]
+  .dmAva[data-tone="accent"] {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 6px 14px -6px rgb(11 11 22 / 0.5);
+}
+@media (max-width: 640px) {
+  /* phones: the week's rows sit tight, lift the label off its frame */
+  :global([data-skin]) .day[data-today="true"] .dayName {
+    translate: 0 -2px;
+  }
+}
+/* ── skin "fine": the white card stays; the pieces inside are
+   drawn the way the steps draw their little screens. A white profile
+   bar that sits up off the card, the site's key with its arrow in a
+   circle, and the messages as white cards in a mist tray (the trays
+   shrink their rows so the card keeps its height). ──────────────────── */
+:global([data-skin~="fine"]) .bar {
+  background: #fff;
+  box-shadow:
+    var(--ring),
+    0 12px 26px -16px rgb(26 25 120 / 0.35);
+}
+:global([data-skin~="fine"]) .ava {
+  box-shadow: 0 0 0 2px #fff;
+}
+:global([data-skin~="fine"]) .go {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 6px 0 18px;
+}
+:global([data-skin~="fine"]) .go::after {
+  content: "";
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E")
+    center / 15px no-repeat,
+    rgb(255 255 255 / 0.2);
+  transition: translate 0.3s var(--ease);
+}
+:global([data-skin~="fine"]) .go:hover::after {
+  translate: 2px 0;
+}
+:global([data-skin~="fine"]) .inbox {
+  padding: 6px;
+  border-radius: 22px;
+  background: var(--mist);
+}
+:global([data-skin~="fine"]) .dm {
+  border-radius: 16px;
+}
+:global([data-skin~="fine"]) .dm:not([data-new]) {
+  box-shadow:
+    var(--ring),
+    0 1px 2px rgb(11 11 22 / 0.04);
+}
+@media (max-width: 640px) {
+  /* phones: the inbox gets its tray back; its rows, the gap above it
+     and the hint line give up the 8px it adds */
+  :global([data-skin~="fine"]) .main {
+    gap: 4px;
+  }
+  :global([data-skin~="fine"]) .inbox {
+    padding: 4px;
+    border-radius: 18px;
+  }
+  :global([data-skin~="fine"]) .dms {
+    --dmH: 44px;
+  }
+  :global([data-skin~="fine"]) .dm {
+    border-radius: 13px;
+  }
+}
+@media (max-width: 560px) {
+  :global([data-skin~="fine"]) .meta {
+    padding-top: 10px;
+  }
+  :global([data-skin~="fine"]) .go {
+    padding: 0 5px 0 14px;
+    gap: 8px;
+  }
+  :global([data-skin~="fine"]) .go::after {
+    width: 30px;
+    height: 30px;
+  }
+}
+/* ── skin "lift" (tilts taken out 11 Nov 2026): earlier the white card
+   leaned like the steps' cards, and
+   three pieces come off it as stickers: the profile bar, the post that
+   just went out (a polaroid off the left edge) and the enquiry count
+   (off the right edge). The inbox is a conveyor that clips its rows, so
+   the blue enquiry row stays in place. ─────────────────────────────── */
+:global([data-skin~="lift"]) .bar {
+  margin: 0 -22px 0 -18px;
+  background: #fff;
+  box-shadow:
+    0 0 0 5px #fff,
+    0 18px 34px -16px rgb(11 11 22 / 0.4),
+    0 0 0 6px rgb(11 11 22 / 0.06);
+}
+:global([data-skin~="lift"]) .ava {
+  box-shadow: 0 0 0 2px #fff;
+}
+:global([data-skin~="lift"]) .post {
+  margin-left: -28px;
+  box-shadow:
+    0 0 0 5px #fff,
+    0 0 0 6px rgb(11 11 22 / 0.06),
+    0 26px 40px -18px rgb(11 11 22 / 0.42);
+}
+/* a post on its way out is absolutely placed by AnimatePresence, at a
+   left that already counts the margin */
+:global([data-skin~="lift"]) .post[data-motion-pop-id] {
+  margin-left: 0;
+}
+:global([data-skin~="lift"]) .leads {
+  margin-right: -26px;
+  height: 34px;
+  padding: 0 5px 0 13px;
+  background: #fff;
+  font-size: 13px;
+  box-shadow:
+    0 0 0 4px #fff,
+    0 12px 22px -12px rgb(11 11 22 / 0.4);
+}
+@media (max-width: 560px) {
+  /* phones: the card is full width, so small overhangs and tilts */
+  :global([data-skin~="lift"]) .bar {
+    margin: 0 -8px;
+  }
+  :global([data-skin~="lift"]) .post {
+    margin-left: -8px;
+  }
+  :global([data-skin~="lift"]) .leads {
+    margin-right: -8px;
+    height: 28px;
+    padding: 0 4px 0 11px;
+    font-size: 12px;
+  }
+}

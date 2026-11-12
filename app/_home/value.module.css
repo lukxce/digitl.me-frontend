@@ -129,8 +129,8 @@
   width: 26px;
   height: 30px;
   background: #fff;
-  -webkit-mask: url("/brand-mark.png") center / contain no-repeat;
-  mask: url("/brand-mark.png") center / contain no-repeat;
+  -webkit-mask: url("/digitl-logo.png") center / contain no-repeat;
+  mask: url("/digitl-logo.png") center / contain no-repeat;
 }
 .node {
   position: absolute;
@@ -377,8 +377,8 @@
   width: 10px;
   height: 12px;
   background: currentColor;
-  -webkit-mask: url("/brand-mark.png") center / contain no-repeat;
-  mask: url("/brand-mark.png") center / contain no-repeat;
+  -webkit-mask: url("/digitl-logo.png") center / contain no-repeat;
+  mask: url("/digitl-logo.png") center / contain no-repeat;
 }
 .them p,
 .us p {

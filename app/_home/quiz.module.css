@@ -324,15 +324,12 @@
   font-size: 15px;
   font-weight: 800;
 }
-/* up to two lines: on a phone the CMS's own label ("pages, from a
-   single-page site") does not fit on one */
 .matchText > span {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
   font-size: 12.5px;
   color: var(--ink-3);
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 .matchText strong {
   color: var(--accent);

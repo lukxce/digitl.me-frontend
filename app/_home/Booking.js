@@ -20,7 +20,10 @@ const T = {
   write: "Rather write?",
   day: "Day",
   time: "Time",
-  zone: (tz) => `Times are shown in your time zone (${tz}).`,
+  zone: (tz) =>
+    tz === "Europe/Belgrade"
+      ? "Times are in Belgrade time."
+      : `Times are shown in your time zone (${tz}).`,
   how: "What suits you",
   video: "Video call",
   phone: "Phone",

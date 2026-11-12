@@ -330,7 +330,7 @@ export default function Loop() {
   return (
     <section
       className={`${b.section} ${b.glow} ${l.section}`}
-      data-section="Put kupca"
+      data-section="Customer path"
     >
       <div className={b.container}>
         <div ref={ref} className={l.grid}>
@@ -455,9 +455,10 @@ export default function Loop() {
           </div>
         </div>
 
+        {/* the form now sits above the wheel, so the talk opens here */}
         <Bridge
           text="We run the whole loop, from the first glance to the customer who comes back. Let's talk about yours."
-          to="#contact"
+          book
           label="Start a conversation"
         />
       </div>

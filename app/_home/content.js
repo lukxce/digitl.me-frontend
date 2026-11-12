@@ -100,6 +100,8 @@ export const SERVICE_PAGES = [
     title: "AI and automation",
     name: "AI",
     body: "Automations and AI tools that take over the tasks you repeat: quotes, prices, product data and enquiries.",
+    lead: "The tasks your team does by hand every week go to automation, and people only decide what needs judgement.",
+    fact: ["We measure", "Hours of manual work and errors, before and after"],
     includes: [
       "Automatic quotes and pricing",
       "Product search and product data",

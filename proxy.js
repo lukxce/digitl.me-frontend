@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
    The posts themselves are still in Sanity. To bring the blog back, set
    BLOG_LIVE to true and put Blog back on the homepage, in the nav and in the
    sitemap. */
-export const BLOG_LIVE = false;
+export const BLOG_LIVE = true;
 
 const GONE = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">

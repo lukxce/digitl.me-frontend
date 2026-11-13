@@ -28,6 +28,7 @@ export const LINKS = [
   { href: "/services", label: "Services", services: true },
   { href: "#process", label: "How we work" },
   { href: "/projects", label: "Projects" },
+  { href: "/journal", label: "Journal" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -35,6 +36,7 @@ export const INNER_LINKS = [
   { href: "/services", label: "Services", services: true },
   { href: "/#process", label: "How we work" },
   { href: "/projects", label: "Projects" },
+  { href: "/journal", label: "Journal" },
   { href: "#contact", label: "Contact" },
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Blog from "./Blog";
 import Booking from "./Booking";
 import b from "./base.module.css";
 import Contact from "./Contact";
@@ -7,9 +8,8 @@ import { CARD_SKIN } from "./content";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import Journey from "./Journey";
-import Loop from "./Loop";
 import Nav from "./Nav";
-import { Check, Faq, PlanSection } from "./Sections";
+import { Faq, PlanSection } from "./Sections";
 import Services from "./Services";
 import { AppProvider } from "./ui";
 // The "What you get" section is parked (Luka, 21 Oct 2026); its four little
@@ -34,6 +34,7 @@ import Work from "./Work";
     stylesheet. */
 export default function HomeV5({
   clients,
+  articles = [],
   fonts,
   look = "v2",
   skin = CARD_SKIN,
@@ -60,9 +61,12 @@ export default function HomeV5({
           {/* the form comes before the wheel (Luka, 11 Nov 2026) */}
           {/* the site check comes back right before the form (Luka, 12 Nov
               2026); what it measures is carried into the form */}
-          <Check />
+          {/* the site check and the wheel are off for now (Luka, 13 Nov
+              2026); the journal sits right before the form */}
+          {/* <Check /> */}
+          <Blog articles={articles} />
           <Contact />
-          <Loop />
+          {/* <Loop /> */}
           <Faq />
         </main>
         <Footer />

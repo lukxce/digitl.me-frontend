@@ -133,7 +133,7 @@ export default function Listing({ articles, categories }) {
       </section>
 
       {rest.length
-        ? <section className={l.more} data-section="Još sa bloga">
+        ? <section className={l.more} data-section="More from the journal">
             <div className={b.container}>
               <div className={l.moreTop}>
                 <Words text="More from the journal." className={b.h2} />

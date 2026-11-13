@@ -2,7 +2,7 @@ import Link from "next/link";
 import { extractContentHeadings } from "../../lib/blockHeadings.js";
 import b from "../_home/base.module.css";
 import { Newsletter } from "../_home/Blog";
-import { ArrowLeft, ArrowUpRight } from "../_home/icons";
+import { ArrowLeft, ArrowUpRight, Check } from "../_home/icons";
 import { Head, Reveal } from "../_home/ui";
 import logo from "../assets/digitl-logo.png";
 import Ask, { Calm } from "./Ask";
@@ -167,49 +167,48 @@ export default async function Article({ article, more }) {
           </div>
         </header>
 
-        {keys.length
-          ? <section className={b.container} aria-labelledby="key-takeaways">
-              <Reveal className={s.keys}>
-                <h2 id="key-takeaways" className={s.keysLabel}>
-                  Key takeaways
-                </h2>
-                <ol className={s.keysGrid}>
-                  {keys.map((k, i) => (
-                    // biome-ignore lint/suspicious/noArrayIndexKey: a fixed list from the CMS
-                    <li key={i} className={s.key}>
-                      <span className={s.keyNo} aria-hidden="true">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      {k.title
-                        ? <h3>
-                            <Tie>{k.title}</Tie>
-                          </h3>
-                        : null}
-                      {k.description
-                        ? <p>
-                            <Tie>{k.description}</Tie>
-                          </p>
-                        : null}
-                    </li>
-                  ))}
-                </ol>
-              </Reveal>
-            </section>
-          : null}
-
         <div className={b.container}>
           <div className={s.layout}>
             <div className={s.main}>
+            {keys.length
+              ? <section className={s.keysWrap} aria-labelledby="key-takeaways">
+                  <Reveal className={s.keys}>
+                    <div className={s.keysHead}>
+                      <h2 id="key-takeaways" className={s.keysLabel}>
+                        Key takeaways
+                      </h2>
+                      <span className={s.keysCount}>{keys.length} things to take away</span>
+                    </div>
+                    <ul className={s.keysList}>
+                      {keys.map((k, i) => (
+                        // biome-ignore lint/suspicious/noArrayIndexKey: a fixed list from the CMS
+                        <li key={i} className={s.key}>
+                          <span className={s.keyTick} aria-hidden="true">
+                            <Check size={14} strokeWidth={3.2} />
+                          </span>
+                          <p>
+                            {k.title
+                              ? <strong>
+                                  <Tie>{k.title}</Tie>
+                                </strong>
+                              : null}
+                            {k.title && k.description ? " " : null}
+                            {k.description ? <Tie>{k.description}</Tie> : null}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </Reveal>
+                </section>
+              : null}
               {showToc ? <TocFold items={toc} /> : null}
-              <div id="article">
+              <div id="tekst">
                 {hasBody
                   ? <Prose
                       nodes={parsed?.nodes}
                       blocks={parsed ? undefined : blocks}
                     />
-                  : <p className={s.nothing}>
-                      This article has no content yet.
-                    </p>}
+                  : <p className={s.nothing}>This article has no content yet.</p>}
               </div>
               <Share url={url} title={article.title} className={s.shareEnd} />
               <Ask author={author} avatar={avatar} />
@@ -230,7 +229,7 @@ export default async function Article({ article, more }) {
                 <div className={s.moreTop}>
                   <Head label="Journal" title="More from the journal." />
                   <Link className={s.all} href="/journal">
-                    All articles <ArrowUpRight size={15} />
+                    Svi tekstovi <ArrowUpRight size={15} />
                   </Link>
                 </div>
                 <ul className={s.moreGrid}>

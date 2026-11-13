@@ -1,0 +1,792 @@
+/* Bespoke pieces for the social media management cost post (en4.js). Same
+   family as widgets.module.css: radius 24, mist tray, white cards, the
+   chapter colour (--c) for what matters, lime for the number, coral only
+   for a warning. */
+
+.builder,
+.who,
+.week {
+  margin: 0;
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  border-radius: 24px;
+  color: var(--ink);
+  min-width: 0;
+}
+.builder {
+  background: var(--mist);
+}
+.who,
+.week {
+  background: #fff;
+  box-shadow: var(--ring);
+}
+@media (max-width: 560px) {
+  .builder,
+  .who,
+  .week {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.cap {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+  background: var(--mist);
+  white-space: nowrap;
+}
+.builder .tag {
+  background: #fff;
+  box-shadow: var(--ring);
+}
+
+/* ── the switch ────────────────────────────────────────────────────────── */
+.switch {
+  position: relative;
+  display: grid;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--mist);
+  box-shadow: var(--ring);
+}
+.switch button {
+  position: relative;
+  z-index: 1;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.switch button:hover {
+  color: var(--ink);
+}
+.switch button[aria-selected="true"] {
+  color: #fff;
+}
+.switch button:focus-visible,
+.seg button:focus-visible {
+  outline: 2px solid var(--c, var(--accent));
+  outline-offset: 2px;
+}
+.knob {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  border-radius: 999px;
+  background: var(--c, var(--accent));
+}
+.switch[data-small] {
+  background: #fff;
+}
+.switch[data-small] button {
+  min-height: 32px;
+  padding: 4px 16px;
+  font-size: 13px;
+}
+@media (max-width: 420px) {
+  .switch button {
+    font-size: 13px;
+    padding: 8px 6px;
+  }
+}
+
+/* ── 1. the scope builder ──────────────────────────────────────────────── */
+.rows {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--ring);
+}
+.row {
+  display: grid;
+  gap: 8px;
+  padding: 10px 8px;
+}
+.row + .row {
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 620px) {
+  .row {
+    grid-template-columns: 150px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+  }
+}
+.rowLabel {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.seg {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--mist);
+}
+.seg button {
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.2;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+.seg button:hover {
+  color: var(--ink);
+  background: rgb(255 255 255 / 0.7);
+}
+.seg button[aria-pressed="true"] {
+  color: #fff;
+  background: var(--c, var(--accent));
+  box-shadow: 0 6px 16px -10px var(--c, var(--accent));
+}
+.rowNote {
+  min-height: 46px;
+  padding: 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--ink-2, var(--ink));
+}
+
+.result {
+  display: grid;
+  gap: 10px;
+}
+@media (min-width: 620px) {
+  .result {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  }
+}
+.land,
+.youBox {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--ring);
+}
+.scopes {
+  display: grid;
+  gap: 6px;
+}
+.scope {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  transition:
+    background 0.4s var(--ease),
+    color 0.4s var(--ease);
+  color: var(--ink-4);
+}
+.scope i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  background: var(--mist);
+  color: var(--ink-4);
+  transition:
+    background 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+.scope b {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.scope[data-past] i {
+  background: color-mix(in oklab, var(--c, var(--accent)) 18%, #fff);
+  color: var(--c, var(--accent));
+}
+.scope[data-on] {
+  color: var(--ink);
+  background: var(--soft, var(--accent-soft));
+}
+.scope[data-on] i {
+  background: var(--c, var(--accent));
+  color: #fff;
+}
+.you {
+  display: grid;
+  gap: 8px;
+}
+.you span {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+.you span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--secondary);
+}
+
+.receipt {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--ring);
+}
+.line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+.line > span {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+.line b {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.line small {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+.line em {
+  flex: none;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--secondary);
+}
+.line em[data-meta] {
+  color: var(--c, var(--accent));
+  background: var(--soft, var(--accent-soft));
+}
+.line[data-off] em[data-meta] {
+  color: var(--ink-4);
+  background: var(--mist);
+}
+.apart {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.apart::before,
+.apart::after {
+  content: "";
+  flex: 1;
+  border-top: 1.5px dashed var(--line-2, var(--line));
+}
+
+/* ── 2. who runs it ────────────────────────────────────────────────────── */
+.whoBody {
+  display: grid;
+  gap: 14px;
+}
+.pay {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--soft, var(--accent-soft));
+}
+.pay > b {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.fit {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.grid {
+  display: grid;
+  gap: 8px;
+}
+@media (min-width: 560px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+.cell {
+  display: grid;
+  gap: 5px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--mist);
+}
+.cellKey {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.cellVal {
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.cell[data-cover="warn"] {
+  background: var(--spark-soft, var(--mist));
+}
+.cell[data-cover="warn"] .cellKey {
+  color: var(--spark-ink, var(--ink-3));
+}
+.cell[data-cover="ok"] {
+  background: #fff;
+  box-shadow: inset 0 0 0 2px var(--c, var(--accent));
+}
+.cell[data-cover="ok"] .cellKey {
+  color: var(--c, var(--accent));
+}
+
+.build {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 18px;
+  background: var(--mist);
+}
+.buildTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.stack {
+  display: flex;
+  height: 34px;
+  padding: 4px;
+  gap: 4px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--ring);
+  overflow: hidden;
+}
+.stack i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--c, var(--accent));
+}
+.stack i[data-i="1"] {
+  background: var(--secondary);
+}
+.stack i[data-i="2"] {
+  background: color-mix(in oklab, var(--c, var(--accent)) 35%, #fff);
+}
+.parts {
+  display: grid;
+  gap: 8px;
+}
+@media (min-width: 560px) {
+  .parts {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+.part {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 14px;
+  background: #fff;
+}
+.part > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.part > span i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--c, var(--accent));
+}
+.part[data-i="1"] > span i {
+  background: var(--secondary);
+}
+.part[data-i="2"] > span i {
+  background: color-mix(in oklab, var(--c, var(--accent)) 35%, #fff);
+}
+.part > b {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.part > small {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-3);
+}
+.sum {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 8px;
+}
+.sum > div {
+  display: grid;
+  align-content: space-between;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+}
+.sum span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.sum b {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.sum > .sumMonth {
+  color: #fff;
+  background:
+    radial-gradient(rgb(255 255 255 / 0.14) 1.2px, transparent 1.6px) 0 0 / 14px
+    14px,
+    var(--c, var(--accent));
+}
+.sumMonth span {
+  color: rgb(255 255 255 / 0.75);
+}
+.sumMonth b {
+  font-size: clamp(26px, 6vw, 34px);
+  line-height: 1;
+  color: #fff;
+}
+.notCounted {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.notCounted span {
+  margin-right: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.notCounted em {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--ink-3);
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--line-2, var(--line));
+  border: 0;
+}
+.buildFoot {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+.buildFoot span {
+  color: var(--ink-4);
+}
+
+/* ── 3. one example week ───────────────────────────────────────────────── */
+.cal {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  column-gap: 6px;
+  row-gap: 6px;
+  padding: 14px;
+  border-radius: 18px;
+  background: var(--mist);
+}
+.day {
+  padding: 6px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.day[data-sat] {
+  color: var(--ink);
+}
+.lane {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.slot {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 46px;
+  border-radius: 12px;
+  background: #fff;
+}
+.post {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--c, var(--accent));
+}
+.band {
+  position: relative;
+  z-index: 0;
+  min-height: 46px;
+  border-radius: 12px;
+  background: color-mix(in oklab, var(--secondary) 45%, #fff);
+}
+.band small {
+  position: absolute;
+  left: 50%;
+  bottom: -18px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--secondary-ink, var(--ink-3));
+}
+.wire {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  height: 2px;
+  pointer-events: none;
+}
+.wire i {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(100% / var(--n, 1) / 2);
+  right: calc(100% / var(--n, 1) / 2);
+  border-top: 2px dashed var(--c, var(--accent));
+  transform-origin: left center;
+}
+.wire i[data-late] {
+  border-top-color: var(--spark);
+}
+.msg,
+.reply {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  align-self: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.msg {
+  color: var(--ink);
+  background: #fff;
+  box-shadow:
+    var(--ring),
+    0 4px 12px -6px rgb(11 11 22 / 0.3);
+}
+.reply {
+  color: #fff;
+  background: var(--c, var(--accent));
+}
+.reply[data-late] {
+  background: var(--spark);
+}
+.reply[data-same] {
+  justify-self: end;
+  align-self: center;
+  width: 22px;
+  height: 22px;
+  margin: 18px 2px 0 0;
+  box-shadow: 0 0 0 3px var(--mist);
+}
+
+.bubbleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+}
+.bubble {
+  display: grid;
+  gap: 2px;
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--mist);
+}
+.bubble small {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.verdict {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.verdict em {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--secondary);
+}
+.verdict[data-late] em {
+  color: var(--spark-ink, #fff);
+  background: var(--spark-soft, var(--spark));
+}
+.weekText {
+  min-height: 70px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.expect {
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.expectRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.expectRow span {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-3);
+  background: var(--mist);
+}
+.expectRow b {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.expectRow span[data-on] {
+  color: var(--ink);
+  background: color-mix(in oklab, var(--secondary) 45%, #fff);
+}
+.expect small {
+  font-size: 12px;
+  color: var(--ink-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .switch button,
+  .seg button,
+  .scope,
+  .scope i {
+    transition: none;
+  }
+}

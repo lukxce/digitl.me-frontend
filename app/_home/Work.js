@@ -27,26 +27,36 @@ function CardTop({ c, dark = false, closest = false }) {
 
 /* Taller versions of the covers, drawn for the deck card on wide screens
    (studije-slucaja/cover4.py), so a 16:9 cover is never cropped into it. */
-const CARD_IMAGES = {
-  "pando-cleaning":
-    "https://cdn.sanity.io/images/wy74bwq9/production/d2f78c0026ec038f4acdbdbc95c0e3a39d269103-1500x1660.jpg",
+/* The client's own site, by project: a screenshot of its home page and
+   the address shown in the window's bar. Projects not listed keep their CMS
+   cover. */
+const SITES = {
+  "pando-cleaning": {
+    src: "/work/pando-home.webp",
+    domain: "pando-cleaning.com",
+  },
 };
 
-/** The client's site, filling its half of the card. */
+/** The client's site in a browser window: the address bar says whose site
+    it is, so the card reads as "a project" at a glance (Luka, 19 Nov 2026:
+    the mosaic cover did not). */
 function Shot({ c }) {
-  const tall = CARD_IMAGES[c.slug];
+  const site = SITES[c.slug];
   return (
     <span className={w.shot}>
-      <picture>
-        {tall
-          ? <source
-              media="(min-width: 960px)"
-              srcSet={`${tall}?w=900&fm=webp&q=82`}
-            />
-          : null}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className={w.shotImg} src={c.cover} alt={`${c.name} project`} />
-      </picture>
+      <span className={w.chrome} aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        {site ? <em>{site.domain}</em> : null}
+      </span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className={w.shotImg}
+        src={site ? site.src : c.cover}
+        alt={`The site we built for ${c.name}`}
+        loading="lazy"
+      />
     </span>
   );
 }

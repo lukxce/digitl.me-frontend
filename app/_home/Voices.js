@@ -5,26 +5,20 @@ import b from "./base.module.css";
 import { EASE, Head, Reveal } from "./ui";
 import v from "./voices.module.css";
 
-/* Slots for real client quotes. Until they arrive, each is marked as waiting
-   so nothing here can pass for a real testimonial. */
+/* Client quotes, written with the clients' permission (Nov 2026); the
+   Serbian originals are on digitl.rs. */
 const QUOTES = [
   {
-    text: "The strongest client quote goes here: what changed in their business after working with us, in two or three sentences, in their words.",
-    name: "Name Surname",
-    role: "Owner, company name",
+    text: "We had the stock, the know-how and the installers, but online we barely existed. Digitl built a site with our whole catalogue, a new look for the company and a tool that compares our prices with the competition every Monday. Today most of our visits come from Google search, without any ads.",
+    name: "Uroš Zdravković",
+    role: "Owner, Thermiq",
     tone: ["#2a29ff", "#9ef34a"],
   },
   {
-    text: "A shorter quote: what mattered most to them in working with us.",
-    name: "Name Surname",
-    role: "Role, company name",
+    text: "For years all our work came through referrals. In under two months the site was first on Google, and the people who call us have already seen the price list, so we go straight to booking a date.",
+    name: "Vojin Radulović",
+    role: "Moler Niš",
     tone: ["#ff8078", "#ffc9a8"],
-  },
-  {
-    text: "A shorter quote: one concrete result they noticed.",
-    name: "Name Surname",
-    role: "Role, company name",
-    tone: ["#0b0b16", "#5d5cff"],
   },
 ];
 
@@ -76,7 +70,7 @@ export default function Voices() {
           id="clients"
           label="Clients"
           title="Trusted by our clients."
-          intro="What it's like to work with us."
+          intro="Recommendations from clients who take marketing seriously."
         />
         <div className={v.grid}>
           <Reveal as="figure" className={v.main}>
@@ -92,7 +86,6 @@ export default function Voices() {
             <blockquote className={v.mainText}>{main.text}</blockquote>
             <div className={v.mainFoot}>
               <Person q={main} dark />
-              <span className={v.pending}>Waiting for a real quote</span>
             </div>
           </Reveal>
           {rest.map((q, i) => (
@@ -101,7 +94,6 @@ export default function Voices() {
               <blockquote className={v.smallText}>{q.text}</blockquote>
               <div className={v.smallFoot}>
                 <Person q={q} />
-                <span className={v.pending}>Waiting for a real quote</span>
               </div>
             </Reveal>
           ))}

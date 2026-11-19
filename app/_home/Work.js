@@ -25,12 +25,28 @@ function CardTop({ c, dark = false, closest = false }) {
   );
 }
 
-/** The client's real site, shown whole. */
+/* Taller versions of the covers, drawn for the deck card on wide screens
+   (studije-slucaja/cover4.py), so a 16:9 cover is never cropped into it. */
+const CARD_IMAGES = {
+  "pando-cleaning":
+    "https://cdn.sanity.io/images/wy74bwq9/production/d2f78c0026ec038f4acdbdbc95c0e3a39d269103-1500x1660.jpg",
+};
+
+/** The client's site, filling its half of the card. */
 function Shot({ c }) {
+  const tall = CARD_IMAGES[c.slug];
   return (
     <span className={w.shot}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className={w.shotImg} src={c.cover} alt={`${c.name} website`} />
+      <picture>
+        {tall
+          ? <source
+              media="(min-width: 960px)"
+              srcSet={`${tall}?w=900&fm=webp&q=82`}
+            />
+          : null}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className={w.shotImg} src={c.cover} alt={`${c.name} project`} />
+      </picture>
     </span>
   );
 }
@@ -151,7 +167,10 @@ function AllCases({ clients }) {
       <span className={w.allNum}>
         <Roll value={run ? 50 : 0} ms={1600} suffix="+" />
       </span>
-      <span className={w.allText}>companies we've helped grow.</span>
+      <span className={w.allText}>
+        collaborations, from small businesses to online stores, clinics and
+        property developers.
+      </span>
       {/* with a single project its site is already the card beside this */}
       {clients.length > 1
         ? <span className={w.allSites}>

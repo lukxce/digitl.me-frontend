@@ -1,13 +1,17 @@
 import Link from "next/link";
-import ProjectBlocksRendererAuto from "../components/ProjectBlocksRendererAuto";
+import a from "../_blog/article.module.css";
+import Widget from "../_blog/Widgets";
 import b from "../_home/base.module.css";
 import { ArrowLeft, ArrowUpRight, Quote } from "../_home/icons";
 import { Btn, Reveal } from "../_home/ui";
+import ProjectBlocksRendererAuto from "../components/ProjectBlocksRendererAuto";
 import ProjectCard from "./Card";
 import ChapterNav from "./ChapterNav";
 import CaseCta from "./Cta";
 import Gallery from "./Gallery";
+import { NameSticker, Pins } from "./HeroBits";
 import { monthYear, sized, srcSet, widestEm } from "./lib";
+import Piece from "./Pieces";
 import s from "./study.module.css";
 import Viz, { CountUp } from "./Viz";
 
@@ -16,37 +20,70 @@ const pad2 = (n) => String(n).padStart(2, "0");
 const isResult = (ch) => /^result/i.test(ch.kicker ?? "");
 
 /* ── top of the page ──────────────────────────────────────────────────── */
-function Hero({ showcase, headline, standfirst, meta, services }) {
+/* Laid out like a blog post: the client's name is the title, the story's
+   one strong sentence sits under it, the cover is smaller and to the side. */
+function Hero({ showcase, headline, meta, services, sticker, pins = [] }) {
   const name = showcase.clientName || showcase.title;
   const logo =
     showcase.thumbSrc && showcase.thumbSrc !== showcase.coverUrl
       ? showcase.thumbSrc
       : null;
   return (
-    <header className={`${b.glow} ${s.hero}`}>
-      <div className={b.container}>
-        <Link href="/projects" className={`${s.back} ${b.fadeUp}`}>
-          <ArrowLeft size={15} /> Projects
-        </Link>
-
-        <div className={`${s.client} ${b.fadeUp}`}>
-          <span className={s.logo}>
+    <header className={`${b.glow} ${a.hero}`}>
+      <div className={`${b.container} ${a.heroGrid}`}>
+        <div className={a.intro}>
+          <Link
+            href="/projects"
+            className={`${a.back} ${b.fadeUp}`}
+            aria-label="Back to projects"
+          >
+            <span>
+              <ArrowLeft size={14} />
+            </span>
+            Projects
+          </Link>
+          <h1
+            className={`${a.title} ${s.name} ${b.fadeUp}`}
+            style={{ animationDelay: "80ms" }}
+          >
+            {name}
+            <NameSticker kind={sticker} className={s.nameSticker} />
+          </h1>
+          {headline
+            ? <p
+                className={`${a.standfirst} ${s.claim} ${b.fadeUp}`}
+                style={{ animationDelay: "160ms" }}
+              >
+                {headline}
+              </p>
+            : null}
+          {services.length
+            ? <ul
+                className={`${s.services} ${s.tags} ${b.fadeUp}`}
+                aria-label="What we did"
+                style={{ animationDelay: "200ms" }}
+              >
+                {services.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
+            : null}
+          <div
+            className={`${a.byline} ${s.byline} ${b.fadeUp}`}
+            style={{ animationDelay: "240ms" }}
+          >
             {logo
               ? // eslint-disable-next-line @next/next/no-img-element
-                <img src={sized(logo, 128)} alt="" width="52" height="52" />
-              : <b aria-hidden="true">{name.slice(0, 1)}</b>}
-          </span>
-          <p>
-            <b>{name}</b>
-            {showcase.category ? <span>{showcase.category}</span> : null}
-          </p>
-        </div>
-
-        <h1 className={`${s.h1} ${b.fadeUp}`}>{headline}</h1>
-
-        <div className={`${s.lead} ${b.fadeUp}`}>
-          {standfirst ? <p className={s.standfirst}>{standfirst}</p> : null}
-          <div className={s.actions}>
+                <img src={sized(logo, 128)} alt="" width={46} height={46} />
+              : null}
+            <p>
+              <b>{name}</b>
+              {showcase.category
+                ? <span>
+                    <em>{showcase.category}</em>
+                  </span>
+                : null}
+            </p>
             {showcase.websiteUrl
               ? <Btn
                   href={showcase.websiteUrl}
@@ -57,19 +94,39 @@ function Hero({ showcase, headline, standfirst, meta, services }) {
                   Visit the site
                 </Btn>
               : null}
-            {services.length
-              ? <ul className={s.services} aria-label="What we did">
-                  {services.map((x) => (
-                    <li key={x}>{x}</li>
-                  ))}
-                </ul>
-              : null}
           </div>
         </div>
 
-        {meta.length
-          ? <dl
-              className={`${s.facts} ${b.fadeUp}`}
+        {showcase.coverUrl
+          ? <div
+              className={`${s.coverWrap} ${b.fadeUp}`}
+              style={{ animationDelay: "200ms" }}
+            >
+              <figure
+                className={`${a.cover} ${s.coverTilt}`}
+                style={{ aspectRatio: "16 / 9" }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={sized(showcase.coverUrl, 1400)}
+                  srcSet={srcSet(showcase.coverUrl, [700, 1000, 1400, 1600])}
+                  sizes="(max-width: 959px) 100vw, 760px"
+                  alt={`The project for ${name}`}
+                  width="1600"
+                  height="900"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </figure>
+              <Pins pins={pins} className={s.pin} />
+            </div>
+          : null}
+      </div>
+
+      {meta.length
+        ? <div className={b.container}>
+            <dl
+              className={`${s.facts} ${s.factsTop} ${b.fadeUp}`}
               data-n={Math.min(meta.length, 4)}
             >
               {meta.map((m) => (
@@ -79,25 +136,24 @@ function Hero({ showcase, headline, standfirst, meta, services }) {
                 </div>
               ))}
             </dl>
-          : null}
-
-        {showcase.coverUrl
-          ? <figure className={`${s.cover} ${b.fadeUp}`}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={sized(showcase.coverUrl, 1600)}
-                srcSet={srcSet(showcase.coverUrl, [800, 1200, 1600, 2400])}
-                sizes="(max-width: 1320px) 100vw, 1256px"
-                alt={`The website we built for ${name}`}
-                width="1600"
-                height="900"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </figure>
-          : null}
-      </div>
+          </div>
+        : null}
     </header>
+  );
+}
+
+/* ── what the project was, in one paragraph, under the numbers ───────── */
+function About({ text }) {
+  if (!text) return null;
+  return (
+    <section className={s.about} aria-label="About the project">
+      <div className={b.container}>
+        <Reveal className={s.aboutIn}>
+          <span className={b.label}>About the project</span>
+          <p>{text}</p>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -240,6 +296,21 @@ function Chapter({ p }) {
           </Reveal>
         : null}
       {viz && !p.beside ? <Reveal className={s.wide}>{viz}</Reveal> : null}
+      {ch.widget
+        ? <Reveal className={s.wide}>
+            <Widget kind={ch.widget.kind} lines={ch.widget.lines} />
+          </Reveal>
+        : null}
+      {ch.piece
+        ? <Reveal className={s.wide}>
+            <Piece piece={ch.piece} />
+          </Reveal>
+        : null}
+      {ch.extra
+        ? <Reveal className={s.wide}>
+            <Piece piece={ch.extra} />
+          </Reveal>
+        : null}
       {ch.media?.length
         ? <Reveal className={s.media}>
             <Gallery items={ch.media} />
@@ -402,8 +473,9 @@ export default function Study({ showcase, story, more }) {
       <article>
         <Hero
           showcase={showcase}
-          headline={story?.headline ?? showcase.title}
-          standfirst={story?.standfirst ?? showcase.description}
+          headline={story?.headline ?? showcase.description}
+          sticker={story?.sticker}
+          pins={story?.numbers ?? []}
           meta={meta.filter((m) => m?.label && m?.value)}
           services={story?.services ?? []}
         />
@@ -411,6 +483,7 @@ export default function Study({ showcase, story, more }) {
           numbers={numbers.filter((n) => n?.value)}
           source={story?.source}
         />
+        <About text={story?.standfirst ?? null} />
 
         {story?.chapters?.length
           ? <Chapters chapters={story.chapters.filter((ch) => ch?.id)} />

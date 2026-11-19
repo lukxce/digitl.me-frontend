@@ -27,34 +27,22 @@ function CardTop({ c, dark = false, closest = false }) {
 
 /* Taller versions of the covers, drawn for the deck card on wide screens
    (studije-slucaja/cover4.py), so a 16:9 cover is never cropped into it. */
-/* The client's own site, by project: a screenshot of its home page and
-   the address shown in the window's bar. Projects not listed keep their CMS
-   cover. */
-const SITES = {
-  "pando-cleaning": {
-    src: "/work/pando-home.webp",
-    domain: "pando-cleaning.com",
-  },
-};
-
-/** The client's site in a browser window: the address bar says whose site
-    it is, so the card reads as "a project" at a glance (Luka, 19 Nov 2026:
-    the mosaic cover did not). */
+/** The client's site in a browser window with the phone beside it, made
+    for this half of the card (public/work/<slug>.webp, 1000x1220), so
+    nothing is cut off (Luka, 19 Nov 2026: the mosaic confused people, a
+    cropped screenshot looked bad). Projects without one keep their cover. */
+const SHOTS = ["pando-cleaning"];
 function Shot({ c }) {
-  const site = SITES[c.slug];
+  const own = SHOTS.includes(c.slug);
   return (
     <span className={w.shot}>
-      <span className={w.chrome} aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        {site ? <em>{site.domain}</em> : null}
-      </span>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={w.shotImg}
-        src={site ? site.src : c.cover}
-        alt={`The site we built for ${c.name}`}
+        src={own ? `/work/${c.slug}.webp` : c.cover}
+        alt={`The site we built for ${c.name}, on a laptop and a phone`}
+        width="1000"
+        height="1220"
         loading="lazy"
       />
     </span>
